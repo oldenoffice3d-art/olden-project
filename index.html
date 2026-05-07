@@ -76,6 +76,7 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
+        // Іконки інтерфейсу
         const Icon = ({ name, size = 24, color = "currentColor", strokeWidth = 2, fill = "none" }) => {
             const icons = {
                 Shield: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />,
@@ -102,15 +103,15 @@
 
         const EventLog = ({ log }) => (
             <div className="h-full flex flex-col">
-                <h3 className="text-[#8D99AE] text-[10px] font-black tracking-[0.3em] flex items-center gap-2 mb-4 uppercase shrink-0">
-                    <Icon name="Settings" size={12} color="#FF9F1C" /> Event Journal
+                <h3 className="text-[#8D99AE] text-[11px] font-black tracking-[0.3em] flex items-center gap-2 mb-4 uppercase shrink-0">
+                    <Icon name="Settings" size={14} color="#FF9F1C" /> Event Journal
                 </h3>
                 <div className="space-y-3 flex-1 overflow-y-auto pr-1">
-                    {log.length === 0 && <p className="text-[#2B2D42] italic text-[10px] font-black uppercase mt-4 text-center">Monitoring Active...</p>}
+                    {log.length === 0 && <p className="text-[#2B2D42] italic text-[11px] font-black uppercase mt-4 text-center">Monitoring Active...</p>}
                     {log.map((entry, i) => (
                         <div key={i} className="border-l-2 border-[#FF9F1C] pl-3 py-1 bg-white/[0.02] fade-enter-active">
-                            <p className="text-[9px] text-[#8D99AE] mb-0.5 font-black uppercase">{entry.time}</p>
-                            <p className="text-[10px] font-black leading-tight tracking-normal uppercase text-white">{entry.msg}</p>
+                            <p className="text-[10px] text-[#8D99AE] mb-0.5 font-black uppercase">{entry.time}</p>
+                            <p className="text-[11px] font-black leading-tight tracking-normal uppercase text-white">{entry.msg}</p>
                         </div>
                     ))}
                 </div>
@@ -119,15 +120,15 @@
 
         const ArchiveList = ({ archive }) => (
             <div className="h-full flex flex-col">
-                <h3 className="text-[#8D99AE] text-[10px] font-black tracking-[0.3em] flex items-center gap-2 mb-4 uppercase shrink-0">
-                    <Icon name="CheckCircle" size={12} color="#00C853" /> Archived Nodes
+                <h3 className="text-[#8D99AE] text-[11px] font-black tracking-[0.3em] flex items-center gap-2 mb-4 uppercase shrink-0">
+                    <Icon name="CheckCircle" size={14} color="#00C853" /> Archived Nodes
                 </h3>
                 <div className="space-y-3 flex-1 overflow-y-auto pr-1 text-left">
-                    {archive.length === 0 && <p className="text-[#2B2D42] italic text-[10px] font-black uppercase mt-4 text-center">Archive Empty</p>}
+                    {archive.length === 0 && <p className="text-[#2B2D42] italic text-[11px] font-black uppercase mt-4 text-center">Archive Empty</p>}
                     {archive.map((truck, i) => (
                         <div key={i} className="p-3 border-l-2 border-[#00C853] bg-white/[0.02] fade-enter-active opacity-70 hover:opacity-100 transition-opacity">
                             <span className="text-sm font-black block leading-none text-white mb-1">{truck.id}</span>
-                            <span className="text-[8px] text-[#8D99AE] font-black tracking-widest uppercase italic">COMPLETED: {truck.archiveTime}</span>
+                            <span className="text-[9px] text-[#8D99AE] font-black tracking-widest uppercase italic">COMPLETED: {truck.archiveTime}</span>
                         </div>
                     ))}
                 </div>
@@ -138,11 +139,11 @@
             <div className="p-6 flex flex-col h-full fade-enter-active">
                 <div className="mb-6">
                     <h2 className="text-2xl font-black tracking-tighter leading-none uppercase mb-2">Facility Dashboard</h2>
-                    <p className="text-[9px] text-[#8D99AE] font-black tracking-widest uppercase opacity-60">Incoming Vehicle Orchestration</p>
+                    <p className="text-[10px] text-[#8D99AE] font-black tracking-widest uppercase opacity-60">Incoming Vehicle Orchestration</p>
                 </div>
-                <h3 className="text-[10px] font-black tracking-widest text-[#8D99AE] mb-4 border-b border-[#2B2D42] pb-2 uppercase opacity-40">Expected Queue</h3>
+                <h3 className="text-[11px] font-black tracking-widest text-[#8D99AE] mb-4 border-b border-[#2B2D42] pb-2 uppercase opacity-40">Expected Queue</h3>
                 <div className="space-y-2 pr-2 overflow-y-auto">
-                    {queue.length === 0 && <div className="p-8 text-center border border-dashed border-[#2B2D42] opacity-30 font-black uppercase text-[10px]">Queue Cleared</div>}
+                    {queue.length === 0 && <div className="p-8 text-center border border-dashed border-[#2B2D42] opacity-30 font-black uppercase text-[11px]">Queue Cleared</div>}
                     {queue.map((truck) => (
                         <div key={truck.id} onClick={() => onSelect(truck.id)} className="flex justify-between items-center p-3 border border-[#2B2D42] bg-[#0A1128] hover:border-white cursor-pointer transition-all group">
                             <div className="flex items-center gap-3">
@@ -151,10 +152,10 @@
                                 </div>
                                 <div>
                                     <span className="text-sm font-black block leading-none mb-1 text-white">{truck.id}</span>
-                                    <span className="text-[8px] text-[#8D99AE] font-black tracking-widest uppercase opacity-50">SYNC: {truck.accepted ? 'VERIFIED' : 'PENDING'}</span>
+                                    <span className="text-[9px] text-[#8D99AE] font-black tracking-widest uppercase opacity-50">SYNC: {truck.accepted ? 'VERIFIED' : 'PENDING'}</span>
                                 </div>
                             </div>
-                            <span className={`text-[8px] font-black tracking-widest px-2 py-1 ${truck.state === 'STOP' ? 'bg-[#FF9F1C]/10 text-[#FF9F1C] border border-[#FF9F1C]/20' : 'bg-[#00C853]/10 text-[#00C853] border border-[#00C853]/20'}`}>
+                            <span className={`text-[9px] font-black tracking-widest px-2 py-1 ${truck.state === 'STOP' ? 'bg-[#FF9F1C]/10 text-[#FF9F1C] border border-[#FF9F1C]/20' : 'bg-[#00C853]/10 text-[#00C853] border border-[#00C853]/20'}`}>
                                 {truck.status}
                             </span>
                         </div>
@@ -165,11 +166,11 @@
 
         const AdminTruckDetail = ({ truck, onAction, onBack }) => (
             <div className="p-6 flex flex-col h-full fade-enter-active">
-                <button onClick={onBack} className="flex items-center gap-2 text-[9px] font-black tracking-widest text-[#8D99AE] hover:text-white transition-colors mb-6">
-                    <Icon name="ArrowLeft" size={12} /> RETURN TO QUEUE
+                <button onClick={onBack} className="flex items-center gap-2 text-[10px] font-black tracking-widest text-[#8D99AE] hover:text-white transition-colors mb-6">
+                    <Icon name="ArrowLeft" size={14} /> RETURN TO QUEUE
                 </button>
                 <div className="space-y-1 mb-8">
-                    <h2 className="text-[#FF9F1C] text-[10px] font-black tracking-[0.4em] uppercase">Control Mode</h2>
+                    <h2 className="text-[#FF9F1C] text-[11px] font-black tracking-[0.4em] uppercase">Control Mode</h2>
                     <p className="text-4xl font-black tracking-tighter leading-none uppercase text-white">{truck.id}</p>
                 </div>
                 <div className="grid grid-cols-2 gap-4 mb-auto">
@@ -185,7 +186,7 @@
                 <div className="flex items-center gap-4 p-4 bg-black/40 border border-[#2B2D42] text-white mt-6">
                     <div className={`w-3 h-3 ${truck.accepted ? 'bg-[#00C853] shadow-[0_0_10px_#00C853]' : 'bg-[#FF9F1C] animate-pulse'}`}></div>
                     <div>
-                        <span className="text-[10px] font-black tracking-widest uppercase">{truck.accepted ? 'Confirmed by Remote Node' : 'Waiting for Remote Confirmation...'}</span>
+                        <span className="text-[11px] font-black tracking-widest uppercase">{truck.accepted ? 'Confirmed by Remote Node' : 'Waiting for Remote Confirmation...'}</span>
                     </div>
                 </div>
             </div>
@@ -199,22 +200,22 @@
             return (
                 <div className={`flex-1 flex flex-col transition-colors duration-700 h-full ${bgColor} relative`}>
                     <div className="mt-8 px-6 flex justify-between items-center text-white shrink-0">
-                        <div className="bg-black text-white px-2 py-1 text-[8px] font-black tracking-[0.2em] uppercase">
+                        <div className="bg-black text-white px-2 py-1 text-[9px] font-black tracking-[0.2em] uppercase">
                             {truck.accepted ? "NODE SYNCED" : "LINK PENDING"}
                         </div>
-                        <span className="text-[9px] font-black opacity-80 uppercase">{truck.id}</span>
+                        <span className="text-[10px] font-black opacity-80 uppercase">{truck.id}</span>
                     </div>
 
                     <div className="flex-1 flex flex-col items-center justify-center p-4 text-center text-white">
-                        <h1 className="text-[70px] font-black tracking-tighter leading-none mb-2 drop-shadow-2xl uppercase">
+                        <h1 className="text-[75px] font-black tracking-tighter leading-none mb-2 drop-shadow-2xl uppercase">
                             {truck.state}
                         </h1>
                     </div>
 
-                    <div className="px-4 pb-8 space-y-3">
+                    <div className="px-4 pb-8 space-y-4">
                         <div className="w-full py-6 px-3 bg-black/30 border border-white/20 flex flex-col items-center justify-center">
-                            <div className="flex items-center gap-2 text-[9px] font-black tracking-[0.3em] opacity-80 uppercase mb-2">
-                                <Icon name="Navigation" size={10} fill="currentColor" color="currentColor" />
+                            <div className="flex items-center gap-2 text-[10px] font-black tracking-[0.3em] opacity-80 uppercase mb-2">
+                                <Icon name="Navigation" size={12} fill="currentColor" color="currentColor" />
                                 <span>Gate Coordinates</span>
                             </div>
                             <div className="flex flex-col items-center leading-[0.85]">
@@ -239,7 +240,7 @@
         };
 
         function App() {
-            // ----- CLOCK LOGIC -----
+            // Логіка живого годинника
             const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }));
 
             useEffect(() => {
@@ -249,7 +250,7 @@
                 return () => clearInterval(timer);
             }, []);
 
-            // Demo State
+            // Стан Демо
             const [role, setRole] = React.useState('admin'); 
             const gateCoords = '51.5033, -0.1195'; 
             const [log, setLog] = React.useState([]);
@@ -262,7 +263,7 @@
                 { id: 'XWQ10 VBN', status: 'IN TRANSIT', state: 'GO', accepted: true }
             ]);
 
-            // Landing State
+            // Стан форми
             const [submitted, setSubmitted] = useState(false);
             const [email, setEmail] = useState('');
             const [loading, setLoading] = useState(false);
@@ -304,7 +305,7 @@
                 if (email.includes('@')) {
                     setLoading(true);
                     
-                    // GOOGLE SCRIPT INTEGRATION
+                    // ІНТЕГРАЦІЯ GOOGLE SCRIPT
                     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSXx-fDiaHlvX7jpKlhqa0i7aDD0BGJWj_ywgJLEVcowrCqelz4vpROJrbZDXcA0Dpcw/exec"; 
 
                     try {
@@ -332,62 +333,63 @@
 
             return (
                 <div className="min-h-screen flex flex-col uppercase tracking-tighter">
-                    {/* NAV BAR */}
-                    <nav className="w-full max-w-6xl mx-auto flex justify-between items-center py-6 px-6 lg:px-0 text-left shrink-0 z-50">
+                    {/* НАВІГАЦІЯ */}
+                    <nav className="w-full max-w-6xl mx-auto flex justify-between items-center py-8 px-6 lg:px-0 text-left shrink-0 z-50">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-safety text-navy flex items-center justify-center font-black text-xl">O</div>
-                            <h1 className="text-xl font-black uppercase tracking-tighter text-white">Olden <span className="text-safety">Project</span></h1>
+                            <h1 className="text-2xl font-black uppercase tracking-tighter text-white">Olden <span className="text-safety">Project</span></h1>
                         </div>
                         <div className="flex gap-4">
-                            <span className="text-[10px] font-black bg-grid px-3 py-1 uppercase hidden md:inline-block text-[#8D99AE]">DLR Engine Active</span>
-                            <span className="text-[10px] font-black bg-safety/20 text-safety px-3 py-1 uppercase border border-safety/30">Pre-Order Open</span>
+                            <span className="text-[11px] font-black bg-grid px-3 py-1.5 uppercase hidden md:inline-block text-[#8D99AE]">DLR Engine Active</span>
+                            <span className="text-[11px] font-black bg-safety/20 text-safety px-3 py-1.5 uppercase border border-safety/30">Pre-Order Open</span>
                         </div>
                     </nav>
 
-                    {/* HERO & DEMO SECTION */}
-                    <main className="w-full max-w-6xl mx-auto px-6 lg:px-0 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start text-left">
-                        <div className="lg:col-span-5 space-y-8">
+                    {/* HERO СЕКЦІЯ */}
+                    <main className="w-full max-w-6xl mx-auto px-6 lg:px-0 py-16 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start text-left">
+                        <div className="lg:col-span-5 space-y-10">
                             <div>
-                                <p className="text-safety font-black uppercase tracking-widest text-xs mb-2">The Revenue Engine</p>
-                                <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] text-white">
+                                <p className="text-safety font-black uppercase tracking-[0.2em] text-xs mb-4">The Revenue Engine</p>
+                                <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.95] text-white mb-6">
                                     For the <span className="text-safety">Millions</span>, not only for the Billions.
                                 </h2>
-                                <p className="text-xs text-safety font-black mt-2 tracking-widest opacity-80">EMPOWERING THE MILLIONS OF SMALL AND MEDIUM HUBS WORLDWIDE.</p>
+                                <p className="text-xs text-safety font-black tracking-widest opacity-80 border-l-2 border-safety/40 pl-3">EMPOWERING THE MILLIONS OF SMALL AND MEDIUM HUBS WORLDWIDE.</p>
                             </div>
-                            <p className="text-lg text-gray-400 leading-relaxed font-medium normal-case">
+                            
+                            <p className="text-lg text-gray-300 leading-relaxed font-medium normal-case">
                                 Whether it is a high-volume hub in "Central London", a congested grid in "New York", or a neighborhood depot in "Tokyo", the operational desire is always the same: to process just one more truck.
                             </p>
                             
-                            <div className="p-6 border-l-4 border-safety bg-safety/5 space-y-4">
-                                <h4 className="text-xs text-safety font-black tracking-widest uppercase">The Digital Divide</h4>
-                                <p className="text-sm text-white font-medium leading-relaxed normal-case">
+                            <div className="p-8 border-l-4 border-safety bg-safety/5 space-y-5">
+                                <h4 className="text-sm text-safety font-black tracking-widest uppercase">The Digital Divide</h4>
+                                <p className="text-base text-white font-medium leading-relaxed normal-case">
                                     Billion-dollar giants have automation, but the **millions of small and medium-sized facilities (SMEs)** remain trapped in manual chaos. Olden bridges this gap, bringing elite synchronization to the "Millions."
                                 </p>
                             </div>
                             
-                            <div className="space-y-4 pt-4">
-                                <div className="flex gap-4 p-4 border border-white/10">
-                                    <div className="w-8 h-8 bg-urbanBlue/20 flex items-center justify-center text-urbanBlue shrink-0"><Icon name="Truck" size={16} /></div>
-                                    <p className="text-[10px] text-gray-500 uppercase font-black leading-tight">Zero Hardware Capex: Access elite yard management with just a smartphone.</p>
+                            <div className="grid grid-cols-1 gap-6 pt-4">
+                                <div className="flex gap-5 p-5 border border-white/10 bg-white/[0.02]">
+                                    <div className="w-10 h-10 bg-urbanBlue/20 flex items-center justify-center text-urbanBlue shrink-0"><Icon name="Truck" size={20} /></div>
+                                    <p className="text-xs text-gray-400 uppercase font-black leading-tight tracking-wider">Zero Hardware Capex: Access elite yard management with just a smartphone.</p>
                                 </div>
-                                <div className="flex gap-4 p-4 border border-white/10">
-                                    <div className="w-8 h-8 bg-emerald/20 flex items-center justify-center text-emerald shrink-0"><Icon name="CheckCircle" size={16} /></div>
-                                    <p className="text-[10px] text-gray-500 uppercase font-black leading-tight">Increase throughput by up to 60% without adding physical space.</p>
+                                <div className="flex gap-5 p-5 border border-white/10 bg-white/[0.02]">
+                                    <div className="w-10 h-10 bg-emerald/20 flex items-center justify-center text-emerald shrink-0"><Icon name="CheckCircle" size={20} /></div>
+                                    <p className="text-xs text-gray-400 uppercase font-black leading-tight tracking-wider">Increase throughput by up to 60% without adding physical space.</p>
                                 </div>
                             </div>
                         </div>
 
-                        {/* SYNC SYSTEM DEMO */}
-                        <div className="lg:col-span-7 space-y-6">
-                            <div className="flex justify-between items-center mb-2 px-2">
-                                <h3 className="text-[10px] font-black uppercase tracking-widest text-[#8D99AE]">Interactive Technology Preview</h3>
-                                <div className="flex gap-2">
-                                    <button onClick={() => setRole('admin')} className={`px-4 py-1.5 text-[9px] font-black transition-all border ${role === 'admin' ? 'bg-safety text-navy border-safety' : 'text-gray-500 border-gray-800'}`}>ADMIN TERMINAL</button>
-                                    <button onClick={() => setRole('driver')} className={`px-4 py-1.5 text-[9px] font-black transition-all border ${role === 'driver' ? 'bg-safety text-navy border-safety' : 'text-gray-500 border-gray-800'}`}>DRIVER PAGER</button>
+                        {/* ІНТЕРАКТИВНЕ ДЕМО */}
+                        <div className="lg:col-span-7 space-y-8">
+                            <div className="flex justify-between items-center mb-4 px-2">
+                                <h3 className="text-[11px] font-black uppercase tracking-[0.2em] text-[#8D99AE]">Interactive Technology Preview</h3>
+                                <div className="flex gap-3">
+                                    <button onClick={() => setRole('admin')} className={`px-5 py-2 text-[10px] font-black transition-all border ${role === 'admin' ? 'bg-safety text-navy border-safety' : 'text-gray-500 border-gray-800 hover:border-gray-600'}`}>ADMIN TERMINAL</button>
+                                    <button onClick={() => setRole('driver')} className={`px-5 py-2 text-[10px] font-black transition-all border ${role === 'driver' ? 'bg-safety text-navy border-safety' : 'text-gray-500 border-gray-800 hover:border-gray-600'}`}>DRIVER PAGER</button>
                                 </div>
                             </div>
 
-                            <div className="min-h-[600px] flex items-center justify-center bg-navy/20 border border-white/5 relative group">
+                            <div className="min-h-[640px] flex items-center justify-center bg-navy/20 border border-white/5 relative group shadow-2xl">
                                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `linear-gradient(#F8F9FA 1px, transparent 1px), linear-gradient(90deg, #F8F9FA 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
                                 
                                 {role === 'driver' ? (
@@ -400,9 +402,9 @@
                                 ) : (
                                     <div className="tablet-frame fade-enter-active">
                                         <div className="tablet-screen text-white">
-                                            <div className="h-8 bg-black/40 border-b border-[#2B2D42] flex justify-between items-center px-4 text-[8px] font-black opacity-60">
-                                                <div className="flex gap-4"><span>{currentTime} UK</span><span className="text-[#00C853] flex items-center gap-1"><Icon name="Signal" size={10} /> LINK SECURE</span></div>
-                                                <div className="flex gap-2 items-center">84% <Icon name="Battery" size={10} /></div>
+                                            <div className="h-10 bg-black/40 border-b border-[#2B2D42] flex justify-between items-center px-6 text-[10px] font-black opacity-60">
+                                                <div className="flex gap-5"><span>{currentTime} UK</span><span className="text-[#00C853] flex items-center gap-1.5"><Icon name="Signal" size={12} /> LINK SECURE</span></div>
+                                                <div className="flex gap-2 items-center">84% <Icon name="Battery" size={14} /></div>
                                             </div>
                                             <div className="flex-1 flex overflow-hidden">
                                                 <div className="flex-1 overflow-y-auto bg-[#050814] border-r border-[#2B2D42]">
@@ -412,93 +414,95 @@
                                                         <AdminTruckDetail truck={activeTruck} onAction={handleAdminAction} onBack={() => setAdminView('list')} />
                                                     )}
                                                 </div>
-                                                <div className="w-64 shrink-0 flex flex-col bg-[#080E21]">
-                                                    <div className="flex-1 p-4 border-b border-[#2B2D42] overflow-hidden"><EventLog log={log} /></div>
-                                                    <div className="flex-1 p-4 overflow-hidden bg-[#0A1128]"><ArchiveList archive={archive} /></div>
+                                                <div className="w-72 shrink-0 flex flex-col bg-[#080E21]">
+                                                    <div className="flex-1 p-5 border-b border-[#2B2D42] overflow-hidden"><EventLog log={log} /></div>
+                                                    <div className="flex-1 p-5 overflow-hidden bg-[#0A1128]"><ArchiveList archive={archive} /></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 )}
                             </div>
-                            <p className="text-[9px] text-[#8D99AE] font-black tracking-widest uppercase text-center mt-4">
+                            <p className="text-[10px] text-[#8D99AE] font-black tracking-widest uppercase text-center mt-6 italic">
                                 Caption: The Vault Global Network: From first 10 Nodes with 1 System to Infinite Scale.
                             </p>
                         </div>
                     </main>
 
-                    {/* GENESIS ALLOCATION FORM */}
-                    <section className="w-full max-w-6xl mx-auto px-6 lg:px-0 py-24 text-left">
-                        <div className="genesis-section p-8 md:p-12 shadow-2xl relative overflow-hidden">
+                    {/* ФОРМА GENESIS ALLOCATION */}
+                    <section className="w-full max-w-6xl mx-auto px-6 lg:px-0 py-32 text-left">
+                        <div className="genesis-section p-10 md:p-16 shadow-2xl relative overflow-hidden">
                             {!submitted ? (
-                                <div className="flex flex-col md:flex-row gap-12 items-start">
-                                    <div className="space-y-6 flex-1">
+                                <div className="flex flex-col md:flex-row gap-16 items-start">
+                                    <div className="space-y-8 flex-1">
                                         <div>
-                                            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-2 text-white">THE GENESIS ALLOCATION</h2>
-                                            <p className="text-xl text-safety font-black uppercase tracking-widest text-center md:text-left">(YOUR PATH TO EQUITY)</p>
+                                            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4 text-white leading-none">THE GENESIS ALLOCATION</h2>
+                                            <p className="text-lg text-safety font-black uppercase tracking-[0.3em]">(YOUR PATH TO EQUITY)</p>
                                         </div>
-                                        <div className="p-4 border-l-2 border-safety bg-safety/5">
+                                        <div className="p-6 border-l-2 border-safety bg-safety/5">
                                             <p className="text-xs font-mono text-safety uppercase leading-relaxed font-bold">
                                                 ATTENTION: This portal is a technical continuation of the Indiegogo campaign. No capital is collected on this page. This is for ROI validation and allocation reservation only.
                                             </p>
                                         </div>
-                                        <p className="text-sm text-gray-300 leading-relaxed max-w-md font-medium normal-case">
+                                        <p className="text-base text-gray-300 leading-relaxed max-w-md font-medium normal-case">
                                             Upon completion of this soft commitment phase, a **Private Limited Company (LTD) will be incorporated in the United Kingdom** as the official vehicle for the official equity round in Q3 2026.
                                         </p>
                                     </div>
-                                    <div className="w-full md:w-auto flex-1 space-y-6">
-                                        <form onSubmit={handleReserve} className="flex flex-col gap-4" autoComplete="off">
+                                    <div className="w-full md:w-auto flex-1 space-y-8">
+                                        <form onSubmit={handleReserve} className="flex flex-col gap-5" autoComplete="off">
                                             <input 
                                                 type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
                                                 placeholder="ENTER BUSINESS EMAIL" autoComplete="new-password"
-                                                className="bg-navy border-2 border-white/20 p-5 font-mono text-white text-lg focus:border-safety outline-none transition-all placeholder:text-gray-700"
+                                                className="bg-navy border-2 border-white/20 p-6 font-mono text-white text-xl focus:border-safety outline-none transition-all placeholder:text-gray-700 w-full"
                                             />
                                             <button 
                                                 type="submit" disabled={loading}
-                                                className="bg-safety hover:bg-orange-400 text-navy font-black text-xl py-5 px-8 flex items-center justify-center gap-4 transition-all shadow-xl disabled:opacity-50 active:translate-y-1"
+                                                className="bg-safety hover:bg-orange-400 text-navy font-black text-xl py-6 px-10 flex items-center justify-center gap-5 transition-all shadow-2xl disabled:opacity-50 active:translate-y-1 w-full"
                                             >
                                                 <span className="text-2xl">⚡</span> {loading ? 'SYNCING...' : 'REGISTER & RESERVE ALLOCATION'}
                                             </button>
                                         </form>
-                                        <p className="text-[11px] text-gray-400 leading-relaxed italic opacity-70 normal-case">
+                                        <p className="text-[12px] text-gray-500 leading-relaxed italic font-medium normal-case tracking-wide">
                                             Investment intents starting from £1,250 are formalized via a non-binding Letter of Intent (LOI). All commitments will be novated to the UK LTD prior to the live round.
                                         </p>
                                     </div>
                                 </div>
                             ) : (
-                                <div className="py-12 text-center space-y-6 flex flex-col items-center">
-                                    <Icon name="Mail" size={64} color="#FF9F1C" strokeWidth={1} />
-                                    <h2 className="text-4xl font-black uppercase tracking-tighter text-white">Action Required</h2>
-                                    <p className="text-xl text-emerald font-bold uppercase tracking-widest text-center">LOI dispatched to {email}</p>
-                                    <div className="p-4 border border-safety/30 bg-safety/5 inline-block text-[10px] uppercase font-black tracking-[0.2em] text-gray-300">
+                                <div className="py-16 text-center space-y-8 flex flex-col items-center">
+                                    <Icon name="Mail" size={72} color="#FF9F1C" strokeWidth={1} />
+                                    <div>
+                                        <h2 className="text-4xl font-black uppercase tracking-tighter text-white mb-2">Action Required</h2>
+                                        <p className="text-xl text-emerald font-black uppercase tracking-widest text-center">LOI dispatched to {email}</p>
+                                    </div>
+                                    <div className="p-6 border border-safety/30 bg-safety/5 inline-block text-xs uppercase font-black tracking-[0.2em] text-gray-300 text-center max-w-xl">
                                         Check your inbox. Finalize via BoldSign to secure your priority position.
                                     </div>
                                     <button 
                                         onClick={() => { setSubmitted(false); setEmail(''); }}
-                                        className="mt-6 flex items-center justify-center gap-2 text-[10px] text-gray-500 uppercase font-black tracking-widest hover:text-safety transition-colors"
+                                        className="mt-10 flex items-center justify-center gap-3 text-[11px] text-gray-500 uppercase font-black tracking-[0.2em] hover:text-safety transition-colors"
                                     >
-                                        <Icon name="ArrowLeft" size={14} /> ENTER DIFFERENT EMAIL
+                                        <Icon name="ArrowLeft" size={16} /> ENTER DIFFERENT EMAIL
                                     </button>
                                 </div>
                             )}
                         </div>
 
-                        <div className="mt-12">
-                            <a href="https://www.indiegogo.com/projects/nazar-zablotskyi/olden-the-revenue-engine-for-urban-logistics" target="_blank" rel="noopener noreferrer" className="indiegogo-btn inline-flex items-center gap-2 px-8 py-4 text-safety font-black uppercase text-xs tracking-widest group">
-                                <Icon name="ChevronLeft" size={14} className="transition-transform group-hover:-translate-x-1" /> Return to Indiegogo Campaign Page
+                        <div className="mt-16 text-left">
+                            <a href="https://www.indiegogo.com/projects/nazar-zablotskyi/olden-the-revenue-engine-for-urban-logistics" target="_blank" rel="noopener noreferrer" className="indiegogo-btn inline-flex items-center gap-4 px-10 py-5 text-safety font-black uppercase text-sm tracking-[0.15em] group">
+                                <Icon name="ChevronLeft" size={18} className="transition-transform group-hover:-translate-x-1" /> Return to Indiegogo Campaign Page
                             </a>
                         </div>
                     </section>
 
-                    {/* FOOTER */}
-                    <footer className="w-full max-w-6xl mx-auto mt-12 py-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-start gap-12 text-left px-6 lg:px-0">
-                        <div className="space-y-6 max-w-3xl">
-                            <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.3em]">Olden Project | Intellectual Property Disclosure</p>
-                            <div className="space-y-4">
+                    {/* ФУТЕР */}
+                    <footer className="w-full max-w-6xl mx-auto mt-16 py-16 border-t border-white/10 flex flex-col md:flex-row justify-between items-start gap-16 text-left px-6 lg:px-0">
+                        <div className="space-y-8 max-w-3xl">
+                            <p className="text-[11px] text-gray-500 font-black uppercase tracking-[0.3em]">Olden Project | Intellectual Property Disclosure</p>
+                            <div className="space-y-6">
                                 {['63/980,953', '63/980,960', '63/983,949'].map((id, idx) => (
                                     <div key={idx}>
-                                        <p className="text-safety text-[9px] font-black uppercase tracking-widest">US Patent App. {id}</p>
-                                        <p className="text-[10px] text-gray-400 font-bold uppercase leading-tight">
+                                        <p className="text-safety text-[10px] font-black uppercase tracking-[0.2em] mb-1">US Patent App. {id}</p>
+                                        <p className="text-[11px] text-gray-400 font-bold uppercase leading-relaxed tracking-wider">
                                             {idx === 0 && "SYSTEM AND METHOD FOR DISTRIBUTED LOGISTICS YARD COORDINATION WITH SELECTIVE GEOSPATIAL DATA SUPPRESSION AND DYNAMIC COMPLIANCE-BASED QUEUE ARBITRATION"}
                                             {idx === 1 && "SYSTEM AND METHOD FOR DETERMINISTIC LATENCY REDUCTION AND DYNAMIC FRAME BUFFER RESOURCE ALLOCATION IN NAVIGATION UNITS"}
                                             {idx === 2 && "TECHNICAL SUPPLEMENT: DISTRIBUTED ARCHITECTURE FOR MULTI-DIMENSIONAL LOGISTICS NAVIGATION"}
@@ -507,9 +511,9 @@
                                 ))}
                             </div>
                         </div>
-                        <div className="flex flex-col md:items-end gap-2 text-right w-full md:w-auto">
-                            <p className="text-safety text-[11px] font-black uppercase tracking-widest border border-safety/40 px-4 py-2 rounded-none whitespace-nowrap">Founder & Chairman: Nazar Zablotskyi</p>
-                            <p className="text-[9px] text-gray-500 uppercase font-bold">USPTO Disclosure Protocol</p>
+                        <div className="flex flex-col md:items-end gap-3 text-right w-full md:w-auto">
+                            <p className="text-safety text-[12px] font-black uppercase tracking-[0.15em] border border-safety/40 px-6 py-3 rounded-none whitespace-nowrap">Founder & Chairman: Nazar Zablotskyi</p>
+                            <p className="text-[10px] text-gray-600 uppercase font-black tracking-widest">USPTO Disclosure Protocol</p>
                         </div>
                     </footer>
                 </div>

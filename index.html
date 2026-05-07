@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olden Project: For the Millions, not only for the Billions</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#0A1128',
+                        safety: '#FF9F1C',
+                        grid: '#2B2D42',
+                        emerald: '#10b981', 
+                        urbanBlue: '#3b82f6',
+                        signalRed: '#ef4444'
+                    },
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'monospace'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Inter:wght@400;700;900&display=swap');
+        body { background-color: #03050a; font-family: 'Inter', sans-serif; color: white; overflow-x: hidden; }
+        
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 18px; width: 18px; background: #FF9F1C; cursor: pointer; margin-top: -6px; border-radius: 99px; transition: all 0.2s; border: 2px solid white; }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: #2B2D42; border-radius: 0px; }
+        
+        .glass-panel { background: rgba(10, 17, 40, 0.8); backdrop-filter: blur(15px); border: 1px solid rgba(255, 159, 28, 0.2); }
+        .genesis-section { background-color: #1A1F36; border-top: 4px solid #FF9F1C; }
+        
+        .fade-enter-active { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Device Frames Styling */
+        .phone-frame {
+            width: 320px; height: 640px;
+            background: #1A1C25; border: 10px solid #2B2D42;
+            border-radius: 40px; position: relative;
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8);
+            margin: 0 auto;
+        }
+        .phone-screen { width: 100%; height: 100%; background: black; border-radius: 30px; overflow: hidden; position: relative; }
+        .phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 20px; background: black; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; z-index: 50; }
+        
+        .tablet-frame {
+            width: 100%; max-width: 900px; height: 600px;
+            background: #1F212B; border: 12px solid #2B2D42;
+            border-radius: 30px; position: relative;
+            box-shadow: 0 50px 100px -30px rgba(0,0,0,0.9);
+            margin: 0 auto;
+        }
+        .tablet-screen { width: 100%; height: 100%; background: #0A1128; border-radius: 18px; overflow: hidden; position: relative; display: flex; flex-direction: column; }
+
+        .indiegogo-btn { border: 1px solid rgba(255, 159, 28, 0.5); transition: all 0.3s ease; }
+        .indiegogo-btn:hover { background: rgba(255, 159, 28, 0.1); border-color: #FF9F1C; }
+        
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0A1128; }
+        ::-webkit-scrollbar-thumb { background: #2B2D42; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // UI Icons
+        const Icon = ({ name, size = 24, color = "currentColor", strokeWidth = 2, fill = "none" }) => {
+            const icons = {
+                Shield: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />,
+                Smartphone: <><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></>,
+                Monitor: <><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8M12 17v4"/></>,
+                Settings: <><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></>,
+                Clock: <><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></>,
+                Truck: <><rect width="16" height="13" x="2" y="6" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></>,
+                Signal: <><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 20V4"/></>,
+                Navigation: <polygon points="3 11 22 2 13 21 11 13 3 11"/>,
+                CheckCircle: <><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></>,
+                ArrowLeft: <><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></>,
+                MapPin: <><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></>,
+                Battery: <><rect width="18" height="12" x="2" y="6" rx="2"/><line x1="22" y1="10" x2="22" y2="14"/></>,
+                ChevronLeft: <><polyline points="15 18 9 12 15 6"/></>,
+                Mail: <><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></>
+            };
+            return (
+                <svg width={size} height={size} viewBox="0 0 24 24" fill={fill} stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
+                    {icons[name] || null}
+                </svg>
+            );
+        };
+
+        // Components for interactive demo
+        const EventLog = ({ log }) => (
+            <div className="h-full flex flex-col">
+                <h3 className="text-[#8D99AE] text-[10px] font-black tracking-[0.3em] flex items-center gap-2 mb-4 uppercase shrink-0">
+                    <Icon name="Settings" size={12} color="#FF9F1C" /> Event Journal
+                </h3>
+                <div className="space-y-3 flex-1 overflow-y-auto pr-1">
+                    {log.length === 0 && <p className="text-[#2B2D42] italic text-[10px] font-black uppercase mt-4 text-center">Monitoring Active...</p>}
+                    {log.map((entry, i) => (
+                        <div key={i} className="border-l-2 border-[#FF9F1C] pl-3 py-1 bg-white/[0.02] fade-enter-active">
+                            <p className="text-[9px] text-[#8D99AE] mb-0.5 font-black uppercase">{entry.time}</p>
+                            <p className="text-[10px] font-black leading-tight tracking-normal uppercase text-white">{entry.msg}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+
+        const ArchiveList = ({ archive }) => (
+            <div className="h-full flex flex-col">
+                <h3 className="text-[#8D99AE] text-[10px] font-black tracking-[0.3em] flex items-center gap-2 mb-4 uppercase shrink-0">
+                    <Icon name="CheckCircle" size={12} color="#00C853" /> Archived Nodes
+                </h3>
+                <div className="space-y-3 flex-1 overflow-y-auto pr-1 text-left">
+                    {archive.length === 0 && <p className="text-[#2B2D42] italic text-[10px] font-black uppercase mt-4 text-center">Archive Empty</p>}
+                    {archive.map((truck, i) => (
+                        <div key={i} className="p-3 border-l-2 border-[#00C853] bg-white/[0.02] fade-enter-active opacity-70 hover:opacity-100 transition-opacity">
+                            <span className="text-sm font-black block leading-none text-white mb-1">{truck.id}</span>
+                            <span className="text-[8px] text-[#8D99AE] font-black tracking-widest uppercase italic">COMPLETED: {truck.archiveTime}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+
+        const AdminTruckList = ({ queue, onSelect }) => (
+            <div className="p-6 flex flex-col h-full fade-enter-active">
+                <div className="mb-6 text-left">
+                    <h2 className="text-2xl font-black tracking-tighter leading-none uppercase mb-2">Facility Dashboard</h2>
+                    <p className="text-[9px] text-[#8D99AE] font-black tracking-widest uppercase opacity-60">Incoming Vehicle Orchestration</p>
+                </div>
+                <h3 className="text-[10px] font-black tracking-widest text-[#8D99AE] mb-4 border-b border-[#2B2D42] pb-2 uppercase opacity-40">Expected Queue</h3>
+                <div className="space-y-2 pr-2 overflow-y-auto">
+                    {queue.length === 0 && <div className="p-8 text-center border border-dashed border-[#2B2D42] opacity-30 font-black uppercase text-[10px]">Queue Cleared</div>}
+                    {queue.map((truck) => (
+                        <div key={truck.id} onClick={() => onSelect(truck.id)} className="flex justify-between items-center p-3 border border-[#2B2D42] bg-[#0A1128] hover:border-white cursor-pointer transition-all group">
+                            <div className="flex items-center gap-3">
+                                <div className={`p-2 transition-colors ${truck.state === 'STOP' ? 'bg-[#B00020]' : 'bg-[#00C853]'}`}>
+                                    <Icon name="Truck" size={16} color="white" />
+                                </div>
+                                <div className="text-left">
+                                    <span className="text-sm font-black block leading-none mb-1 text-white">{truck.id}</span>
+                                    <span className="text-[8px] text-[#8D99AE] font-black tracking-widest uppercase opacity-50">SYNC: {truck.accepted ? 'VERIFIED' : 'PENDING'}</span>
+                                </div>
+                            </div>
+                            <span className={`text-[8px] font-black tracking-widest px-2 py-1 ${truck.state === 'STOP' ? 'bg-[#FF9F1C]/10 text-[#FF9F1C] border border-[#FF9F1C]/20' : 'bg-[#00C853]/10 text-[#00C853] border border-[#00C853]/20'}`}>
+                                {truck.status}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+
+        const AdminTruckDetail = ({ truck, onAction, onBack }) => (
+            <div className="p-6 flex flex-col h-full fade-enter-active text-left">
+                <button onClick={onBack} className="flex items-center gap-2 text-[9px] font-black tracking-widest text-[#8D99AE] hover:text-white transition-colors mb-6">
+                    <Icon name="ArrowLeft" size={12} /> RETURN TO QUEUE
+                </button>
+                <div className="space-y-1 mb-8">
+                    <h2 className="text-[#FF9F1C] text-[10px] font-black tracking-[0.4em] uppercase">Control Mode</h2>
+                    <p className="text-4xl font-black tracking-tighter leading-none uppercase text-white">{truck.id}</p>
+                </div>
+                <div className="grid grid-cols-2 gap-4 mb-auto">
+                    <button onClick={() => onAction('STOP')} className={`h-40 border-2 flex flex-col items-center justify-center gap-2 transition-all ${truck.state === 'STOP' ? 'bg-[#B00020] border-white' : 'border-[#2B2D42] bg-[#0A1128] text-[#8D99AE] hover:border-[#B00020]'}`}>
+                        <Icon name="Clock" size={32} color="white" />
+                        <span className="text-2xl font-black uppercase text-white">Stop</span>
+                    </button>
+                    <button onClick={() => onAction('GO')} className={`h-40 border-2 flex flex-col items-center justify-center gap-2 transition-all ${truck.state === 'GO' ? 'bg-[#00C853] border-white' : 'border-[#2B2D42] bg-[#0A1128] text-[#8D99AE] hover:border-[#00C853]'}`}>
+                        <Icon name="Truck" size={32} color="white" />
+                        <span className="text-2xl font-black uppercase text-white">Go</span>
+                    </button>
+                </div>
+                <div className="flex items-center gap-4 p-4 bg-black/40 border border-[#2B2D42] text-white mt-6">
+                    <div className={`w-3 h-3 ${truck.accepted ? 'bg-[#00C853] shadow-[0_0_10px_#00C853]' : 'bg-[#FF9F1C] animate-pulse'}`}></div>
+                    <div>
+                        <span className="text-[10px] font-black tracking-widest uppercase">{truck.accepted ? 'Confirmed by Remote Node' : 'Waiting for Remote Confirmation...'}</span>
+                    </div>
+                </div>
+            </div>
+        );
+
+        const DriverPager = ({ truck, coords, onAccept }) => {
+            const isRed = truck.state === 'STOP';
+            const bgColor = isRed ? 'bg-[#B00020]' : 'bg-[#00C853]';
+            const coordParts = coords.split(',').map(part => part.trim().replace(/-/g, ''));
+
+            return (
+                <div className={`flex-1 flex flex-col transition-colors duration-700 h-full ${bgColor} relative`}>
+                    <div className="mt-8 px-6 flex justify-between items-center text-white shrink-0">
+                        <div className="bg-black text-white px-2 py-1 text-[8px] font-black tracking-[0.2em] uppercase">
+                            {truck.accepted ? "NODE SYNCED" : "LINK PENDING"}
+                        </div>
+                        <span className="text-[9px] font-black opacity-80 uppercase">{truck.id}</span>
+                    </div>
+
+                    <div className="flex-1 flex flex-col items-center justify-center p-4 text-center text-white">
+                        <h1 className="text-[70px] font-black tracking-tighter leading-none mb-2 drop-shadow-2xl uppercase">
+                            {truck.state}
+                        </h1>
+                    </div>
+
+                    <div className="px-4 pb-8 space-y-3">
+                        <div className="w-full py-6 px-3 bg-black/30 border border-white/20 flex flex-col items-center justify-center">
+                            <div className="flex items-center gap-2 text-[9px] font-black tracking-[0.3em] opacity-80 uppercase mb-2 text-center">
+                                <Icon name="Navigation" size={10} fill="currentColor" color="currentColor" />
+                                <span>Gate Coordinates</span>
+                            </div>
+                            <div className="flex flex-col items-center leading-[0.85]">
+                                {coordParts.map((part, i) => (
+                                    <span key={i} className="text-4xl font-black tracking-tighter text-white font-mono">
+                                        {part}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        <button 
+                            onClick={onAccept} 
+                            disabled={truck.accepted} 
+                            className={`w-full py-5 text-2xl font-black transition-all flex items-center justify-center gap-3 uppercase ${truck.accepted ? 'bg-black/20 text-white/30 border-2 border-white/10' : 'bg-white text-black border-black shadow-[0_5px_0_rgba(0,0,0,0.3)] active:translate-y-1'}`}
+                        >
+                            {truck.accepted ? <div className="flex items-center gap-2"><Icon name="CheckCircle" size={24} strokeWidth={4} /><span>Accepted</span></div> : 'Accept'}
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
+        function App() {
+            // Demo States
+            const [role, setRole] = React.useState('admin'); 
+            const gateCoords = '51.5033, -0.1195'; 
+            const [log, setLog] = React.useState([]);
+            const [archive, setArchive] = React.useState([]); 
+            const [adminView, setAdminView] = React.useState('list'); 
+            const [selectedTruckId, setSelectedTruckId] = React.useState('XLN72 ZWL');
+            const [queue, setQueue] = React.useState([
+                { id: 'XLN72 ZWL', status: 'WAITING', state: 'STOP', accepted: false },
+                { id: 'XBC88 KRO', status: 'WAITING', state: 'STOP', accepted: true },
+                { id: 'XWQ10 VBN', status: 'IN TRANSIT', state: 'GO', accepted: true }
+            ]);
+
+            // Form States
+            const [submitted, setSubmitted] = useState(false);
+            const [email, setEmail] = useState('');
+            const [loading, setLoading] = useState(false);
+
+            const addToLog = (message) => {
+                const timestamp = new Date().toLocaleTimeString();
+                setLog(prev => [{ time: timestamp, msg: message }, ...prev].slice(0, 10));
+            };
+
+            const handleAdminAction = (newState) => {
+                setQueue(prevQueue => prevQueue.map(truck => {
+                    if (truck.id === selectedTruckId) {
+                        return { ...truck, state: newState, accepted: false, status: newState === 'GO' ? 'IN TRANSIT' : 'WAITING' };
+                    }
+                    return truck;
+                }));
+                addToLog(`CMD Issued -> [${selectedTruckId}]: ${newState}`);
+            };
+
+            const handleDriverAccept = () => {
+                const currentTruck = queue.find(t => t.id === selectedTruckId);
+                if (!currentTruck) return;
+                if (currentTruck.state === 'GO') {
+                    setArchive(prev => [{ ...currentTruck, accepted: true, archiveTime: new Date().toLocaleTimeString() }, ...prev]);
+                    setQueue(prevQueue => prevQueue.filter(truck => truck.id !== selectedTruckId));
+                    addToLog(`Node [${selectedTruckId}] CLEARED`);
+                    setAdminView('list');
+                } else {
+                    setQueue(prevQueue => prevQueue.map(truck => {
+                        if (truck.id === selectedTruckId) return { ...truck, accepted: true, status: 'WAITING' };
+                        return truck;
+                    }));
+                    addToLog(`Node [${selectedTruckId}] ACK STOP`);
+                }
+            };
+
+            const handleReserve = async (e) => {
+                e.preventDefault();
+                if (email.includes('@')) {
+                    setLoading(true);
+                    
+                    // Formspree / Custom Webhook integration for GitHub Pages
+                    // Замініть YOUR_FORMSPREE_ID на ваш реальний ID з Formspree для збору емейлів
+                    const FORMSPREE_URL = "https://formspree.io/f/YOUR_FORMSPREE_ID"; 
+
+                    try {
+                        // Для тестування поки що залишаємо імітацію, 
+                        // щоб ви могли побачити успіх без реального API ID
+                        await new Promise(res => setTimeout(res, 1500));
+                        setSubmitted(true);
+                    } catch (error) {
+                        console.error('Submission error:', error);
+                    } finally {
+                        setLoading(false);
+                    }
+                }
+            };
+
+            const activeTruck = queue.find(t => t.id === selectedTruckId) || archive.find(t => t.id === selectedTruckId) || queue[0] || { id: 'IDLE', state: 'STOP', status: 'EMPTY', accepted: false };
+
+            return (
+                <div className="min-h-screen flex flex-col uppercase tracking-tighter">
+                    {/* NAV BAR */}
+                    <nav className="w-full max-w-6xl mx-auto flex justify-between items-center py-6 px-6 lg:px-0 text-left shrink-0 z-50">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-safety text-navy flex items-center justify-center font-black text-xl">O</div>
+                            <h1 className="text-xl font-black uppercase tracking-tighter text-white">Olden <span className="text-safety">Project</span></h1>
+                        </div>
+                        <div className="flex gap-4">
+                            <span className="text-[10px] font-black bg-grid px-3 py-1 uppercase hidden md:inline-block text-[#8D99AE]">DLR Engine Active</span>
+                            <span className="text-[10px] font-black bg-safety/20 text-safety px-3 py-1 uppercase border border-safety/30">Pre-Order Open</span>
+                        </div>
+                    </nav>
+
+                    {/* HERO & DEMO SECTION */}
+                    <main className="w-full max-w-6xl mx-auto px-6 lg:px-0 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start text-left">
+                        <div className="lg:col-span-5 space-y-8">
+                            <div>
+                                <p className="text-safety font-black uppercase tracking-widest text-xs mb-2">The Revenue Engine</p>
+                                <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] text-white">
+                                    For the <span className="text-safety">Millions</span>, not only for the Billions.
+                                </h2>
+                            </div>
+                            <p className="text-lg text-gray-400 leading-relaxed font-medium">
+                                Whether it is a high-volume hub in "Central London", a congested grid in "New York", or a neighborhood depot in "Tokyo", the operational desire is always the same: to process just one more truck.
+                            </p>
+                            <div className="p-6 border-l-4 border-safety bg-safety/5">
+                                <p className="text-sm text-white font-medium leading-relaxed italic opacity-80">
+                                    "But the reality is structural chaos: Independent wholesalers and neighborhood depots are losing thousands every month in 'unrealized revenue'. We help you capture every delivery, clear your streets, and grow your business."
+                                </p>
+                            </div>
+                            
+                            <div className="space-y-4 pt-4">
+                                <div className="flex gap-4 p-4 border border-white/10">
+                                    <div className="w-8 h-8 bg-urbanBlue/20 flex items-center justify-center text-urbanBlue shrink-0"><Icon name="Truck" size={16} /></div>
+                                    <p className="text-[10px] text-gray-500 uppercase font-black leading-tight">Capture deliveries that currently bypass your site due to wait times.</p>
+                                </div>
+                                <div className="flex gap-4 p-4 border border-white/10">
+                                    <div className="w-8 h-8 bg-emerald/20 flex items-center justify-center text-emerald shrink-0"><Icon name="CheckCircle" size={16} /></div>
+                                    <p className="text-[10px] text-gray-500 uppercase font-black leading-tight">Eliminate street parking fines and neighborhood compliance issues.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* SYNC SYSTEM DEMO */}
+                        <div className="lg:col-span-7 space-y-6">
+                            <div className="flex justify-between items-center mb-2 px-2">
+                                <h3 className="text-[10px] font-black uppercase tracking-widest text-[#8D99AE]">Interactive Technology Preview</h3>
+                                <div className="flex gap-2">
+                                    <button onClick={() => setRole('admin')} className={`px-4 py-1.5 text-[9px] font-black transition-all border ${role === 'admin' ? 'bg-safety text-navy border-safety' : 'text-gray-500 border-gray-800'}`}>ADMIN TERMINAL</button>
+                                    <button onClick={() => setRole('driver')} className={`px-4 py-1.5 text-[9px] font-black transition-all border ${role === 'driver' ? 'bg-safety text-navy border-safety' : 'text-gray-500 border-gray-800'}`}>DRIVER PAGER</button>
+                                </div>
+                            </div>
+
+                            <div className="min-h-[600px] flex items-center justify-center bg-navy/20 border border-white/5 relative group">
+                                <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `linear-gradient(#F8F9FA 1px, transparent 1px), linear-gradient(90deg, #F8F9FA 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
+                                
+                                {role === 'driver' ? (
+                                    <div className="phone-frame fade-enter-active">
+                                        <div className="phone-notch" />
+                                        <div className="phone-screen">
+                                            <DriverPager truck={activeTruck} coords={gateCoords} onAccept={handleDriverAccept} />
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="tablet-frame fade-enter-active">
+                                        <div className="tablet-screen text-white">
+                                            <div className="h-8 bg-black/40 border-b border-[#2B2D42] flex justify-between items-center px-4 text-[8px] font-black opacity-60">
+                                                <div className="flex gap-4"><span>09:41 AM UK</span><span className="text-[#00C853] flex items-center gap-1"><Icon name="Signal" size={10} /> LINK SECURE</span></div>
+                                                <div className="flex gap-2 items-center">84% <Icon name="Battery" size={10} /></div>
+                                            </div>
+                                            <div className="flex-1 flex overflow-hidden">
+                                                <div className="flex-1 overflow-y-auto bg-[#050814] border-r border-[#2B2D42]">
+                                                    {adminView === 'list' ? (
+                                                        <AdminTruckList queue={queue} onSelect={(id) => { setSelectedTruckId(id); setAdminView('detail'); addToLog(`Mapped to Node [${id}]`); }} />
+                                                    ) : (
+                                                        <AdminTruckDetail truck={activeTruck} onAction={handleAdminAction} onBack={() => setAdminView('list')} />
+                                                    )}
+                                                </div>
+                                                <div className="w-64 shrink-0 flex flex-col bg-[#080E21]">
+                                                    <div className="flex-1 p-4 border-b border-[#2B2D42] overflow-hidden"><EventLog log={log} /></div>
+                                                    <div className="flex-1 p-4 overflow-hidden bg-[#0A1128]"><ArchiveList archive={archive} /></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </main>
+
+                    {/* GENESIS ALLOCATION FORM */}
+                    <section className="w-full max-w-6xl mx-auto px-6 lg:px-0 py-24 text-left">
+                        <div className="genesis-section p-8 md:p-12 shadow-2xl relative overflow-hidden">
+                            {!submitted ? (
+                                <div className="flex flex-col md:flex-row gap-12 items-start">
+                                    <div className="space-y-6 flex-1">
+                                        <div>
+                                            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-2 text-white">THE GENESIS ALLOCATION</h2>
+                                            <p className="text-xl text-safety font-black uppercase tracking-widest">(YOUR PATH TO EQUITY)</p>
+                                        </div>
+                                        <div className="p-4 border-l-2 border-safety bg-safety/5">
+                                            <p className="text-xs font-mono text-safety uppercase leading-relaxed font-bold">
+                                                ATTENTION: This portal is a technical continuation of the Indiegogo campaign. No capital is collected on this page. This is for ROI validation and allocation reservation only.
+                                            </p>
+                                        </div>
+                                        <p className="text-sm text-gray-300 leading-relaxed max-w-md font-medium">
+                                            To ensure the integrity of the strategic waitlist, investment intents starting from "£1,250" are formalized purely via a Letter of Intent (LOI).
+                                        </p>
+                                    </div>
+                                    <div className="w-full md:w-auto flex-1 space-y-6">
+                                        <form onSubmit={handleReserve} className="flex flex-col gap-4" autoComplete="off">
+                                            <input 
+                                                type="email" name="email" required value={email} onChange={(e) => setEmail(e.target.value)}
+                                                placeholder="ENTER BUSINESS EMAIL" autoComplete="off"
+                                                className="bg-navy border-2 border-white/20 p-5 font-mono text-white text-lg focus:border-safety outline-none transition-all placeholder:text-gray-700"
+                                            />
+                                            <button 
+                                                type="submit" disabled={loading}
+                                                className="bg-safety hover:bg-orange-400 text-navy font-black text-xl py-5 px-8 flex items-center justify-center gap-4 transition-all shadow-xl disabled:opacity-50 active:translate-y-1"
+                                            >
+                                                <span className="text-2xl">⚡</span> {loading ? 'SYNCING...' : 'REGISTER & RESERVE ALLOCATION'}
+                                            </button>
+                                        </form>
+                                        <p className="text-[11px] text-gray-400 leading-relaxed italic opacity-70">
+                                            By registering your soft commitment today, you secure a "Guaranteed VIP Allocation Invitation". Genesis members will receive direct notification and priority access before the IP moat is finalized.
+                                        </p>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="py-12 text-center space-y-6">
+                                    <Icon name="Mail" size={64} color="#FF9F1C" strokeWidth={1} />
+                                    <h2 className="text-4xl font-black uppercase tracking-tighter text-white">Action Required</h2>
+                                    <p className="text-xl text-emerald font-bold uppercase tracking-widest text-center">LOI dispatched to {email}</p>
+                                    <div className="p-4 border border-safety/30 bg-safety/5 inline-block text-[10px] uppercase font-black tracking-[0.2em] text-gray-300 text-center">
+                                        Check your inbox. Finalize via BoldSign to secure your priority position.
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="mt-12 text-left">
+                            <a href="https://www.indiegogo.com/projects/nazar-zablotskyi/olden-the-revenue-engine-for-urban-logistics" target="_blank" rel="noopener noreferrer" className="indiegogo-btn inline-flex items-center gap-2 px-8 py-4 text-safety font-black uppercase text-xs tracking-widest group">
+                                <Icon name="ChevronLeft" size={14} className="transition-transform group-hover:-translate-x-1" /> Return to Indiegogo Campaign Page
+                            </a>
+                        </div>
+                    </section>
+
+                    {/* FOOTER */}
+                    <footer className="w-full max-w-6xl mx-auto mt-12 py-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-start gap-12 text-left px-6 lg:px-0">
+                        <div className="space-y-6 max-w-3xl">
+                            <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.3em]">Olden Project | Intellectual Property Disclosure</p>
+                            <div className="space-y-4">
+                                {['63/980,953', '63/980,960', '63/983,949'].map((id, idx) => (
+                                    <div key={idx}>
+                                        <p className="text-safety text-[9px] font-black uppercase tracking-widest">US Patent App. {id}</p>
+                                        <p className="text-[10px] text-gray-400 font-bold uppercase leading-tight">
+                                            {idx === 0 && "SYSTEM AND METHOD FOR DISTRIBUTED LOGISTICS YARD COORDINATION WITH SELECTIVE GEOSPATIAL DATA SUPPRESSION AND DYNAMIC COMPLIANCE-BASED QUEUE ARBITRATION"}
+                                            {idx === 1 && "SYSTEM AND METHOD FOR DETERMINISTIC LATENCY REDUCTION AND DYNAMIC FRAME BUFFER RESOURCE ALLOCATION IN NAVIGATION UNITS"}
+                                            {idx === 2 && "TECHNICAL SUPPLEMENT: DISTRIBUTED ARCHITECTURE FOR MULTI-DIMENSIONAL LOGISTICS NAVIGATION"}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="flex flex-col md:items-end gap-2 text-right w-full md:w-auto">
+                            <p className="text-safety text-[11px] font-black uppercase tracking-widest border border-safety/40 px-4 py-2 rounded-none whitespace-nowrap">Founder & Chairman: Nazar Zablotskyi</p>
+                            <p className="text-[9px] text-gray-500 uppercase font-bold">USPTO Disclosure Protocol</p>
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

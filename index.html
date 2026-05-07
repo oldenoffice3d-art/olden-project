@@ -43,23 +43,70 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* --- IMPROVED RESPONSIVE SCALING --- */
+        .demo-wrapper {
+            display: flex; justify-content: center; align-items: center; 
+            width: 100%; min-height: 640px; overflow: hidden;
+            position: relative;
+        }
+
         .phone-frame {
             width: 320px; height: 640px;
             background: #1A1C25; border: 10px solid #2B2D42;
             border-radius: 40px; position: relative;
             box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8);
-            margin: 0 auto;
+            transform-origin: center center;
+            transition: transform 0.3s ease;
         }
-        .phone-screen { width: 100%; height: 100%; background: black; border-radius: 30px; overflow: hidden; position: relative; }
-        .phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 20px; background: black; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; z-index: 50; }
         
         .tablet-frame {
-            width: 100%; max-width: 900px; height: 600px;
+            width: 900px; height: 600px;
             background: #1F212B; border: 12px solid #2B2D42;
             border-radius: 30px; position: relative;
             box-shadow: 0 50px 100px -30px rgba(0,0,0,0.9);
-            margin: 0 auto;
+            transform-origin: center center;
+            transition: transform 0.3s ease;
         }
+
+        /* Desktop & Large Tablets: No Scaling */
+        @media (min-width: 1024px) {
+            .tablet-frame { transform: scale(1); }
+            .demo-wrapper { min-height: 640px; }
+        }
+
+        /* Laptops/Small Desktops */
+        @media (max-width: 1280px) and (min-width: 1024px) {
+            .tablet-frame { transform: scale(0.9); }
+        }
+
+        /* Medium Tablets */
+        @media (max-width: 1023px) {
+            .tablet-frame { transform: scale(0.75); }
+            .demo-wrapper { min-height: 500px; }
+        }
+
+        /* Small Tablets / Large Phones */
+        @media (max-width: 768px) {
+            .tablet-frame { transform: scale(0.55); }
+            .demo-wrapper { min-height: 400px; }
+        }
+
+        /* Mobile Devices */
+        @media (max-width: 500px) {
+            .tablet-frame { transform: scale(0.38); }
+            .phone-frame { transform: scale(0.85); }
+            .demo-wrapper { min-height: 300px; }
+        }
+
+        /* Very Small Phones */
+        @media (max-width: 380px) {
+            .tablet-frame { transform: scale(0.32); }
+            .phone-frame { transform: scale(0.75); }
+            .demo-wrapper { min-height: 260px; }
+        }
+
+        .phone-screen { width: 100%; height: 100%; background: black; border-radius: 30px; overflow: hidden; position: relative; }
+        .phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 20px; background: black; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; z-index: 50; }
         .tablet-screen { width: 100%; height: 100%; background: #0A1128; border-radius: 18px; overflow: hidden; position: relative; display: flex; flex-direction: column; }
 
         .indiegogo-btn { border: 1px solid rgba(255, 159, 28, 0.5); transition: all 0.3s ease; }
@@ -76,7 +123,6 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        // Іконки інтерфейсу
         const Icon = ({ name, size = 24, color = "currentColor", strokeWidth = 2, fill = "none" }) => {
             const icons = {
                 Shield: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />,
@@ -136,7 +182,7 @@
         );
 
         const AdminTruckList = ({ queue, onSelect }) => (
-            <div className="p-6 flex flex-col h-full fade-enter-active">
+            <div className="p-6 flex flex-col h-full fade-enter-active text-left">
                 <div className="mb-6">
                     <h2 className="text-2xl font-black tracking-tighter leading-none uppercase mb-2">Facility Dashboard</h2>
                     <p className="text-[10px] text-[#8D99AE] font-black tracking-widest uppercase opacity-60">Incoming Vehicle Orchestration</p>
@@ -165,7 +211,7 @@
         );
 
         const AdminTruckDetail = ({ truck, onAction, onBack }) => (
-            <div className="p-6 flex flex-col h-full fade-enter-active">
+            <div className="p-6 flex flex-col h-full fade-enter-active text-left">
                 <button onClick={onBack} className="flex items-center gap-2 text-[10px] font-black tracking-widest text-[#8D99AE] hover:text-white transition-colors mb-6">
                     <Icon name="ArrowLeft" size={14} /> RETURN TO QUEUE
                 </button>
@@ -240,7 +286,6 @@
         };
 
         function App() {
-            // Логіка живого годинника
             const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }));
 
             useEffect(() => {
@@ -250,7 +295,6 @@
                 return () => clearInterval(timer);
             }, []);
 
-            // Стан Демо
             const [role, setRole] = React.useState('admin'); 
             const gateCoords = '51.5033, -0.1195'; 
             const [log, setLog] = React.useState([]);
@@ -263,7 +307,6 @@
                 { id: 'XWQ10 VBN', status: 'IN TRANSIT', state: 'GO', accepted: true }
             ]);
 
-            // Стан форми
             const [submitted, setSubmitted] = useState(false);
             const [email, setEmail] = useState('');
             const [loading, setLoading] = useState(false);
@@ -304,22 +347,18 @@
                 e.preventDefault();
                 if (email.includes('@')) {
                     setLoading(true);
-                    
-                    // ІНТЕГРАЦІЯ GOOGLE SCRIPT
                     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSXx-fDiaHlvX7jpKlhqa0i7aDD0BGJWj_ywgJLEVcowrCqelz4vpROJrbZDXcA0Dpcw/exec"; 
 
                     try {
                         const data = new URLSearchParams();
                         data.append('email', email);
                         data.append('timestamp', new Date().toISOString());
-
                         await fetch(GOOGLE_SCRIPT_URL, {
                             method: 'POST',
                             mode: 'no-cors',
                             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                             body: data.toString()
                         });
-                        
                         setSubmitted(true);
                     } catch (error) { 
                         console.error('Submission error:', error); 
@@ -333,7 +372,6 @@
 
             return (
                 <div className="min-h-screen flex flex-col uppercase tracking-tighter">
-                    {/* НАВІГАЦІЯ */}
                     <nav className="w-full max-w-6xl mx-auto flex justify-between items-center py-8 px-6 lg:px-0 text-left shrink-0 z-50">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-safety text-navy flex items-center justify-center font-black text-xl">O</div>
@@ -345,7 +383,6 @@
                         </div>
                     </nav>
 
-                    {/* HERO СЕКЦІЯ */}
                     <main className="w-full max-w-6xl mx-auto px-6 lg:px-0 py-16 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start text-left">
                         <div className="lg:col-span-5 space-y-10">
                             <div>
@@ -353,7 +390,7 @@
                                 <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.95] text-white mb-6">
                                     For the <span className="text-safety">Millions</span>, not only for the Billions.
                                 </h2>
-                                <p className="text-xs text-safety font-black tracking-widest opacity-80 border-l-2 border-safety/40 pl-3">EMPOWERING THE MILLIONS OF SMALL AND MEDIUM HUBS WORLDWIDE.</p>
+                                <p className="text-xs text-safety font-black tracking-widest opacity-80 border-l-2 border-safety/40 pl-3 uppercase">Empowering the millions of small and medium hubs worldwide.</p>
                             </div>
                             
                             <p className="text-lg text-gray-300 leading-relaxed font-medium normal-case">
@@ -379,7 +416,6 @@
                             </div>
                         </div>
 
-                        {/* ІНТЕРАКТИВНЕ ДЕМО */}
                         <div className="lg:col-span-7 space-y-8">
                             <div className="flex justify-between items-center mb-4 px-2">
                                 <h3 className="text-[11px] font-black uppercase tracking-[0.2em] text-[#8D99AE]">Interactive Technology Preview</h3>
@@ -389,7 +425,7 @@
                                 </div>
                             </div>
 
-                            <div className="min-h-[640px] flex items-center justify-center bg-navy/20 border border-white/5 relative group shadow-2xl">
+                            <div className="demo-wrapper bg-navy/20 border border-white/5 relative group shadow-2xl">
                                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `linear-gradient(#F8F9FA 1px, transparent 1px), linear-gradient(90deg, #F8F9FA 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
                                 
                                 {role === 'driver' ? (
@@ -429,7 +465,6 @@
                         </div>
                     </main>
 
-                    {/* ФОРМА GENESIS ALLOCATION */}
                     <section className="w-full max-w-6xl mx-auto px-6 lg:px-0 py-32 text-left">
                         <div className="genesis-section p-10 md:p-16 shadow-2xl relative overflow-hidden">
                             {!submitted ? (
@@ -494,7 +529,6 @@
                         </div>
                     </section>
 
-                    {/* ФУТЕР */}
                     <footer className="w-full max-w-6xl mx-auto mt-16 py-16 border-t border-white/10 flex flex-col md:flex-row justify-between items-start gap-16 text-left px-6 lg:px-0">
                         <div className="space-y-8 max-w-3xl">
                             <p className="text-[11px] text-gray-500 font-black uppercase tracking-[0.3em]">Olden Project | Intellectual Property Disclosure</p>

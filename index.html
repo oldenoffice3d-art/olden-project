@@ -34,6 +34,10 @@
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Inter:wght@400;700;900&display=swap');
         body { background-color: #03050a; font-family: 'Inter', sans-serif; color: white; overflow-x: hidden; }
         
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 18px; width: 18px; background: #FF9F1C; cursor: pointer; margin-top: -6px; border-radius: 99px; transition: all 0.2s; border: 2px solid white; }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: #2B2D42; border-radius: 0px; }
+        
         .glass-panel { background: rgba(10, 17, 40, 0.8); backdrop-filter: blur(15px); border: 1px solid rgba(255, 159, 28, 0.2); }
         .genesis-section { background-color: #1A1F36; border-top: 4px solid #FF9F1C; }
         
@@ -93,7 +97,8 @@
                 MapPin: <><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></>,
                 Battery: <><rect width="18" height="12" x="2" y="6" rx="2"/><line x1="22" y1="10" x2="22" y2="14"/></>,
                 ChevronLeft: <><polyline points="15 18 9 12 15 6"/></>,
-                Mail: <><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></>
+                Mail: <><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></>,
+                AlertCircle: <><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></>
             };
             return (
                 <svg width={size} height={size} viewBox="0 0 24 24" fill={fill} stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
@@ -354,23 +359,22 @@
                             </p>
                             
                             {/* THE PITCH - DYNAMIC TWO-APP SOLUTION */}
-                            <div className="p-6 border-l-4 border-safety bg-safety/5 space-y-4">
-                                <p className="text-sm text-white font-medium leading-relaxed italic opacity-90">
-                                    "When a single-ramp warehouse gets flooded with 40-ton trucks, the street chokes, and drivers are forced to turn back. Fines pile up. Revenue is lost."
-                                </p>
-                                <div className="space-y-3 pt-2">
-                                    <div className="flex gap-3">
-                                        <div className="w-6 h-6 bg-urbanBlue/20 flex items-center justify-center text-urbanBlue shrink-0"><Icon name="Smartphone" size={12} /></div>
-                                        <p className="text-[11px] text-gray-300 uppercase leading-tight font-bold">Driver scans QR to link their node.</p>
-                                    </div>
-                                    <div className="flex gap-3">
-                                        <div className="w-6 h-6 bg-signalRed/20 flex items-center justify-center text-signalRed shrink-0"><Icon name="Signal" size={12} /></div>
-                                        <p className="text-[11px] text-gray-300 uppercase leading-tight font-bold">Warehouse hits "STOP". Driver waits 10 miles away in a legal zone.</p>
-                                    </div>
-                                    <div className="flex gap-3">
-                                        <div className="w-6 h-6 bg-emerald/20 flex items-center justify-center text-emerald shrink-0"><Icon name="CheckCircle" size={12} /></div>
-                                        <p className="text-[11px] text-gray-300 uppercase leading-tight font-bold">Warehouse hits "GO". Driver gets direct gate GPS. Zero queues.</p>
-                                    </div>
+                            <div className="space-y-4 pt-2">
+                                <div className="p-5 bg-[#0A1128] border border-[#2B2D42]">
+                                    <h4 className="text-[10px] text-signalRed font-black tracking-widest uppercase mb-2 flex items-center gap-2">
+                                        <Icon name="AlertCircle" size={14} color="#ef4444" /> The Infrastructure Deadlock
+                                    </h4>
+                                    <p className="text-xs text-gray-400 leading-relaxed font-medium normal-case">
+                                        Take a high-demand, single-ramp warehouse with zero nearby parking. 40-ton trucks arrive, hit bottlenecks, and wait illegally—racking up severe fines or being forced by dispatchers to turn back entirely.
+                                    </p>
+                                </div>
+                                <div className="p-5 bg-[#0A1128] border border-[#2B2D42]">
+                                    <h4 className="text-[10px] text-emerald font-black tracking-widest uppercase mb-2 flex items-center gap-2">
+                                        <Icon name="CheckCircle" size={14} color="#10b981" /> The 2-App Solution
+                                    </h4>
+                                    <p className="text-xs text-gray-400 leading-relaxed font-medium normal-case">
+                                        No expensive hardware needed. The driver links to the facility via a QR code. The warehouse worker simply taps <span className="text-signalRed font-bold">STOP</span> to hold the truck in a legal safe zone, and <span className="text-emerald font-bold">GO</span> to release it with exact gate coordinates. Fines disappear. Flow is optimized.
+                                    </p>
                                 </div>
                             </div>
                         </div>

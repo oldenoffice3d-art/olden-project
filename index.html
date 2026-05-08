@@ -326,6 +326,8 @@
                             await new Promise(res => setTimeout(res, 1200));
                         }
                         
+                        // Force clean the input state so browser doesn't retain it on component switch
+                        setEmail('');
                         setSubmitted(true);
                     } catch (error) { 
                         console.error('Submission error:', error); 
@@ -448,12 +450,14 @@
                                         <form onSubmit={handleReserve} className="flex flex-col gap-4" autoComplete="off">
                                             <input 
                                                 type="email" 
-                                                name="secure_email_input" 
+                                                name="logipark_allocation_id" 
+                                                id="logipark_allocation_id"
                                                 required 
                                                 value={email} 
                                                 onChange={(e) => setEmail(e.target.value)}
                                                 placeholder="ENTER BUSINESS EMAIL" 
-                                                autoComplete="new-password" 
+                                                autoComplete="off" 
+                                                spellCheck="false"
                                                 data-lpignore="true"
                                                 data-1p-ignore="true"
                                                 className="bg-navy border-2 border-white/20 p-4 font-mono text-white text-lg focus:border-safety outline-none transition-all placeholder:text-gray-500 w-full"
@@ -474,7 +478,7 @@
                                 <div className="py-14 text-center space-y-6 flex flex-col items-center">
                                     <Icon name="Mail" size={64} color="#FF9F1C" strokeWidth={1.5} />
                                     <h2 className="text-3xl font-black uppercase tracking-tighter text-white">Action Required</h2>
-                                    <p className="text-lg text-emerald font-bold uppercase tracking-widest text-center">LOI dispatched to {email}</p>
+                                    <p className="text-lg text-emerald font-bold uppercase tracking-widest text-center">LOI dispatched!</p>
                                     <div className="p-5 border border-safety/30 bg-safety/5 inline-block text-xs uppercase font-bold tracking-wider text-gray-300 text-center">
                                         Check your inbox. Finalize via BoldSign to secure your priority position.
                                     </div>

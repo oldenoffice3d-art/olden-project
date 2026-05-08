@@ -304,6 +304,7 @@
                     setLoading(true);
                     
                     // ⚠️ УВАГА: ВСТАВТЕ ВАШ URL З GOOGLE APPS SCRIPT МІЖ ЛАПКАМИ НИЖЧЕ ⚠️
+                    // Приклад: "https://script.google.com/macros/s/AKfycby.../exec"
                     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSXx-fDiaHlvX7jpKlhqa0i7aDD0BGJWj_ywgJLEVcowrCqelz4vpROJrbZDXcA0Dpcw/exec"; 
 
                     try {
@@ -424,23 +425,23 @@
                         </div>
                     </main>
 
-                    {/* GENESIS COMMUNITY FORM (FCA COMPLIANT) */}
+                    {/* GENESIS ALLOCATION FORM */}
                     <section className="w-full max-w-6xl mx-auto px-6 lg:px-0 py-20 text-left">
                         <div className="genesis-section p-8 md:p-14 shadow-2xl relative overflow-hidden">
                             {!submitted ? (
                                 <div className="flex flex-col md:flex-row gap-12 items-start">
                                     <div className="space-y-6 flex-1">
                                         <div>
-                                            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-3 text-white leading-tight">THE GENESIS COMMUNITY</h2>
-                                            <p className="text-lg text-safety font-bold uppercase tracking-widest">(YOUR PATH TO THE INNER CIRCLE)</p>
+                                            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-3 text-white leading-tight">THE GENESIS ALLOCATION</h2>
+                                            <p className="text-lg text-safety font-bold uppercase tracking-widest">(YOUR PATH TO EQUITY)</p>
                                         </div>
                                         <div className="p-5 border-l-4 border-safety bg-safety/5">
                                             <p className="text-sm font-mono text-safety uppercase leading-relaxed font-bold">
-                                                ATTENTION: This portal is a technical continuation of the Indiegogo campaign. No capital is collected on this page. This portal is strictly for market validation and reserving your priority status in our ecosystem.
+                                                ATTENTION: This portal is a technical continuation of the Indiegogo campaign. No capital is collected on this page. This is for ROI validation and allocation reservation only.
                                             </p>
                                         </div>
                                         <p className="text-base text-gray-300 leading-relaxed max-w-md font-medium normal-case">
-                                            To ensure the integrity of our strategic waitlist, early-adopter interests and strategic partnerships are formalized purely via priority registration.
+                                            To ensure the integrity of the strategic waitlist, investment intents starting from "£1,250" are formalized purely via a Letter of Intent (LOI).
                                         </p>
                                     </div>
                                     <div className="w-full md:w-auto flex-1 space-y-5 mt-2">
@@ -461,11 +462,11 @@
                                                 type="submit" disabled={loading}
                                                 className="bg-safety hover:bg-orange-400 text-navy font-black text-lg py-4 px-8 flex items-center justify-center gap-3 transition-all shadow-xl disabled:opacity-50 active:translate-y-1 w-full"
                                             >
-                                                <span className="text-xl">⚡</span> {loading ? 'SYNCING...' : 'REGISTER & RESERVE YOUR FOUNDING STATUS'}
+                                                <span className="text-xl">⚡</span> {loading ? 'SYNCING...' : 'REGISTER & RESERVE ALLOCATION'}
                                             </button>
                                         </form>
                                         <p className="text-xs text-gray-400 leading-relaxed italic opacity-80 normal-case">
-                                            By registering your priority interest today, you secure a "Guaranteed VIP Genesis Invitation". Genesis members will receive direct notification, unfiltered 'Shadow Ledger' reports, and priority access to all future corporate milestones before the IP moat is finalized and opened to the general public.
+                                            By registering your soft commitment today, you secure a "Guaranteed VIP Allocation Invitation". Genesis members will receive direct notification and priority access before the IP moat is finalized.
                                         </p>
                                     </div>
                                 </div>
@@ -473,9 +474,9 @@
                                 <div className="py-14 text-center space-y-6 flex flex-col items-center">
                                     <Icon name="Mail" size={64} color="#FF9F1C" strokeWidth={1.5} />
                                     <h2 className="text-3xl font-black uppercase tracking-tighter text-white">Action Required</h2>
-                                    <p className="text-lg text-emerald font-bold uppercase tracking-widest text-center">Invitation dispatched to {email}</p>
+                                    <p className="text-lg text-emerald font-bold uppercase tracking-widest text-center">LOI dispatched to {email}</p>
                                     <div className="p-5 border border-safety/30 bg-safety/5 inline-block text-xs uppercase font-bold tracking-wider text-gray-300 text-center">
-                                        Check your inbox. Confirm your priority registration to secure your Founding Member status.
+                                        Check your inbox. Finalize via BoldSign to secure your priority position.
                                     </div>
                                     <button 
                                         onClick={() => { setSubmitted(false); setEmail(''); }}
@@ -494,23 +495,14 @@
                         </div>
                     </section>
 
-                    {/* FOOTER (NDA COMPLIANT) */}
+                    {/* FOOTER */}
                     <footer className="w-full max-w-6xl mx-auto mt-8 py-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-start gap-12 text-left px-6 lg:px-0">
                         <div className="space-y-6 max-w-3xl">
                             <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">Olden Project | Intellectual Property Disclosure</p>
-                            <div className="space-y-5">
-                                {[
-                                    "SYSTEM AND METHOD FOR DISTRIBUTED LOGISTICS YARD COORDINATION WITH SELECTIVE GEOSPATIAL DATA SUPPRESSION AND DYNAMIC COMPLIANCE-BASED QUEUE ARBITRATION",
-                                    "SYSTEM AND METHOD FOR DETERMINISTIC LATENCY REDUCTION AND DYNAMIC FRAME BUFFER RESOURCE ALLOCATION IN NAVIGATION UNITS",
-                                    "TECHNICAL SUPPLEMENT: DISTRIBUTED ARCHITECTURE FOR MULTI-DIMENSIONAL LOGISTICS NAVIGATION"
-                                ].map((title, idx) => (
-                                    <div key={idx}>
-                                        <p className="text-safety text-[11px] font-bold uppercase tracking-widest mb-1">US Provisional Patent Pending</p>
-                                        <p className="text-xs text-gray-400 font-medium uppercase leading-relaxed">
-                                            {title}
-                                        </p>
-                                    </div>
-                                ))}
+                            <div className="space-y-2">
+                                <p className="text-safety text-xs font-bold uppercase tracking-widest leading-relaxed">
+                                    IP Fortress: Protected by a Triple-Patent Moat (multiple US Provisional Patent Applications Pending).
+                                </p>
                             </div>
                         </div>
                         <div className="flex flex-col md:items-end gap-3 text-right w-full md:w-auto">

@@ -303,8 +303,6 @@
                 if (email.includes('@')) {
                     setLoading(true);
                     
-                    // ⚠️ УВАГА: ВСТАВТЕ ВАШ URL З GOOGLE APPS SCRIPT МІЖ ЛАПКАМИ НИЖЧЕ ⚠️
-                    // Приклад: "https://script.google.com/macros/s/AKfycby.../exec"
                     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSXx-fDiaHlvX7jpKlhqa0i7aDD0BGJWj_ywgJLEVcowrCqelz4vpROJrbZDXcA0Dpcw/exec"; 
 
                     try {
@@ -326,8 +324,6 @@
                             await new Promise(res => setTimeout(res, 1200));
                         }
                         
-                        // Force clean the input state so browser doesn't retain it on component switch
-                        setEmail('');
                         setSubmitted(true);
                     } catch (error) { 
                         console.error('Submission error:', error); 
@@ -455,7 +451,7 @@
                                                 required 
                                                 value={email} 
                                                 onChange={(e) => setEmail(e.target.value)}
-                                                placeholder="ENTER BUSINESS EMAIL" 
+                                                placeholder="ENTER YOUR EMAIL" 
                                                 autoComplete="off" 
                                                 spellCheck="false"
                                                 data-lpignore="true"
@@ -478,7 +474,7 @@
                                 <div className="py-14 text-center space-y-6 flex flex-col items-center">
                                     <Icon name="Mail" size={64} color="#FF9F1C" strokeWidth={1.5} />
                                     <h2 className="text-3xl font-black uppercase tracking-tighter text-white">Action Required</h2>
-                                    <p className="text-lg text-emerald font-bold uppercase tracking-widest text-center">INVITATION DISPATCHED!</p>
+                                    <p className="text-lg text-emerald font-bold uppercase tracking-widest text-center">INVITATION DISPATCHED TO {email}</p>
                                     <div className="p-5 border border-safety/30 bg-safety/5 inline-block text-xs uppercase font-bold tracking-wider text-gray-300 text-center">
                                         Check your inbox for further details on securing your priority position.
                                     </div>

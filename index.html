@@ -269,13 +269,6 @@
                 { id: 'XWQ10 VBN', status: 'IN TRANSIT', state: 'GO', accepted: true }
             ]);
 
-            // Form States — 3-step flow
-            const [step, setStep] = useState(1);
-            const [email, setEmail] = useState('');
-            const [loading, setLoading] = useState(false);
-            const [certType, setCertType] = useState('');
-            const [certConfirmed, setCertConfirmed] = useState(false);
-
             const addToLog = (message) => {
                 const timestamp = new Date().toLocaleTimeString();
                 setLog(prev => [{ time: timestamp, msg: message }, ...prev].slice(0, 10));
@@ -308,62 +301,6 @@
                 }
             };
 
-            // GOOGLE SHEETS SUBMISSION LOGIC
-            const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSXx-fDiaHlvX7jpKlhqa0i7aDD0BGJWj_ywgJLEVcowrCqelz4vpROJrbZDXcA0Dpcw/exec";
-
-            const postToSheets = async (payload) => {
-                const data = new URLSearchParams();
-                Object.entries(payload).forEach(([k,v]) => data.append(k, v));
-                if (GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_SCRIPT_WEB_APP_URL") {
-                    await fetch(GOOGLE_SCRIPT_URL, {
-                        method: 'POST', mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        body: data.toString()
-                    });
-                } else {
-                    await new Promise(res => setTimeout(res, 1000));
-                }
-            };
-
-            // STEP 1 → STEP 2: capture email
-            const handleReserve = async (e) => {
-                e.preventDefault();
-                if (!email.includes('@')) return;
-                setLoading(true);
-                try {
-                    await postToSheets({
-                        email,
-                        timestamp: new Date().toISOString(),
-                        step: 'email_captured'
-                    });
-                    setStep(2);
-                } catch (err) {
-                    console.error('Submission error:', err);
-                } finally {
-                    setLoading(false);
-                }
-            };
-
-            // STEP 2 → STEP 3: capture investor classification
-            const handleCertify = async (e) => {
-                e.preventDefault();
-                if (!certType || !certConfirmed) return;
-                setLoading(true);
-                try {
-                    await postToSheets({
-                        email,
-                        timestamp: new Date().toISOString(),
-                        step: 'classification_complete',
-                        investor_type: certType === 'hnw' ? 'Certified HNW Individual (FPO Art.48)' : 'Self-Certified Sophisticated Investor (FPO Art.50)'
-                    });
-                    setStep(3);
-                } catch (err) {
-                    console.error('Certification error:', err);
-                } finally {
-                    setLoading(false);
-                }
-            };
-
             const activeTruck = queue.find(t => t.id === selectedTruckId) || archive.find(t => t.id === selectedTruckId) || queue[0] || { id: 'IDLE', state: 'STOP', status: 'EMPTY', accepted: false };
 
             return (
@@ -375,7 +312,7 @@
                             <h1 className="text-2xl font-black uppercase tracking-tighter text-white">Olden <span className="text-safety">Project</span></h1>
                         </div>
                         <div className="flex gap-4">
-                            <span className="text-xs font-bold bg-grid px-3 py-1.5 uppercase hidden md:inline-block text-[#8D99AE]">DLR Engine Active</span>
+                            <span className="text-xs font-bold bg-grid px-3 py-1.5 uppercase hidden md:inline-block text-[#8D99AE]">Technology Preview</span>
                             <span className="text-xs font-bold bg-safety/20 text-safety px-3 py-1.5 uppercase border border-safety/30">Genesis Waitlist Open</span>
                         </div>
                     </nav>
@@ -454,180 +391,44 @@
                         </div>
                     </main>
 
-                    {/* GENESIS WAITLIST FORM */}
+                    {/* GENESIS WAITLIST FORM — Tally → Brevo */}
                     <section className="w-full max-w-6xl mx-auto px-6 lg:px-0 py-20 text-left">
                         <div className="genesis-section p-8 md:p-14 shadow-2xl relative overflow-hidden">
-
-                            {/* ── STEP 1: EMAIL CAPTURE ── */}
-                            {step === 1 && (
-                                <div className="flex flex-col md:flex-row gap-12 items-start">
-                                    <div className="space-y-6 flex-1">
-                                        <div>
-                                            <p className="text-xs text-safety/60 font-bold uppercase tracking-widest mb-3">Step 1 of 2</p>
-                                            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-3 text-white leading-tight">THE GENESIS WAITLIST</h2>
-                                            <p className="text-lg text-safety font-bold uppercase tracking-widest">(STRATEGIC PARTNER ACCESS)</p>
-                                        </div>
-                                        <div className="p-5 border-l-4 border-safety bg-safety/5">
-                                            <p className="text-sm font-mono text-safety uppercase leading-relaxed font-bold">
-                                                ATTENTION: No capital is collected on this page. This portal is strictly for product-market validation and strategic priority reservation.
-                                            </p>
-                                        </div>
-                                        <p className="text-base text-gray-300 leading-relaxed max-w-md font-medium normal-case">
-                                            To ensure the integrity of the early adopter network, strategic interests are formalized purely via priority registration. No capital commitment required.
-                                        </p>
-                                    </div>
-                                    <div className="w-full md:w-auto flex-1 space-y-5 mt-2">
-                                        <form onSubmit={handleReserve} className="flex flex-col gap-4" autoComplete="off">
-                                            <input
-                                                type="text"
-                                                inputMode="email"
-                                                name="no_autofill_field"
-                                                required
-                                                value={email}
-                                                onChange={(e) => setEmail(e.target.value)}
-                                                placeholder="ENTER BUSINESS EMAIL"
-                                                autoComplete="off"
-                                                data-lpignore="true"
-                                                data-1p-ignore="true"
-                                                data-form-type="other"
-                                                aria-autocomplete="none"
-                                                spellCheck={false}
-                                                style={{WebkitTextFillColor:'white', WebkitBoxShadow:'0 0 0px 1000px #0A1128 inset', caretColor:'white'}}
-                                                className="bg-navy border-2 border-white/20 p-4 font-mono text-white text-lg focus:border-safety outline-none transition-all placeholder:text-gray-500 w-full"
-                                            />
-                                            <label className="flex items-start gap-3 cursor-pointer">
-                                                <input type="checkbox" required className="mt-1 w-4 h-4 accent-safety shrink-0 cursor-pointer" />
-                                                <span className="text-xs text-gray-400 leading-relaxed normal-case font-medium">
-                                                    I consent to <span className="text-white font-bold">Nazar Zablotskyi</span> (operating the Olden Project) processing my email address to send strategic updates, in accordance with UK GDPR / Data Protection Act 2018. <a href="#privacy" className="text-safety underline hover:text-orange-400 transition-colors">Privacy Policy</a>.
-                                                </span>
-                                            </label>
-                                            <button type="submit" disabled={loading}
-                                                className="bg-safety hover:bg-orange-400 text-navy font-black text-lg py-4 px-8 flex items-center justify-center gap-3 transition-all shadow-xl disabled:opacity-50 active:translate-y-1 w-full"
-                                            >
-                                                <span className="text-xl">⚡</span> {loading ? 'SYNCING...' : 'REGISTER & RESERVE ACCESS'}
-                                            </button>
-                                        </form>
-                                        <p className="text-xs text-gray-400 leading-relaxed italic opacity-80 normal-case">
-                                            By registering today, you secure a priority position in the Genesis Waitlist. Members will receive direct notification before any public rollout. No investment is being solicited. This portal is strictly for product-market validation and strategic priority reservation.
-                                        </p>
-                                    </div>
-                                </div>
-                            )}
-
-                            {/* ── STEP 2: INVESTOR CLASSIFICATION (FPO ART.48 / ART.50) ── */}
-                            {step === 2 && (
-                                <form onSubmit={handleCertify} className="flex flex-col gap-8 fade-enter-active">
+                            <div className="flex flex-col md:flex-row gap-12 items-start">
+                                <div className="space-y-6 flex-1">
                                     <div>
-                                        <p className="text-xs text-safety/60 font-bold uppercase tracking-widest mb-3">Step 2 of 2 — Investor Classification</p>
-                                        <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-2 text-white leading-tight">CONFIRM YOUR STATUS</h2>
-                                        <p className="text-safety font-bold uppercase tracking-widest text-sm">Required under UK Financial Promotion Order 2005</p>
+                                        <p className="text-xs text-safety/60 font-bold uppercase tracking-widest mb-3">Priority Access</p>
+                                        <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-3 text-white leading-tight">THE GENESIS WAITLIST</h2>
+                                        <p className="text-lg text-safety font-bold uppercase tracking-widest">(STRATEGIC PARTNER ACCESS)</p>
                                     </div>
-
-                                    <div className="p-5 border-l-4 border-white/20 bg-white/[0.02]">
-                                        <p className="text-xs font-mono text-gray-400 uppercase leading-relaxed">
-                                            To receive priority access documentation, please confirm your investor classification. This self-certification is required under FPO 2005 Art.48 or Art.50 for communications relating to unregulated investment opportunities.
+                                    <div className="p-5 border-l-4 border-safety bg-safety/5">
+                                        <p className="text-sm font-mono text-safety uppercase leading-relaxed font-bold">
+                                            ATTENTION: No capital is collected on this page. This portal is strictly for product-market validation and strategic priority reservation.
                                         </p>
                                     </div>
-
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        {/* HNW OPTION */}
-                                        <div
-                                            onClick={() => setCertType('hnw')}
-                                            className={`p-6 border-2 cursor-pointer transition-all space-y-4 ${certType === 'hnw' ? 'border-safety bg-safety/10' : 'border-white/10 bg-white/[0.02] hover:border-white/30'}`}
-                                        >
-                                            <div className="flex items-center gap-3">
-                                                <div className={`w-4 h-4 border-2 shrink-0 flex items-center justify-center transition-all ${certType === 'hnw' ? 'border-safety bg-safety' : 'border-white/30'}`}>
-                                                    {certType === 'hnw' && <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="#0A1128" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>}
-                                                </div>
-                                                <p className="text-safety text-xs font-black uppercase tracking-widest">FPO Art. 48</p>
-                                            </div>
-                                            <p className="text-white font-black uppercase tracking-tight text-base">Certified High Net Worth Individual</p>
-                                            <div className="space-y-2 pt-1">
-                                                <p className="text-[11px] text-gray-400 uppercase font-bold tracking-wider">I confirm that during the last financial year:</p>
-                                                <div className="space-y-1.5 pl-3 border-l border-white/10">
-                                                    <p className="text-[11px] text-gray-300 normal-case font-medium">Annual income of at least <span className="text-safety font-bold">£170,000</span></p>
-                                                    <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">— OR —</p>
-                                                    <p className="text-[11px] text-gray-300 normal-case font-medium">Net assets (excl. primary residence &amp; pension) of at least <span className="text-safety font-bold">£430,000</span></p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* SOPHISTICATED INVESTOR OPTION */}
-                                        <div
-                                            onClick={() => setCertType('sophisticated')}
-                                            className={`p-6 border-2 cursor-pointer transition-all space-y-4 ${certType === 'sophisticated' ? 'border-safety bg-safety/10' : 'border-white/10 bg-white/[0.02] hover:border-white/30'}`}
-                                        >
-                                            <div className="flex items-center gap-3">
-                                                <div className={`w-4 h-4 border-2 shrink-0 flex items-center justify-center transition-all ${certType === 'sophisticated' ? 'border-safety bg-safety' : 'border-white/30'}`}>
-                                                    {certType === 'sophisticated' && <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="#0A1128" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>}
-                                                </div>
-                                                <p className="text-safety text-xs font-black uppercase tracking-widest">FPO Art. 50</p>
-                                            </div>
-                                            <p className="text-white font-black uppercase tracking-tight text-base">Self-Certified Sophisticated Investor</p>
-                                            <div className="space-y-2 pt-1">
-                                                <p className="text-[11px] text-gray-400 uppercase font-bold tracking-wider">I confirm at least one of the following:</p>
-                                                <div className="space-y-2 pl-3 border-l border-white/10">
-                                                    <p className="text-[11px] text-gray-300 normal-case font-medium">Member of a <span className="text-safety font-bold">business angel network</span> for 6+ months</p>
-                                                    <p className="text-[11px] text-gray-300 normal-case font-medium">Made <span className="text-safety font-bold">2+ investments</span> in unlisted companies in past 2 years</p>
-                                                    <p className="text-[11px] text-gray-300 normal-case font-medium">Work in <span className="text-safety font-bold">private equity</span> or SME finance</p>
-                                                    <p className="text-[11px] text-gray-300 normal-case font-medium">Director of company with <span className="text-safety font-bold">£1M+ annual turnover</span></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <label className="flex items-start gap-3 cursor-pointer">
-                                        <input
-                                            type="checkbox" required
-                                            checked={certConfirmed}
-                                            onChange={(e) => setCertConfirmed(e.target.checked)}
-                                            className="mt-1 w-4 h-4 accent-safety shrink-0 cursor-pointer"
-                                        />
-                                        <span className="text-xs text-gray-400 leading-relaxed normal-case font-medium">
-                                            I confirm that the above declaration is accurate and I understand that by self-certifying, I may receive communications relating to unregulated investment opportunities which carry a risk of loss. I accept that Nazar Zablotskyi (operating the Olden Project) relies on this self-certification in accordance with FPO 2005.
-                                        </span>
-                                    </label>
-
-                                    <div className="flex flex-col sm:flex-row gap-4">
-                                        <button type="submit" disabled={loading || !certType || !certConfirmed}
-                                            className="flex-1 bg-safety hover:bg-orange-400 text-navy font-black text-lg py-4 px-8 flex items-center justify-center gap-3 transition-all shadow-xl disabled:opacity-30 disabled:cursor-not-allowed active:translate-y-1"
-                                        >
-                                            <Icon name="Shield" size={18} color="#0A1128" />
-                                            {loading ? 'VERIFYING...' : 'CONFIRM & RECEIVE DOCUMENTATION'}
-                                        </button>
-                                        <button type="button" onClick={() => { setStep(1); setCertType(''); setCertConfirmed(false); }}
-                                            className="flex items-center justify-center gap-2 px-6 text-xs text-gray-500 uppercase font-bold tracking-widest hover:text-safety transition-colors border border-white/10 hover:border-safety/30"
-                                        >
-                                            <Icon name="ArrowLeft" size={14} /> Back
-                                        </button>
-                                    </div>
-
-                                    <p className="text-[10px] text-gray-600 leading-relaxed normal-case font-medium border-t border-white/5 pt-4">
-                                        <span className="text-gray-500 font-bold uppercase tracking-widest">Legal Notice: </span>
-                                        This self-certification is made under the Financial Services and Markets Act 2000 (Financial Promotion) Order 2005, Articles 48 and 50. False declarations may constitute a criminal offence. Nazar Zablotskyi (acting as an individual, pending formal incorporation) does not verify the accuracy of self-certifications but relies on them in good faith.
+                                    <p className="text-base text-gray-300 leading-relaxed max-w-md font-medium normal-case">
+                                        To ensure the integrity of the early adopter network, strategic interests are formalized purely via priority registration. No capital commitment required.
                                     </p>
-                                </form>
-                            )}
-
-                            {/* ── STEP 3: CONFIRMED ── */}
-                            {step === 3 && (
-                                <div className="py-14 text-center space-y-6 flex flex-col items-center fade-enter-active">
-                                    <Icon name="CheckCircle" size={64} color="#FF9F1C" strokeWidth={1.5} />
-                                    <h2 className="text-3xl font-black uppercase tracking-tighter text-white">Registration Confirmed</h2>
-                                    <p className="text-lg text-emerald font-bold uppercase tracking-widest text-center">Priority position secured for {email}</p>
-                                    <div className="p-5 border border-safety/30 bg-safety/5 max-w-md text-xs uppercase font-bold tracking-wider text-gray-300 text-center space-y-2">
-                                        <p>Classification logged: <span className="text-safety">{certType === 'hnw' ? 'Certified HNW (FPO Art.48)' : 'Sophisticated Investor (FPO Art.50)'}</span></p>
-                                        <p className="normal-case font-medium text-gray-400 pt-1">You will be contacted directly when we open our regulated partner access phase. No further action required.</p>
+                                    <div className="p-4 border border-white/10 bg-white/[0.02]">
+                                        <p className="text-xs font-mono text-gray-400 uppercase leading-relaxed">
+                                            You will be asked to confirm your investor classification under FPO 2005 Art.48 (High Net Worth) or Art.50 (Sophisticated Investor). Required for communications relating to unregulated investment opportunities.
+                                        </p>
                                     </div>
-                                    <button
-                                        onClick={() => { setStep(1); setEmail(''); setCertType(''); setCertConfirmed(false); }}
-                                        className="mt-8 flex items-center justify-center gap-2 text-xs text-gray-400 uppercase font-bold tracking-widest hover:text-safety transition-colors"
-                                    >
-                                        <Icon name="ArrowLeft" size={14} /> Register Another
-                                    </button>
                                 </div>
-                            )}
-
+                                <div className="w-full md:w-auto flex-1 mt-2">
+                                    <iframe
+                                        data-tally-src="https://tally.so/embed/YOUR_FORM_ID?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                                        loading="lazy"
+                                        width="100%"
+                                        height="500"
+                                        frameBorder="0"
+                                        marginHeight="0"
+                                        marginWidth="0"
+                                        title="Genesis Waitlist Registration"
+                                        style={{minHeight: '420px', border: 'none'}}
+                                    ></iframe>
+                                </div>
+                            </div>
                         </div>
 
                         <div className="mt-14 text-left">
@@ -653,7 +454,7 @@
                             <div className="pt-2 border-t border-white/5 space-y-2">
                                 <p className="text-[11px] text-gray-500 font-bold uppercase tracking-widest">Privacy Notice (UK GDPR / DPA 2018)</p>
                                 <p className="text-[11px] text-gray-500 leading-relaxed normal-case font-medium">
-                                    <span className="text-gray-400 font-semibold">Data Controller:</span> Nazar Zablotskyi (individual, acting in a pre-incorporation capacity). The Olden Project is a working title and is not a registered legal entity. By registering, you consent to Nazar Zablotskyi processing your email address solely to send strategic updates. Data is held securely via Google Sheets. Sub-processors: Zapier, BoldSign. You may request deletion at any time by contacting the Data Controller directly. Data will not be sold or transferred to third parties outside of service delivery.
+                                    <span className="text-gray-400 font-semibold">Data Controller:</span> Nazar Zablotskyi (individual, acting in a pre-incorporation capacity). The Olden Project is a working title and is not a registered legal entity. By registering, you consent to Nazar Zablotskyi processing your email address solely to send strategic updates. Data is collected via Tally.so and held securely in Brevo (email CRM). Sub-processors: Tally BV (Netherlands), Brevo SAS (France). You may request deletion at any time by contacting the Data Controller directly. Data will not be sold or transferred to third parties outside of service delivery.
                                 </p>
                             </div>
                         </div>
@@ -669,5 +470,6 @@
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
+    <script async src="https://tally.so/widgets/embed.js"></script>
 </body>
 </html>

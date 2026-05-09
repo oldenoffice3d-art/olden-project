@@ -275,8 +275,6 @@
             const [loading, setLoading] = useState(false);
             const [certType, setCertType] = useState('');
             const [certConfirmed, setCertConfirmed] = useState(false);
-            const [gdprChecked, setGdprChecked] = useState(false);
-            const [gdprError, setGdprError] = useState(false);
 
             const addToLog = (message) => {
                 const timestamp = new Date().toLocaleTimeString();
@@ -330,9 +328,7 @@
             // STEP 1 → STEP 2: capture email
             const handleReserve = async (e) => {
                 e.preventDefault();
-                if (!gdprChecked) { setGdprError(true); return; }
                 if (!email.includes('@')) return;
-                setGdprError(false);
                 setLoading(true);
                 try {
                     await postToSheets({
@@ -486,9 +482,10 @@
                                                 type="text"
                                                 inputMode="email"
                                                 name="no_autofill_field"
+                                                required
                                                 value={email}
                                                 onChange={(e) => setEmail(e.target.value)}
-                                                placeholder="ENTER YOUR EMAIL"
+                                                placeholder="ENTER BUSINESS EMAIL"
                                                 autoComplete="off"
                                                 data-lpignore="true"
                                                 data-1p-ignore="true"
@@ -499,21 +496,11 @@
                                                 className="bg-navy border-2 border-white/20 p-4 font-mono text-white text-lg focus:border-safety outline-none transition-all placeholder:text-gray-500 w-full"
                                             />
                                             <label className="flex items-start gap-3 cursor-pointer">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={gdprChecked}
-                                                    onChange={(e) => { setGdprChecked(e.target.checked); setGdprError(false); }}
-                                                    className="mt-1 w-4 h-4 accent-safety shrink-0 cursor-pointer"
-                                                />
+                                                <input type="checkbox" required className="mt-1 w-4 h-4 accent-safety shrink-0 cursor-pointer" />
                                                 <span className="text-xs text-gray-400 leading-relaxed normal-case font-medium">
                                                     I consent to <span className="text-white font-bold">Nazar Zablotskyi</span> (operating the Olden Project) processing my email address to send strategic updates, in accordance with UK GDPR / Data Protection Act 2018. <a href="#privacy" className="text-safety underline hover:text-orange-400 transition-colors">Privacy Policy</a>.
                                                 </span>
                                             </label>
-                                            {gdprError && (
-                                                <p className="text-xs font-bold uppercase tracking-widest" style={{color:'#FF9F1C'}}>
-                                                    ⚠ Please confirm your consent to continue.
-                                                </p>
-                                            )}
                                             <button type="submit" disabled={loading}
                                                 className="bg-safety hover:bg-orange-400 text-navy font-black text-lg py-4 px-8 flex items-center justify-center gap-3 transition-all shadow-xl disabled:opacity-50 active:translate-y-1 w-full"
                                             >
@@ -591,7 +578,7 @@
 
                                     <label className="flex items-start gap-3 cursor-pointer">
                                         <input
-                                            type="checkbox"
+                                            type="checkbox" required
                                             checked={certConfirmed}
                                             onChange={(e) => setCertConfirmed(e.target.checked)}
                                             className="mt-1 w-4 h-4 accent-safety shrink-0 cursor-pointer"
@@ -666,7 +653,7 @@
                             <div className="pt-2 border-t border-white/5 space-y-2">
                                 <p className="text-[11px] text-gray-500 font-bold uppercase tracking-widest">Privacy Notice (UK GDPR / DPA 2018)</p>
                                 <p className="text-[11px] text-gray-500 leading-relaxed normal-case font-medium">
-                                    <span className="text-gray-400 font-semibold">Data Controller:</span> Nazar Zablotskyi (individual, acting in a pre-incorporation capacity). The Olden Project is a working title and is not a registered legal entity. By registering, you consent to Nazar Zablotskyi processing your email address solely to send strategic updates. Data is held securely via Google Sheets. Sub-processors: Zapier, Gmail. You may request deletion at any time by contacting the Data Controller directly. Data will not be sold or transferred to third parties outside of service delivery.
+                                    <span className="text-gray-400 font-semibold">Data Controller:</span> Nazar Zablotskyi (individual, acting in a pre-incorporation capacity). The Olden Project is a working title and is not a registered legal entity. By registering, you consent to Nazar Zablotskyi processing your email address solely to send strategic updates. Data is held securely via Google Sheets. Sub-processors: Zapier, BoldSign. You may request deletion at any time by contacting the Data Controller directly. Data will not be sold or transferred to third parties outside of service delivery.
                                 </p>
                             </div>
                         </div>

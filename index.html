@@ -260,10 +260,12 @@
                 { id: 'XWQ10 VBN', status: 'IN TRANSIT', state: 'GO', accepted: true }
             ]);
 
-            // Form States
-            const [submitted, setSubmitted] = useState(false);
+            // Form States — 3-step flow
+            const [step, setStep] = useState(1);
             const [email, setEmail] = useState('');
             const [loading, setLoading] = useState(false);
+            const [certType, setCertType] = useState('');
+            const [certConfirmed, setCertConfirmed] = useState(false);
 
             const addToLog = (message) => {
                 const timestamp = new Date().toLocaleTimeString();
@@ -298,40 +300,58 @@
             };
 
             // GOOGLE SHEETS SUBMISSION LOGIC
+            const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSXx-fDiaHlvX7jpKlhqa0i7aDD0BGJWj_ywgJLEVcowrCqelz4vpROJrbZDXcA0Dpcw/exec";
+
+            const postToSheets = async (payload) => {
+                const data = new URLSearchParams();
+                Object.entries(payload).forEach(([k,v]) => data.append(k, v));
+                if (GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_SCRIPT_WEB_APP_URL") {
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST', mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: data.toString()
+                    });
+                } else {
+                    await new Promise(res => setTimeout(res, 1000));
+                }
+            };
+
+            // STEP 1 → STEP 2: capture email
             const handleReserve = async (e) => {
                 e.preventDefault();
-                if (email.includes('@')) {
-                    setLoading(true);
-                    
-                    // ⚠️ УВАГА: ВСТАВТЕ ВАШ URL З GOOGLE APPS SCRIPT МІЖ ЛАПКАМИ НИЖЧЕ ⚠️
-                    // Приклад: "https://script.google.com/macros/s/AKfycby.../exec"
-                    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSXx-fDiaHlvX7jpKlhqa0i7aDD0BGJWj_ywgJLEVcowrCqelz4vpROJrbZDXcA0Dpcw/exec"; 
+                if (!email.includes('@')) return;
+                setLoading(true);
+                try {
+                    await postToSheets({
+                        email,
+                        timestamp: new Date().toISOString(),
+                        step: 'email_captured'
+                    });
+                    setStep(2);
+                } catch (err) {
+                    console.error('Submission error:', err);
+                } finally {
+                    setLoading(false);
+                }
+            };
 
-                    try {
-                        const data = new URLSearchParams();
-                        data.append('email', email);
-                        data.append('timestamp', new Date().toISOString());
-
-                        if(GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_SCRIPT_WEB_APP_URL") {
-                            await fetch(GOOGLE_SCRIPT_URL, {
-                                method: 'POST',
-                                mode: 'no-cors',
-                                headers: {
-                                    'Content-Type': 'application/x-www-form-urlencoded',
-                                },
-                                body: data.toString()
-                            });
-                        } else {
-                            console.warn("Please insert your GOOGLE_SCRIPT_URL into the code.");
-                            await new Promise(res => setTimeout(res, 1200));
-                        }
-                        
-                        setSubmitted(true);
-                    } catch (error) { 
-                        console.error('Submission error:', error); 
-                    } finally { 
-                        setLoading(false); 
-                    }
+            // STEP 2 → STEP 3: capture investor classification
+            const handleCertify = async (e) => {
+                e.preventDefault();
+                if (!certType || !certConfirmed) return;
+                setLoading(true);
+                try {
+                    await postToSheets({
+                        email,
+                        timestamp: new Date().toISOString(),
+                        step: 'classification_complete',
+                        investor_type: certType === 'hnw' ? 'Certified HNW Individual (FPO Art.48)' : 'Self-Certified Sophisticated Investor (FPO Art.50)'
+                    });
+                    setStep(3);
+                } catch (err) {
+                    console.error('Certification error:', err);
+                } finally {
+                    setLoading(false);
                 }
             };
 
@@ -428,10 +448,13 @@
                     {/* GENESIS WAITLIST FORM */}
                     <section className="w-full max-w-6xl mx-auto px-6 lg:px-0 py-20 text-left">
                         <div className="genesis-section p-8 md:p-14 shadow-2xl relative overflow-hidden">
-                            {!submitted ? (
+
+                            {/* ── STEP 1: EMAIL CAPTURE ── */}
+                            {step === 1 && (
                                 <div className="flex flex-col md:flex-row gap-12 items-start">
                                     <div className="space-y-6 flex-1">
                                         <div>
+                                            <p className="text-xs text-safety/60 font-bold uppercase tracking-widest mb-3">Step 1 of 2</p>
                                             <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-3 text-white leading-tight">THE GENESIS WAITLIST</h2>
                                             <p className="text-lg text-safety font-bold uppercase tracking-widest">(STRATEGIC PARTNER ACCESS)</p>
                                         </div>
@@ -446,30 +469,20 @@
                                     </div>
                                     <div className="w-full md:w-auto flex-1 space-y-5 mt-2">
                                         <form onSubmit={handleReserve} className="flex flex-col gap-4" autoComplete="off">
-                                            <input 
-                                                type="email" 
-                                                name="secure_email_input" 
-                                                required 
-                                                value={email} 
-                                                onChange={(e) => setEmail(e.target.value)}
-                                                placeholder="ENTER BUSINESS EMAIL" 
-                                                autoComplete="new-password" 
-                                                data-lpignore="true"
-                                                data-1p-ignore="true"
+                                            <input
+                                                type="email" name="secure_email_input" required
+                                                value={email} onChange={(e) => setEmail(e.target.value)}
+                                                placeholder="ENTER BUSINESS EMAIL"
+                                                autoComplete="new-password" data-lpignore="true" data-1p-ignore="true"
                                                 className="bg-navy border-2 border-white/20 p-4 font-mono text-white text-lg focus:border-safety outline-none transition-all placeholder:text-gray-500 w-full"
                                             />
-                                            <label className="flex items-start gap-3 cursor-pointer group">
-                                                <input 
-                                                    type="checkbox" 
-                                                    required
-                                                    className="mt-1 w-4 h-4 accent-safety shrink-0 cursor-pointer"
-                                                />
+                                            <label className="flex items-start gap-3 cursor-pointer">
+                                                <input type="checkbox" required className="mt-1 w-4 h-4 accent-safety shrink-0 cursor-pointer" />
                                                 <span className="text-xs text-gray-400 leading-relaxed normal-case font-medium">
-                                                    I agree to receive strategic updates from Olden Project. My data is processed in accordance with UK GDPR / Data Protection Act 2018. <a href="#privacy" className="text-safety underline hover:text-orange-400 transition-colors">Privacy Policy</a>.
+                                                    I consent to <span className="text-white font-bold">Nazar Zablotskyi</span> (operating the Olden Project) processing my email address to send strategic updates, in accordance with UK GDPR / Data Protection Act 2018. <a href="#privacy" className="text-safety underline hover:text-orange-400 transition-colors">Privacy Policy</a>.
                                                 </span>
                                             </label>
-                                            <button 
-                                                type="submit" disabled={loading}
+                                            <button type="submit" disabled={loading}
                                                 className="bg-safety hover:bg-orange-400 text-navy font-black text-lg py-4 px-8 flex items-center justify-center gap-3 transition-all shadow-xl disabled:opacity-50 active:translate-y-1 w-full"
                                             >
                                                 <span className="text-xl">⚡</span> {loading ? 'SYNCING...' : 'REGISTER & RESERVE ACCESS'}
@@ -480,22 +493,122 @@
                                         </p>
                                     </div>
                                 </div>
-                            ) : (
-                                <div className="py-14 text-center space-y-6 flex flex-col items-center">
+                            )}
+
+                            {/* ── STEP 2: INVESTOR CLASSIFICATION (FPO ART.48 / ART.50) ── */}
+                            {step === 2 && (
+                                <form onSubmit={handleCertify} className="flex flex-col gap-8 fade-enter-active">
+                                    <div>
+                                        <p className="text-xs text-safety/60 font-bold uppercase tracking-widest mb-3">Step 2 of 2 — Investor Classification</p>
+                                        <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-2 text-white leading-tight">CONFIRM YOUR STATUS</h2>
+                                        <p className="text-safety font-bold uppercase tracking-widest text-sm">Required under UK Financial Promotion Order 2005</p>
+                                    </div>
+
+                                    <div className="p-5 border-l-4 border-white/20 bg-white/[0.02]">
+                                        <p className="text-xs font-mono text-gray-400 uppercase leading-relaxed">
+                                            To receive priority access documentation, please confirm your investor classification. This self-certification is required under FPO 2005 Art.48 or Art.50 for communications relating to unregulated investment opportunities.
+                                        </p>
+                                    </div>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        {/* HNW OPTION */}
+                                        <div
+                                            onClick={() => setCertType('hnw')}
+                                            className={`p-6 border-2 cursor-pointer transition-all space-y-4 ${certType === 'hnw' ? 'border-safety bg-safety/10' : 'border-white/10 bg-white/[0.02] hover:border-white/30'}`}
+                                        >
+                                            <div className="flex items-center gap-3">
+                                                <div className={`w-4 h-4 border-2 shrink-0 flex items-center justify-center transition-all ${certType === 'hnw' ? 'border-safety bg-safety' : 'border-white/30'}`}>
+                                                    {certType === 'hnw' && <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="#0A1128" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>}
+                                                </div>
+                                                <p className="text-safety text-xs font-black uppercase tracking-widest">FPO Art. 48</p>
+                                            </div>
+                                            <p className="text-white font-black uppercase tracking-tight text-base">Certified High Net Worth Individual</p>
+                                            <div className="space-y-2 pt-1">
+                                                <p className="text-[11px] text-gray-400 uppercase font-bold tracking-wider">I confirm that during the last financial year:</p>
+                                                <div className="space-y-1.5 pl-3 border-l border-white/10">
+                                                    <p className="text-[11px] text-gray-300 normal-case font-medium">Annual income of at least <span className="text-safety font-bold">£170,000</span></p>
+                                                    <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">— OR —</p>
+                                                    <p className="text-[11px] text-gray-300 normal-case font-medium">Net assets (excl. primary residence &amp; pension) of at least <span className="text-safety font-bold">£430,000</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* SOPHISTICATED INVESTOR OPTION */}
+                                        <div
+                                            onClick={() => setCertType('sophisticated')}
+                                            className={`p-6 border-2 cursor-pointer transition-all space-y-4 ${certType === 'sophisticated' ? 'border-safety bg-safety/10' : 'border-white/10 bg-white/[0.02] hover:border-white/30'}`}
+                                        >
+                                            <div className="flex items-center gap-3">
+                                                <div className={`w-4 h-4 border-2 shrink-0 flex items-center justify-center transition-all ${certType === 'sophisticated' ? 'border-safety bg-safety' : 'border-white/30'}`}>
+                                                    {certType === 'sophisticated' && <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="#0A1128" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>}
+                                                </div>
+                                                <p className="text-safety text-xs font-black uppercase tracking-widest">FPO Art. 50</p>
+                                            </div>
+                                            <p className="text-white font-black uppercase tracking-tight text-base">Self-Certified Sophisticated Investor</p>
+                                            <div className="space-y-2 pt-1">
+                                                <p className="text-[11px] text-gray-400 uppercase font-bold tracking-wider">I confirm at least one of the following:</p>
+                                                <div className="space-y-2 pl-3 border-l border-white/10">
+                                                    <p className="text-[11px] text-gray-300 normal-case font-medium">Member of a <span className="text-safety font-bold">business angel network</span> for 6+ months</p>
+                                                    <p className="text-[11px] text-gray-300 normal-case font-medium">Made <span className="text-safety font-bold">2+ investments</span> in unlisted companies in past 2 years</p>
+                                                    <p className="text-[11px] text-gray-300 normal-case font-medium">Work in <span className="text-safety font-bold">private equity</span> or SME finance</p>
+                                                    <p className="text-[11px] text-gray-300 normal-case font-medium">Director of company with <span className="text-safety font-bold">£1M+ annual turnover</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <label className="flex items-start gap-3 cursor-pointer">
+                                        <input
+                                            type="checkbox" required
+                                            checked={certConfirmed}
+                                            onChange={(e) => setCertConfirmed(e.target.checked)}
+                                            className="mt-1 w-4 h-4 accent-safety shrink-0 cursor-pointer"
+                                        />
+                                        <span className="text-xs text-gray-400 leading-relaxed normal-case font-medium">
+                                            I confirm that the above declaration is accurate and I understand that by self-certifying, I may receive communications relating to unregulated investment opportunities which carry a risk of loss. I accept that Nazar Zablotskyi (operating the Olden Project) relies on this self-certification in accordance with FPO 2005.
+                                        </span>
+                                    </label>
+
+                                    <div className="flex flex-col sm:flex-row gap-4">
+                                        <button type="submit" disabled={loading || !certType || !certConfirmed}
+                                            className="flex-1 bg-safety hover:bg-orange-400 text-navy font-black text-lg py-4 px-8 flex items-center justify-center gap-3 transition-all shadow-xl disabled:opacity-30 disabled:cursor-not-allowed active:translate-y-1"
+                                        >
+                                            <Icon name="Shield" size={18} color="#0A1128" />
+                                            {loading ? 'VERIFYING...' : 'CONFIRM & RECEIVE DOCUMENTATION'}
+                                        </button>
+                                        <button type="button" onClick={() => { setStep(1); setCertType(''); setCertConfirmed(false); }}
+                                            className="flex items-center justify-center gap-2 px-6 text-xs text-gray-500 uppercase font-bold tracking-widest hover:text-safety transition-colors border border-white/10 hover:border-safety/30"
+                                        >
+                                            <Icon name="ArrowLeft" size={14} /> Back
+                                        </button>
+                                    </div>
+
+                                    <p className="text-[10px] text-gray-600 leading-relaxed normal-case font-medium border-t border-white/5 pt-4">
+                                        <span className="text-gray-500 font-bold uppercase tracking-widest">Legal Notice: </span>
+                                        This self-certification is made under the Financial Services and Markets Act 2000 (Financial Promotion) Order 2005, Articles 48 and 50. False declarations may constitute a criminal offence. Nazar Zablotskyi (acting as an individual, pending formal incorporation) does not verify the accuracy of self-certifications but relies on them in good faith.
+                                    </p>
+                                </form>
+                            )}
+
+                            {/* ── STEP 3: CONFIRMED ── */}
+                            {step === 3 && (
+                                <div className="py-14 text-center space-y-6 flex flex-col items-center fade-enter-active">
                                     <Icon name="CheckCircle" size={64} color="#FF9F1C" strokeWidth={1.5} />
                                     <h2 className="text-3xl font-black uppercase tracking-tighter text-white">Registration Confirmed</h2>
                                     <p className="text-lg text-emerald font-bold uppercase tracking-widest text-center">Priority position secured for {email}</p>
-                                    <div className="p-5 border border-safety/30 bg-safety/5 inline-block text-xs uppercase font-bold tracking-wider text-gray-300 text-center">
-                                        You will be notified directly when we open our regulated partner access phase. No further action required.
+                                    <div className="p-5 border border-safety/30 bg-safety/5 max-w-md text-xs uppercase font-bold tracking-wider text-gray-300 text-center space-y-2">
+                                        <p>Classification logged: <span className="text-safety">{certType === 'hnw' ? 'Certified HNW (FPO Art.48)' : 'Sophisticated Investor (FPO Art.50)'}</span></p>
+                                        <p className="normal-case font-medium text-gray-400 pt-1">You will be contacted directly when we open our regulated partner access phase. No further action required.</p>
                                     </div>
-                                    <button 
-                                        onClick={() => { setSubmitted(false); setEmail(''); }}
+                                    <button
+                                        onClick={() => { setStep(1); setEmail(''); setCertType(''); setCertConfirmed(false); }}
                                         className="mt-8 flex items-center justify-center gap-2 text-xs text-gray-400 uppercase font-bold tracking-widest hover:text-safety transition-colors"
                                     >
-                                        <Icon name="ArrowLeft" size={14} /> ENTER DIFFERENT EMAIL
+                                        <Icon name="ArrowLeft" size={14} /> Register Another
                                     </button>
                                 </div>
                             )}
+
                         </div>
 
                         <div className="mt-14 text-left">
@@ -513,13 +626,19 @@
 
                     {/* FOOTER */}
                     <footer id="privacy" className="w-full max-w-6xl mx-auto mt-8 py-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-start gap-12 text-left px-6 lg:px-0">
-                        <div className="space-y-4 max-w-3xl">
+                        <div className="space-y-5 max-w-3xl">
                             <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">Olden Project | Intellectual Property Disclosure</p>
                             <p className="text-safety text-xs font-bold uppercase tracking-widest leading-relaxed">
                                 IP Fortress: Protected by a Triple-Patent Moat (Multiple US Provisional Patent Applications Pending).
                             </p>
+                            <div className="pt-2 border-t border-white/5 space-y-2">
+                                <p className="text-[11px] text-gray-500 font-bold uppercase tracking-widest">Privacy Notice (UK GDPR / DPA 2018)</p>
+                                <p className="text-[11px] text-gray-500 leading-relaxed normal-case font-medium">
+                                    <span className="text-gray-400 font-semibold">Data Controller:</span> Nazar Zablotskyi (individual, acting in a pre-incorporation capacity). The Olden Project is a working title and is not a registered legal entity. By registering, you consent to Nazar Zablotskyi processing your email address solely to send strategic updates. Data is held securely via Google Sheets. Sub-processors: Zapier, BoldSign. You may request deletion at any time by contacting the Data Controller directly. Data will not be sold or transferred to third parties outside of service delivery.
+                                </p>
+                            </div>
                         </div>
-                        <div className="flex flex-col md:items-end gap-3 text-right w-full md:w-auto">
+                        <div className="flex flex-col md:items-end gap-3 text-right w-full md:w-auto shrink-0">
                             <p className="text-safety text-xs font-bold uppercase tracking-widest border border-safety/40 px-5 py-3 rounded-none whitespace-nowrap">Founder & Chairman: Nazar Zablotskyi</p>
                             <p className="text-[11px] text-gray-500 uppercase font-medium">USPTO Disclosure Protocol</p>
                         </div>

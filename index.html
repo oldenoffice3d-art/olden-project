@@ -425,15 +425,15 @@
                         </div>
                     </main>
 
-                    {/* GENESIS ALLOCATION FORM */}
+                    {/* GENESIS WAITLIST FORM */}
                     <section className="w-full max-w-6xl mx-auto px-6 lg:px-0 py-20 text-left">
                         <div className="genesis-section p-8 md:p-14 shadow-2xl relative overflow-hidden">
                             {!submitted ? (
                                 <div className="flex flex-col md:flex-row gap-12 items-start">
                                     <div className="space-y-6 flex-1">
                                         <div>
-                                            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-3 text-white leading-tight">THE GENESIS ALLOCATION</h2>
-                                            <p className="text-lg text-safety font-bold uppercase tracking-widest">(YOUR PATH TO EQUITY)</p>
+                                            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-3 text-white leading-tight">THE GENESIS WAITLIST</h2>
+                                            <p className="text-lg text-safety font-bold uppercase tracking-widest">(STRATEGIC PARTNER ACCESS)</p>
                                         </div>
                                         <div className="p-5 border-l-4 border-safety bg-safety/5">
                                             <p className="text-sm font-mono text-safety uppercase leading-relaxed font-bold">
@@ -441,7 +441,7 @@
                                             </p>
                                         </div>
                                         <p className="text-base text-gray-300 leading-relaxed max-w-md font-medium normal-case">
-                                            To ensure the integrity of the strategic waitlist, investment intents starting from "£1,250" are formalized purely via a Letter of Intent (LOI).
+                                            To ensure the integrity of the early adopter network, strategic interests are formalized purely via priority registration. No capital commitment required.
                                         </p>
                                     </div>
                                     <div className="w-full md:w-auto flex-1 space-y-5 mt-2">
@@ -472,21 +472,21 @@
                                                 type="submit" disabled={loading}
                                                 className="bg-safety hover:bg-orange-400 text-navy font-black text-lg py-4 px-8 flex items-center justify-center gap-3 transition-all shadow-xl disabled:opacity-50 active:translate-y-1 w-full"
                                             >
-                                                <span className="text-xl">⚡</span> {loading ? 'SYNCING...' : 'REGISTER & RESERVE ALLOCATION'}
+                                                <span className="text-xl">⚡</span> {loading ? 'SYNCING...' : 'REGISTER & RESERVE ACCESS'}
                                             </button>
                                         </form>
                                         <p className="text-xs text-gray-400 leading-relaxed italic opacity-80 normal-case">
-                                            By registering your soft commitment today, you secure a "Guaranteed VIP Allocation Invitation". Genesis members will receive direct notification and priority access before the IP moat is finalized.
+                                            By registering today, you secure a priority position in the Genesis Waitlist. Members will receive direct notification before any public rollout. No investment is being solicited. This portal is strictly for product-market validation and strategic priority reservation.
                                         </p>
                                     </div>
                                 </div>
                             ) : (
                                 <div className="py-14 text-center space-y-6 flex flex-col items-center">
-                                    <Icon name="Mail" size={64} color="#FF9F1C" strokeWidth={1.5} />
-                                    <h2 className="text-3xl font-black uppercase tracking-tighter text-white">Action Required</h2>
-                                    <p className="text-lg text-emerald font-bold uppercase tracking-widest text-center">LOI dispatched to {email}</p>
+                                    <Icon name="CheckCircle" size={64} color="#FF9F1C" strokeWidth={1.5} />
+                                    <h2 className="text-3xl font-black uppercase tracking-tighter text-white">Registration Confirmed</h2>
+                                    <p className="text-lg text-emerald font-bold uppercase tracking-widest text-center">Priority position secured for {email}</p>
                                     <div className="p-5 border border-safety/30 bg-safety/5 inline-block text-xs uppercase font-bold tracking-wider text-gray-300 text-center">
-                                        Check your inbox. Finalize via BoldSign to secure your priority position.
+                                        You will be notified directly when we open our regulated partner access phase. No further action required.
                                     </div>
                                     <button 
                                         onClick={() => { setSubmitted(false); setEmail(''); }}
@@ -502,6 +502,12 @@
                             <a href="#top" className="indiegogo-btn inline-flex items-center gap-3 px-8 py-4 text-safety font-bold uppercase text-sm tracking-widest group">
                                 <Icon name="ChevronLeft" size={16} /> Back to Overview
                             </a>
+                        </div>
+                        <div className="mt-8 p-5 border border-white/5 bg-white/[0.01]">
+                            <p className="text-[10px] text-gray-600 leading-relaxed normal-case font-medium">
+                                <span className="text-gray-500 font-bold uppercase tracking-widest">Regulatory Notice: </span>
+                                This page does not constitute a financial promotion under s.21 of the Financial Services and Markets Act 2000 (FSMA). No invitation or inducement to engage in investment activity is being made. No capital, securities, or financial instruments are being offered, sold, or solicited at this time. Future investment opportunities, if any, will be communicated exclusively through FCA-authorised channels and regulated intermediary platforms. This communication is strictly for the purpose of product-market validation and priority waitlist registration.
+                            </p>
                         </div>
                     </section>
 

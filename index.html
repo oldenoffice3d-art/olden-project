@@ -40,6 +40,15 @@
         
         .glass-panel { background: rgba(10, 17, 40, 0.8); backdrop-filter: blur(15px); border: 1px solid rgba(255, 159, 28, 0.2); }
         .genesis-section { background-color: #1A1F36; border-top: 4px solid #FF9F1C; }
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0px 1000px #0A1128 inset !important;
+            -webkit-text-fill-color: white !important;
+            caret-color: white !important;
+            transition: background-color 99999s ease-in-out 0s;
+        }
         
         .fade-enter-active { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn {
@@ -470,10 +479,20 @@
                                     <div className="w-full md:w-auto flex-1 space-y-5 mt-2">
                                         <form onSubmit={handleReserve} className="flex flex-col gap-4" autoComplete="off">
                                             <input
-                                                type="email" name="secure_email_input" required
-                                                value={email} onChange={(e) => setEmail(e.target.value)}
+                                                type="text"
+                                                inputMode="email"
+                                                name="no_autofill_field"
+                                                required
+                                                value={email}
+                                                onChange={(e) => setEmail(e.target.value)}
                                                 placeholder="ENTER BUSINESS EMAIL"
-                                                autoComplete="new-password" data-lpignore="true" data-1p-ignore="true"
+                                                autoComplete="off"
+                                                data-lpignore="true"
+                                                data-1p-ignore="true"
+                                                data-form-type="other"
+                                                aria-autocomplete="none"
+                                                spellCheck={false}
+                                                style={{WebkitTextFillColor:'white', WebkitBoxShadow:'0 0 0px 1000px #0A1128 inset', caretColor:'white'}}
                                                 className="bg-navy border-2 border-white/20 p-4 font-mono text-white text-lg focus:border-safety outline-none transition-all placeholder:text-gray-500 w-full"
                                             />
                                             <label className="flex items-start gap-3 cursor-pointer">

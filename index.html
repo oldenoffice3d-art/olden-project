@@ -303,6 +303,8 @@
                 if (email.includes('@')) {
                     setLoading(true);
                     
+                    // ⚠️ УВАГА: ВСТАВТЕ ВАШ URL З GOOGLE APPS SCRIPT МІЖ ЛАПКАМИ НИЖЧЕ ⚠️
+                    // Приклад: "https://script.google.com/macros/s/AKfycby.../exec"
                     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSXx-fDiaHlvX7jpKlhqa0i7aDD0BGJWj_ywgJLEVcowrCqelz4vpROJrbZDXcA0Dpcw/exec"; 
 
                     try {
@@ -338,14 +340,14 @@
             return (
                 <div className="min-h-screen flex flex-col uppercase tracking-tighter">
                     {/* NAV BAR */}
-                    <nav className="w-full max-w-6xl mx-auto flex justify-between items-center py-6 px-6 lg:px-0 text-left shrink-0 z-50">
+                    <nav id="top" className="w-full max-w-6xl mx-auto flex justify-between items-center py-6 px-6 lg:px-0 text-left shrink-0 z-50 relative">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-safety text-navy flex items-center justify-center font-black text-xl">O</div>
                             <h1 className="text-2xl font-black uppercase tracking-tighter text-white">Olden <span className="text-safety">Project</span></h1>
                         </div>
                         <div className="flex gap-4">
                             <span className="text-xs font-bold bg-grid px-3 py-1.5 uppercase hidden md:inline-block text-[#8D99AE]">DLR Engine Active</span>
-                            <span className="text-xs font-bold bg-safety/20 text-safety px-3 py-1.5 uppercase border border-safety/30">Pre-Order Open</span>
+                            <span className="text-xs font-bold bg-safety/20 text-safety px-3 py-1.5 uppercase border border-safety/30">Genesis Waitlist Open</span>
                         </div>
                     </nav>
 
@@ -430,43 +432,51 @@
                                 <div className="flex flex-col md:flex-row gap-12 items-start">
                                     <div className="space-y-6 flex-1">
                                         <div>
-                                            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-3 text-white leading-tight">THE GENESIS WAITLIST</h2>
-                                            <p className="text-lg text-safety font-bold uppercase tracking-widest">(STRATEGIC PARTNER ACCESS)</p>
+                                            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-3 text-white leading-tight">THE GENESIS ALLOCATION</h2>
+                                            <p className="text-lg text-safety font-bold uppercase tracking-widest">(YOUR PATH TO EQUITY)</p>
                                         </div>
                                         <div className="p-5 border-l-4 border-safety bg-safety/5">
                                             <p className="text-sm font-mono text-safety uppercase leading-relaxed font-bold">
-                                                ATTENTION: This portal is a technical continuation of the Indiegogo campaign. No capital is collected on this page. This portal is strictly for product-market validation and strategic priority reservation.
+                                                ATTENTION: No capital is collected on this page. This portal is strictly for product-market validation and strategic priority reservation.
                                             </p>
                                         </div>
                                         <p className="text-base text-gray-300 leading-relaxed max-w-md font-medium normal-case">
-                                            To ensure the integrity of the early adopter network, strategic interests are formalized purely via priority registration (zero capital commitment required).
+                                            To ensure the integrity of the strategic waitlist, investment intents starting from "£1,250" are formalized purely via a Letter of Intent (LOI).
                                         </p>
                                     </div>
                                     <div className="w-full md:w-auto flex-1 space-y-5 mt-2">
                                         <form onSubmit={handleReserve} className="flex flex-col gap-4" autoComplete="off">
                                             <input 
                                                 type="email" 
-                                                name="logipark_allocation_id" 
-                                                id="logipark_allocation_id"
+                                                name="secure_email_input" 
                                                 required 
                                                 value={email} 
                                                 onChange={(e) => setEmail(e.target.value)}
-                                                placeholder="ENTER YOUR EMAIL" 
-                                                autoComplete="off" 
-                                                spellCheck="false"
+                                                placeholder="ENTER BUSINESS EMAIL" 
+                                                autoComplete="new-password" 
                                                 data-lpignore="true"
                                                 data-1p-ignore="true"
                                                 className="bg-navy border-2 border-white/20 p-4 font-mono text-white text-lg focus:border-safety outline-none transition-all placeholder:text-gray-500 w-full"
                                             />
+                                            <label className="flex items-start gap-3 cursor-pointer group">
+                                                <input 
+                                                    type="checkbox" 
+                                                    required
+                                                    className="mt-1 w-4 h-4 accent-safety shrink-0 cursor-pointer"
+                                                />
+                                                <span className="text-xs text-gray-400 leading-relaxed normal-case font-medium">
+                                                    I agree to receive strategic updates from Olden Project. My data is processed in accordance with UK GDPR / Data Protection Act 2018. <a href="#privacy" className="text-safety underline hover:text-orange-400 transition-colors">Privacy Policy</a>.
+                                                </span>
+                                            </label>
                                             <button 
                                                 type="submit" disabled={loading}
                                                 className="bg-safety hover:bg-orange-400 text-navy font-black text-lg py-4 px-8 flex items-center justify-center gap-3 transition-all shadow-xl disabled:opacity-50 active:translate-y-1 w-full"
                                             >
-                                                <span className="text-xl">⚡</span> {loading ? 'SYNCING...' : 'REGISTER & RESERVE ACCESS'}
+                                                <span className="text-xl">⚡</span> {loading ? 'SYNCING...' : 'REGISTER & RESERVE ALLOCATION'}
                                             </button>
                                         </form>
                                         <p className="text-xs text-gray-400 leading-relaxed italic opacity-80 normal-case">
-                                            By registering today, you secure a "Guaranteed VIP Access Invitation". Genesis members will receive direct notification and priority access before the IP moat is finalized.
+                                            By registering your soft commitment today, you secure a "Guaranteed VIP Allocation Invitation". Genesis members will receive direct notification and priority access before the IP moat is finalized.
                                         </p>
                                     </div>
                                 </div>
@@ -474,9 +484,9 @@
                                 <div className="py-14 text-center space-y-6 flex flex-col items-center">
                                     <Icon name="Mail" size={64} color="#FF9F1C" strokeWidth={1.5} />
                                     <h2 className="text-3xl font-black uppercase tracking-tighter text-white">Action Required</h2>
-                                    <p className="text-lg text-emerald font-bold uppercase tracking-widest text-center">INVITATION DISPATCHED TO {email}</p>
+                                    <p className="text-lg text-emerald font-bold uppercase tracking-widest text-center">LOI dispatched to {email}</p>
                                     <div className="p-5 border border-safety/30 bg-safety/5 inline-block text-xs uppercase font-bold tracking-wider text-gray-300 text-center">
-                                        Check your inbox for further details on securing your priority position.
+                                        Check your inbox. Finalize via BoldSign to secure your priority position.
                                     </div>
                                     <button 
                                         onClick={() => { setSubmitted(false); setEmail(''); }}
@@ -489,21 +499,19 @@
                         </div>
 
                         <div className="mt-14 text-left">
-                            <a href="https://www.indiegogo.com/projects/nazar-zablotskyi/olden-the-revenue-engine-for-urban-logistics" target="_blank" rel="noopener noreferrer" className="indiegogo-btn inline-flex items-center gap-3 px-8 py-4 text-safety font-bold uppercase text-sm tracking-widest group">
-                                <Icon name="ChevronLeft" size={16} className="transition-transform group-hover:-translate-x-1" /> Return to Indiegogo Campaign Page
+                            <a href="#top" className="indiegogo-btn inline-flex items-center gap-3 px-8 py-4 text-safety font-bold uppercase text-sm tracking-widest group">
+                                <Icon name="ChevronLeft" size={16} /> Back to Overview
                             </a>
                         </div>
                     </section>
 
                     {/* FOOTER */}
-                    <footer className="w-full max-w-6xl mx-auto mt-8 py-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-start gap-12 text-left px-6 lg:px-0">
-                        <div className="space-y-6 max-w-3xl">
+                    <footer id="privacy" className="w-full max-w-6xl mx-auto mt-8 py-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-start gap-12 text-left px-6 lg:px-0">
+                        <div className="space-y-4 max-w-3xl">
                             <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">Olden Project | Intellectual Property Disclosure</p>
-                            <div className="space-y-2">
-                                <p className="text-safety text-xs font-bold uppercase tracking-widest leading-relaxed">
-                                    IP Fortress: Protected by a Triple-Patent Moat (multiple US Provisional Patent Applications Pending).
-                                </p>
-                            </div>
+                            <p className="text-safety text-xs font-bold uppercase tracking-widest leading-relaxed">
+                                IP Fortress: Protected by a Triple-Patent Moat (Multiple US Provisional Patent Applications Pending).
+                            </p>
                         </div>
                         <div className="flex flex-col md:items-end gap-3 text-right w-full md:w-auto">
                             <p className="text-safety text-xs font-bold uppercase tracking-widest border border-safety/40 px-5 py-3 rounded-none whitespace-nowrap">Founder & Chairman: Nazar Zablotskyi</p>

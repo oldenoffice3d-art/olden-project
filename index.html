@@ -270,6 +270,10 @@
             const bgColor = isRed ? 'bg-[#B00020]' : 'bg-[#00C853]';
             const coordParts = coords.split(',').map(part => part.trim().replace(/-/g, ''));
 
+            const handleNav = () => {
+                window.open(`https://www.google.com/maps/search/?api=1&query=${coords}`, '_blank');
+            };
+
             return (
                 <div className={`flex-1 flex flex-col transition-colors duration-700 h-full ${bgColor} relative`}>
                     <div className="mt-8 px-6 flex justify-between items-center text-white shrink-0">
@@ -280,25 +284,28 @@
                     </div>
 
                     <div className="flex-1 flex flex-col items-center justify-center p-4 text-center text-white">
-                        <h1 className="text-6xl font-black tracking-tighter leading-none mb-2 drop-shadow-lg uppercase">
+                        <h1 className="text-[80px] font-black tracking-tighter leading-none mb-2 drop-shadow-lg uppercase">
                             {truck.state}
                         </h1>
                     </div>
 
                     <div className="px-4 pb-8 space-y-4">
-                        <div className="w-full py-5 px-3 bg-black/30 border border-white/20 flex flex-col items-center justify-center">
-                            <div className="flex items-center gap-2 text-[10px] font-black tracking-widest opacity-90 uppercase mb-2 text-center">
+                        <button
+                            onClick={handleNav}
+                            className="w-full py-5 px-3 bg-black/30 border border-white/20 hover:border-white flex flex-col items-center justify-center transition-all group"
+                        >
+                            <div className="flex items-center gap-2 text-[10px] font-black tracking-widest opacity-90 uppercase mb-3 text-center">
                                 <Icon name="Navigation" size={12} fill="currentColor" color="currentColor" />
                                 <span>Gate Coordinates</span>
                             </div>
                             <div className="flex flex-col items-center leading-none space-y-1">
                                 {coordParts.map((part, i) => (
-                                    <span key={i} className="text-3xl font-black tracking-tighter text-white font-mono">
+                                    <span key={i} className="text-4xl font-black tracking-tighter text-white font-mono">
                                         {part}
                                     </span>
                                 ))}
                             </div>
-                        </div>
+                        </button>
 
                         <button 
                             onClick={onAccept} 

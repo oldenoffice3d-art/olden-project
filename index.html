@@ -115,22 +115,45 @@
 
         /* Device Frames Styling */
         .phone-frame {
-            width: 340px; height: 680px;
-            background: #1A1C25; border: 12px solid #2B2D42;
-            border-radius: 55px; position: relative;
-            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.8);
-        }
-        .phone-screen { width: 100%; height: 100%; background: black; border-radius: 43px; overflow: hidden; position: relative; }
-        .phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 30px; background: black; border-bottom-left-radius: 18px; border-bottom-right-radius: 18px; z-index: 50; }
-        
-        .tablet-frame {
-            width: 100%; max-width: 1100px; height: 750px;
-            background: #1F212B; border: 15px solid #2B2D42;
+            width: 320px; height: 640px;
+            background: #1A1C25; border: 10px solid #2B2D42;
             border-radius: 40px; position: relative;
-            box-shadow: 0 60px 120px -30px rgba(0,0,0,0.9);
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8);
             margin: 0 auto;
         }
-        .tablet-screen { width: 100%; height: 100%; background: #0A1128; border-radius: 25px; overflow: hidden; position: relative; display: flex; flex-direction: column; }
+        .phone-screen { width: 100%; height: 100%; background: black; border-radius: 30px; overflow: hidden; position: relative; }
+        .phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 20px; background: black; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; z-index: 50; }
+        
+        .tablet-frame {
+            width: 100%; max-width: 900px; height: 600px;
+            background: #1F212B; border: 12px solid #2B2D42;
+            border-radius: 30px; position: relative;
+            box-shadow: 0 50px 100px -30px rgba(0,0,0,0.9);
+            margin: 0 auto;
+        }
+        .tablet-screen { width: 100%; height: 100%; background: #0A1128; border-radius: 18px; overflow: hidden; position: relative; display: flex; flex-direction: column; }
+
+        /* Responsive demo scaling */
+        .demo-wrapper { width: 100%; overflow: hidden; }
+
+        @media (max-width: 479px) {
+            .tablet-frame { zoom: 0.38; }
+            .demo-wrapper { height: 240px; }
+            .phone-frame { zoom: 0.72; }
+        }
+        @media (min-width: 480px) and (max-width: 639px) {
+            .tablet-frame { zoom: 0.50; }
+            .demo-wrapper { height: 315px; }
+            .phone-frame { zoom: 0.85; }
+        }
+        @media (min-width: 640px) and (max-width: 767px) {
+            .tablet-frame { zoom: 0.62; }
+            .demo-wrapper { height: 390px; }
+        }
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .tablet-frame { zoom: 0.78; }
+            .demo-wrapper { height: 490px; }
+        }
 
         .indiegogo-btn { border: 1px solid rgba(255, 159, 28, 0.5); transition: all 0.3s ease; }
         .indiegogo-btn:hover { background: rgba(255, 159, 28, 0.1); border-color: #FF9F1C; }
@@ -175,15 +198,15 @@
         // Components for interactive demo
         const EventLog = ({ log }) => (
             <div className="h-full flex flex-col">
-                <h3 className="text-[#8D99AE] text-[10px] font-black tracking-[0.3em] flex items-center gap-2 mb-4 uppercase shrink-0">
-                    <Icon name="Settings" size={12} color="#FF9F1C" /> Event Journal
+                <h3 className="text-xs text-[#8D99AE] font-black tracking-widest flex items-center gap-2 mb-4 uppercase shrink-0">
+                    <Icon name="Settings" size={14} color="#FF9F1C" /> Event Journal
                 </h3>
                 <div className="space-y-3 flex-1 overflow-y-auto pr-1">
-                    {log.length === 0 && <p className="text-[#2B2D42] italic text-[10px] font-black uppercase mt-4 text-center">Monitoring Active...</p>}
+                    {log.length === 0 && <p className="text-[#2B2D42] italic text-xs font-black uppercase mt-4 text-center">Monitoring Active...</p>}
                     {log.map((entry, i) => (
                         <div key={i} className="border-l-2 border-[#FF9F1C] pl-3 py-1 bg-white/[0.02] fade-enter-active">
-                            <p className="text-[9px] text-[#8D99AE] mb-0.5 font-black uppercase">{entry.time}</p>
-                            <p className="text-[10px] font-black leading-tight tracking-normal uppercase text-white">{entry.msg}</p>
+                            <p className="text-[10px] text-[#8D99AE] mb-0.5 font-bold uppercase">{entry.time}</p>
+                            <p className="text-xs font-black leading-tight tracking-normal uppercase text-white">{entry.msg}</p>
                         </div>
                     ))}
                 </div>
@@ -192,15 +215,15 @@
 
         const ArchiveList = ({ archive }) => (
             <div className="h-full flex flex-col">
-                <h3 className="text-[#8D99AE] text-[10px] font-black tracking-[0.3em] flex items-center gap-2 mb-4 uppercase shrink-0">
-                    <Icon name="CheckCircle" size={12} color="#00C853" /> Archived Nodes
+                <h3 className="text-xs text-[#8D99AE] font-black tracking-widest flex items-center gap-2 mb-4 uppercase shrink-0">
+                    <Icon name="CheckCircle" size={14} color="#00C853" /> Archived Nodes
                 </h3>
                 <div className="space-y-3 flex-1 overflow-y-auto pr-1 text-left">
-                    {archive.length === 0 && <p className="text-[#2B2D42] italic text-[10px] font-black uppercase mt-4 text-center">Archive Empty</p>}
+                    {archive.length === 0 && <p className="text-[#2B2D42] italic text-xs font-black uppercase mt-4 text-center">Archive Empty</p>}
                     {archive.map((truck, i) => (
                         <div key={i} className="p-3 border-l-2 border-[#00C853] bg-white/[0.02] fade-enter-active opacity-70 hover:opacity-100 transition-opacity">
                             <span className="text-sm font-black block leading-none text-white mb-1">{truck.id}</span>
-                            <span className="text-[8px] text-[#8D99AE] font-black tracking-widest uppercase italic">COMPLETED: {truck.archiveTime}</span>
+                            <span className="text-[10px] text-[#8D99AE] font-bold tracking-wider uppercase italic">COMPLETED: {truck.archiveTime}</span>
                         </div>
                     ))}
                 </div>
@@ -208,26 +231,26 @@
         );
 
         const AdminTruckList = ({ queue, onSelect }) => (
-            <div className="p-10 flex flex-col h-full fade-enter-active">
-                <div className="mb-10">
-                    <h2 className="text-4xl font-black tracking-tighter leading-none uppercase mb-2">Facility Dashboard</h2>
-                    <p className="text-[11px] text-[#8D99AE] font-black tracking-widest uppercase">Incoming Vehicle Orchestration</p>
+            <div className="p-6 flex flex-col h-full fade-enter-active">
+                <div className="mb-6 text-left">
+                    <h2 className="text-2xl font-black tracking-tighter leading-none uppercase mb-2">Facility Dashboard</h2>
+                    <p className="text-xs text-[#8D99AE] font-bold tracking-widest uppercase opacity-80">Incoming Vehicle Orchestration</p>
                 </div>
-                <h3 className="text-[10px] font-black tracking-widest text-[#8D99AE] mb-4 border-b border-[#2B2D42] pb-2 uppercase">Expected Nodes Queue</h3>
-                <div className="space-y-4 pr-2">
-                    {queue.length === 0 && <div className="p-12 text-center border-2 border-dashed border-[#2B2D42] opacity-30 font-black uppercase tracking-widest">Queue Cleared</div>}
+                <h3 className="text-xs font-black tracking-widest text-[#8D99AE] mb-4 border-b border-[#2B2D42] pb-2 uppercase opacity-60">Expected Queue</h3>
+                <div className="space-y-3 pr-2 overflow-y-auto">
+                    {queue.length === 0 && <div className="p-8 text-center border border-dashed border-[#2B2D42] opacity-50 font-black uppercase text-xs">Queue Cleared</div>}
                     {queue.map((truck) => (
-                        <div key={truck.id} onClick={() => onSelect(truck.id)} className="flex justify-between items-center p-5 border-2 border-[#2B2D42] bg-[#0A1128] hover:border-white cursor-pointer transition-all no-round group">
-                            <div className="flex items-center gap-5">
-                                <div className={`p-4 transition-colors ${truck.state === 'STOP' ? 'bg-[#B00020]' : 'bg-[#00C853]'}`}>
-                                    <Icon name="Truck" size={24} color="white" />
+                        <div key={truck.id} onClick={() => onSelect(truck.id)} className="flex justify-between items-center p-3 border border-[#2B2D42] bg-[#0A1128] hover:border-white cursor-pointer transition-all group">
+                            <div className="flex items-center gap-3">
+                                <div className={`p-2 transition-colors ${truck.state === 'STOP' ? 'bg-[#B00020]' : 'bg-[#00C853]'}`}>
+                                    <Icon name="Truck" size={16} color="white" />
                                 </div>
-                                <div>
-                                    <span className="text-2xl font-black block leading-none mb-1 text-white">{truck.id}</span>
-                                    <span className="text-[10px] text-[#8D99AE] font-black tracking-widest">SYNC: {truck.accepted ? 'VERIFIED' : 'PENDING'}</span>
+                                <div className="text-left">
+                                    <span className="text-sm font-black block leading-none mb-1 text-white">{truck.id}</span>
+                                    <span className="text-[10px] text-[#8D99AE] font-bold tracking-widest uppercase opacity-70">SYNC: {truck.accepted ? 'VERIFIED' : 'PENDING'}</span>
                                 </div>
                             </div>
-                            <span className={`text-[10px] font-black tracking-widest px-4 py-2 ${truck.state === 'STOP' ? 'bg-[#FF9F1C]/10 text-[#FF9F1C] border border-[#FF9F1C]/20' : 'bg-[#00C853]/10 text-[#00C853] border border-[#00C853]/20'}`}>
+                            <span className={`text-[10px] font-black tracking-widest px-2 py-1 ${truck.state === 'STOP' ? 'bg-[#FF9F1C]/10 text-[#FF9F1C] border border-[#FF9F1C]/20' : 'bg-[#00C853]/10 text-[#00C853] border border-[#00C853]/20'}`}>
                                 {truck.status}
                             </span>
                         </div>
@@ -237,29 +260,28 @@
         );
 
         const AdminTruckDetail = ({ truck, onAction, onBack }) => (
-            <div className="p-10 flex flex-col h-full fade-enter-active">
-                <button onClick={onBack} className="flex items-center gap-2 text-[11px] font-black tracking-widest text-[#8D99AE] hover:text-white transition-colors w-fit mb-10">
+            <div className="p-6 flex flex-col h-full fade-enter-active text-left">
+                <button onClick={onBack} className="flex items-center gap-2 text-xs font-black tracking-widest text-[#8D99AE] hover:text-white transition-colors mb-6">
                     <Icon name="ArrowLeft" size={14} /> RETURN TO QUEUE
                 </button>
-                <div className="space-y-1 mb-12">
-                    <h2 className="text-[#FF9F1C] text-[11px] font-black tracking-[0.5em] uppercase">Control Mode</h2>
-                    <p className="text-6xl font-black tracking-tighter leading-none uppercase text-white">{truck.id}</p>
+                <div className="space-y-2 mb-8">
+                    <h2 className="text-[#FF9F1C] text-xs font-black tracking-[0.3em] uppercase">Control Mode</h2>
+                    <p className="text-3xl font-black tracking-tighter leading-none uppercase text-white">{truck.id}</p>
                 </div>
-                <div className="grid grid-cols-2 gap-8 mb-auto">
-                    <button onClick={() => onAction('STOP')} className={`h-56 border-4 flex flex-col items-center justify-center gap-4 transition-all no-round ${truck.state === 'STOP' ? 'bg-[#B00020] border-white shadow-[0_0_50px_rgba(176,0,32,0.4)]' : 'border-[#2B2D42] bg-[#0A1128] text-[#8D99AE] hover:border-[#B00020]'}`}>
-                        <div className="bg-white/10 p-4"><Icon name="Clock" size={48} color="white" /></div>
-                        <span className="text-4xl font-black uppercase text-white">Stop</span>
+                <div className="grid grid-cols-2 gap-4 mb-auto">
+                    <button onClick={() => onAction('STOP')} className={`h-40 border-2 flex flex-col items-center justify-center gap-2 transition-all ${truck.state === 'STOP' ? 'bg-[#B00020] border-white' : 'border-[#2B2D42] bg-[#0A1128] text-[#8D99AE] hover:border-[#B00020]'}`}>
+                        <Icon name="Clock" size={32} color="white" />
+                        <span className="text-xl font-black uppercase text-white">Stop</span>
                     </button>
-                    <button onClick={() => onAction('GO')} className={`h-56 border-4 flex flex-col items-center justify-center gap-4 transition-all no-round ${truck.state === 'GO' ? 'bg-[#00C853] border-white shadow-[0_0_50px_rgba(0,200,83,0.4)]' : 'border-[#2B2D42] bg-[#0A1128] text-[#8D99AE] hover:border-[#00C853]'}`}>
-                        <div className="bg-white/10 p-4"><Icon name="Truck" size={48} color="white" /></div>
-                        <span className="text-4xl font-black uppercase text-white">Go</span>
+                    <button onClick={() => onAction('GO')} className={`h-40 border-2 flex flex-col items-center justify-center gap-2 transition-all ${truck.state === 'GO' ? 'bg-[#00C853] border-white' : 'border-[#2B2D42] bg-[#0A1128] text-[#8D99AE] hover:border-[#00C853]'}`}>
+                        <Icon name="Truck" size={32} color="white" />
+                        <span className="text-xl font-black uppercase text-white">Go</span>
                     </button>
                 </div>
-                <div className="flex items-center gap-5 p-6 bg-black/40 border-2 border-[#2B2D42] text-white mt-12 no-round">
-                    <div className={`w-5 h-5 no-round ${truck.accepted ? 'bg-[#00C853] shadow-[0_0_20px_#00C853]' : 'bg-[#FF9F1C] animate-pulse shadow-[0_0_20px_#FF9F1C]'}`}></div>
+                <div className="flex items-center gap-4 p-4 bg-black/40 border border-[#2B2D42] text-white mt-6">
+                    <div className={`w-3 h-3 ${truck.accepted ? 'bg-[#00C853] shadow-[0_0_10px_#00C853]' : 'bg-[#FF9F1C] animate-pulse'}`}></div>
                     <div>
-                        <span className="text-base font-black tracking-widest uppercase">{truck.accepted ? 'Confirmed by Driver Device' : 'Waiting for Remote Confirmation...'}</span>
-                        <p className="text-[10px] text-[#8D99AE] font-black tracking-widest mt-1">REAL-TIME DATA STREAM ACTIVE</p>
+                        <span className="text-xs font-black tracking-widest uppercase">{truck.accepted ? 'Confirmed by Remote Node' : 'Waiting for Remote Confirmation...'}</span>
                     </div>
                 </div>
             </div>
@@ -268,44 +290,57 @@
         const DriverPager = ({ truck, coords, onAccept }) => {
             const isRed = truck.state === 'STOP';
             const bgColor = isRed ? 'bg-[#B00020]' : 'bg-[#00C853]';
-            const coordParts = coords.split(\',\').map(part => part.trim().replace(/-/g, \'\'));
+            const coordParts = coords.split(',').map(part => part.trim().replace(/-/g, ''));
 
-            const handleNav = () => { window.open(`https://www.google.com/maps/search/?api=1&query=${coords}`, \'_blank\'); };
+            const handleNav = () => {
+                window.open(`https://www.google.com/maps/search/?api=1&query=${coords}`, '_blank');
+            };
 
             return (
                 <div className={`flex-1 flex flex-col transition-colors duration-700 h-full ${bgColor} relative`}>
-                    <div className="mt-12 px-8 flex justify-between items-center text-white shrink-0">
-                        <div className="bg-black text-white px-3 py-1 text-[9px] font-black tracking-[0.2em] uppercase no-round">
+                    <div className="mt-8 px-6 flex justify-between items-center text-white shrink-0">
+                        <div className="bg-black text-white px-2 py-1 text-[10px] font-black tracking-widest uppercase">
                             {truck.accepted ? "NODE SYNCED" : "LINK PENDING"}
                         </div>
-                        <span className="text-[10px] font-black opacity-80 uppercase">{truck.id}</span>
+                        <span className="text-[11px] font-black opacity-90 uppercase">{truck.id}</span>
                     </div>
-                    <div className="flex-1 flex flex-col items-center justify-center p-6 text-center text-white">
-                        <h1 className="text-[90px] font-black tracking-tighter leading-none mb-4 drop-shadow-2xl uppercase">
+
+                    <div className="flex-1 flex flex-col items-center justify-center p-4 text-center text-white">
+                        <h1 className="text-[80px] font-black tracking-tighter leading-none mb-2 drop-shadow-lg uppercase">
                             {truck.state}
                         </h1>
                     </div>
-                    <div className="px-6 pb-12 space-y-4">
-                        <button onClick={handleNav} className="w-full py-8 px-4 bg-black/40 text-white flex flex-col items-center justify-center border-4 border-white/20 hover:border-white transition-all no-round group">
-                            <div className="flex items-center gap-2 text-[11px] font-black tracking-[0.3em] opacity-80 uppercase mb-4">
-                                <Icon name="Navigation" size={14} fill="currentColor" color="currentColor" />
+
+                    <div className="px-4 pb-8 space-y-4">
+                        <button
+                            onClick={handleNav}
+                            className="w-full py-5 px-3 bg-black/30 border border-white/20 hover:border-white flex flex-col items-center justify-center transition-all group"
+                        >
+                            <div className="flex items-center gap-2 text-[10px] font-black tracking-widest opacity-90 uppercase mb-3 text-center">
+                                <Icon name="Navigation" size={12} fill="currentColor" color="currentColor" />
                                 <span>Gate Coordinates</span>
                             </div>
-                            <div className="flex flex-col items-center leading-[0.9]">
+                            <div className="flex flex-col items-center leading-none space-y-1">
                                 {coordParts.map((part, i) => (
-                                    <span key={i} className="text-5xl font-black tracking-tighter mono text-white">
+                                    <span key={i} className="text-4xl font-black tracking-tighter text-white font-mono">
                                         {part}
                                     </span>
                                 ))}
                             </div>
                         </button>
-                        <button onClick={onAccept} disabled={truck.accepted} className={`w-full py-7 text-4xl font-black transition-all flex items-center justify-center gap-4 uppercase no-round ${truck.accepted ? \'bg-black/20 text-white/30 border-4 border-white/10\' : \'bg-white text-black border-black shadow-[0_10px_0_rgba(0,0,0,0.3)] active:translate-y-2\'}`}>
-                            {truck.accepted ? <div className="flex items-center gap-3"><Icon name="CheckCircle" size={32} strokeWidth={4} /><span>Accepted</span></div> : \'Accept\'}
+
+                        <button 
+                            onClick={onAccept} 
+                            disabled={truck.accepted} 
+                            className={`w-full py-4 text-xl font-black transition-all flex items-center justify-center gap-3 uppercase ${truck.accepted ? 'bg-black/20 text-white/40 border-2 border-white/20' : 'bg-white text-black border-black shadow-[0_4px_0_rgba(0,0,0,0.3)] active:translate-y-1'}`}
+                        >
+                            {truck.accepted ? <div className="flex items-center gap-2"><Icon name="CheckCircle" size={20} strokeWidth={3} /><span>Accepted</span></div> : 'Accept'}
                         </button>
                     </div>
                 </div>
             );
         };
+
         function App() {
             // Demo States
             const [role, setRole] = React.useState('admin'); 
@@ -314,24 +349,11 @@
             const [archive, setArchive] = React.useState([]); 
             const [adminView, setAdminView] = React.useState('list'); 
             const [selectedTruckId, setSelectedTruckId] = React.useState('XLN72 ZWL');
-            const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
             const [queue, setQueue] = React.useState([
                 { id: 'XLN72 ZWL', status: 'WAITING', state: 'STOP', accepted: false },
                 { id: 'XBC88 KRO', status: 'WAITING', state: 'STOP', accepted: true },
-                { id: 'XWQ10 VBN', status: 'IN TRANSIT', state: 'GO', accepted: true },
-                { id: 'XTR44 PLO', status: 'WAITING', state: 'STOP', accepted: false }
+                { id: 'XWQ10 VBN', status: 'IN TRANSIT', state: 'GO', accepted: true }
             ]);
-
-            React.useEffect(() => {
-                const handleResize = () => {
-                    const mobile = window.innerWidth < 768;
-                    setIsMobile(mobile);
-                    if (mobile) setRole('driver');
-                };
-                handleResize();
-                window.addEventListener('resize', handleResize);
-                return () => window.removeEventListener('resize', handleResize);
-            }, []);
 
             const addToLog = (message) => {
                 const timestamp = new Date().toLocaleTimeString();
@@ -454,16 +476,12 @@
                         <div className="flex justify-between items-center mb-6">
                             <h3 className="text-xs font-bold uppercase tracking-widest text-[#8D99AE]">Interactive Technology Preview</h3>
                             <div className="flex gap-2">
-                                {!isMobile && (
-                                    <button onClick={() => setRole('admin')} className={`px-4 py-2 text-xs font-bold transition-all border ${role === 'admin' ? 'bg-safety text-navy border-safety' : 'text-gray-400 border-gray-700 hover:border-gray-500'}`}>ADMIN TERMINAL</button>
-                                )}
+                                <button onClick={() => setRole('admin')} className={`px-4 py-2 text-xs font-bold transition-all border ${role === 'admin' ? 'bg-safety text-navy border-safety' : 'text-gray-400 border-gray-700 hover:border-gray-500'}`}>ADMIN TERMINAL</button>
                                 <button onClick={() => setRole('driver')} className={`px-4 py-2 text-xs font-bold transition-all border ${role === 'driver' ? 'bg-safety text-navy border-safety' : 'text-gray-400 border-gray-700 hover:border-gray-500'}`}>DRIVER PAGER</button>
-                                {isMobile && (
-                                    <button onClick={() => setRole('admin')} className={`px-4 py-2 text-xs font-bold transition-all border ${role === 'admin' ? 'bg-safety text-navy border-safety' : 'text-gray-400 border-gray-700 hover:border-gray-500'}`}>ADMIN</button>
-                                )}
                             </div>
                         </div>
-                        <div className="min-h-[600px] flex items-center justify-center bg-navy/20 border border-white/5 relative py-8">
+                        <div className="demo-wrapper">
+                        <div className="min-h-[600px] flex items-center justify-center bg-navy/20 border border-white/5 relative group py-8">
                             <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `linear-gradient(#F8F9FA 1px, transparent 1px), linear-gradient(90deg, #F8F9FA 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
                             {role === 'driver' ? (
                                 <div className="phone-frame fade-enter-active">
@@ -495,6 +513,7 @@
                                     </div>
                                 </div>
                             )}
+                        </div>
                         </div>
                     </section>
 

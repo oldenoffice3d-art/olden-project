@@ -133,28 +133,6 @@
         }
         .tablet-screen { width: 100%; height: 100%; background: #0A1128; border-radius: 18px; overflow: hidden; position: relative; display: flex; flex-direction: column; }
 
-        /* Responsive demo scaling */
-        .demo-wrapper { width: 100%; overflow: hidden; }
-
-        @media (max-width: 479px) {
-            .tablet-frame { zoom: 0.38; }
-            .demo-wrapper { height: 240px; }
-            .phone-frame { zoom: 0.72; }
-        }
-        @media (min-width: 480px) and (max-width: 639px) {
-            .tablet-frame { zoom: 0.50; }
-            .demo-wrapper { height: 315px; }
-            .phone-frame { zoom: 0.85; }
-        }
-        @media (min-width: 640px) and (max-width: 767px) {
-            .tablet-frame { zoom: 0.62; }
-            .demo-wrapper { height: 390px; }
-        }
-        @media (min-width: 768px) and (max-width: 1023px) {
-            .tablet-frame { zoom: 0.78; }
-            .demo-wrapper { height: 490px; }
-        }
-
         .indiegogo-btn { border: 1px solid rgba(255, 159, 28, 0.5); transition: all 0.3s ease; }
         .indiegogo-btn:hover { background: rgba(255, 159, 28, 0.1); border-color: #FF9F1C; }
         
@@ -292,10 +270,6 @@
             const bgColor = isRed ? 'bg-[#B00020]' : 'bg-[#00C853]';
             const coordParts = coords.split(',').map(part => part.trim().replace(/-/g, ''));
 
-            const handleNav = () => {
-                window.open(`https://www.google.com/maps/search/?api=1&query=${coords}`, '_blank');
-            };
-
             return (
                 <div className={`flex-1 flex flex-col transition-colors duration-700 h-full ${bgColor} relative`}>
                     <div className="mt-8 px-6 flex justify-between items-center text-white shrink-0">
@@ -306,28 +280,25 @@
                     </div>
 
                     <div className="flex-1 flex flex-col items-center justify-center p-4 text-center text-white">
-                        <h1 className="text-[80px] font-black tracking-tighter leading-none mb-2 drop-shadow-lg uppercase">
+                        <h1 className="text-6xl font-black tracking-tighter leading-none mb-2 drop-shadow-lg uppercase">
                             {truck.state}
                         </h1>
                     </div>
 
                     <div className="px-4 pb-8 space-y-4">
-                        <button
-                            onClick={handleNav}
-                            className="w-full py-5 px-3 bg-black/30 border border-white/20 hover:border-white flex flex-col items-center justify-center transition-all group"
-                        >
-                            <div className="flex items-center gap-2 text-[10px] font-black tracking-widest opacity-90 uppercase mb-3 text-center">
+                        <div className="w-full py-5 px-3 bg-black/30 border border-white/20 flex flex-col items-center justify-center">
+                            <div className="flex items-center gap-2 text-[10px] font-black tracking-widest opacity-90 uppercase mb-2 text-center">
                                 <Icon name="Navigation" size={12} fill="currentColor" color="currentColor" />
                                 <span>Gate Coordinates</span>
                             </div>
                             <div className="flex flex-col items-center leading-none space-y-1">
                                 {coordParts.map((part, i) => (
-                                    <span key={i} className="text-4xl font-black tracking-tighter text-white font-mono">
+                                    <span key={i} className="text-3xl font-black tracking-tighter text-white font-mono">
                                         {part}
                                     </span>
                                 ))}
                             </div>
-                        </button>
+                        </div>
 
                         <button 
                             onClick={onAccept} 
@@ -480,7 +451,6 @@
                                 <button onClick={() => setRole('driver')} className={`px-4 py-2 text-xs font-bold transition-all border ${role === 'driver' ? 'bg-safety text-navy border-safety' : 'text-gray-400 border-gray-700 hover:border-gray-500'}`}>DRIVER PAGER</button>
                             </div>
                         </div>
-                        <div className="demo-wrapper">
                         <div className="min-h-[600px] flex items-center justify-center bg-navy/20 border border-white/5 relative group py-8">
                             <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `linear-gradient(#F8F9FA 1px, transparent 1px), linear-gradient(90deg, #F8F9FA 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
                             {role === 'driver' ? (
@@ -514,7 +484,6 @@
                                 </div>
                             )}
                         </div>
-                        </div>
                     </section>
 
                     {/* CONTACT */}
@@ -527,14 +496,11 @@
                                     Write to us about the Olden Project.
                                 </p>
                             </div>
-                            <div className="flex flex-col items-start md:items-end gap-2 mt-2">
+                            <div className="flex items-center mt-2">
                                 <a href="mailto:olden.office3d@gmail.com"
                                     className="inline-block bg-safety text-navy font-black uppercase tracking-widest text-sm px-8 py-4 hover:opacity-85 transition-opacity">
                                     Write to us
                                 </a>
-                                <span className="text-[11px] text-gray-600 normal-case font-mono select-all cursor-text">
-                                    olden.office3d@gmail.com
-                                </span>
                             </div>
                         </div>
                     </section>

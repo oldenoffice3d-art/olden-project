@@ -120,46 +120,89 @@
             border-radius: 40px; position: relative;
             box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8);
             margin: 0 auto;
-            transform-origin: top center;
         }
         .phone-screen { width: 100%; height: 100%; background: black; border-radius: 30px; overflow: hidden; position: relative; }
         .phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 20px; background: black; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; z-index: 50; }
-        
+
         .tablet-frame {
             width: 100%; max-width: 900px; height: 600px;
             background: #1F212B; border: 12px solid #2B2D42;
             border-radius: 30px; position: relative;
             box-shadow: 0 50px 100px -30px rgba(0,0,0,0.9);
             margin: 0 auto;
-            transform-origin: top center;
         }
         .tablet-screen { width: 100%; height: 100%; background: #0A1128; border-radius: 18px; overflow: hidden; position: relative; display: flex; flex-direction: column; }
 
-        /* Responsive demo scaling */
-        .demo-wrapper { width: 100%; overflow: hidden; }
+        .demo-wrapper { width: 100%; }
+        .demo-inner {
+            display: flex; align-items: center; justify-content: center;
+            min-height: 660px; padding: 32px 0;
+            background: rgba(10,17,40,0.2);
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+        }
 
-        @media (max-width: 374px) {
-            .tablet-frame { transform: scale(0.32); margin-bottom: -390px; }
-            .demo-wrapper { min-height: 210px; }
-            .phone-frame { transform: scale(0.55); margin-bottom: -292px; }
+        /* Mobile: native fullscreen layout, no frames */
+        .mobile-demo {
+            display: none;
+            width: 100%;
+            background: #0A1128;
+            border: 1px solid rgba(255,255,255,0.05);
         }
-        @media (min-width: 375px) and (max-width: 479px) {
-            .tablet-frame { transform: scale(0.38); margin-bottom: -372px; }
-            .demo-wrapper { min-height: 240px; }
-            .phone-frame { transform: scale(0.64); margin-bottom: -234px; }
+        .mobile-topbar {
+            height: 40px; background: rgba(0,0,0,0.4);
+            border-bottom: 1px solid #2B2D42;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 16px; font-size: 10px; font-weight: 700; color: white; opacity: 0.8;
         }
-        @media (min-width: 480px) and (max-width: 639px) {
-            .tablet-frame { transform: scale(0.50); margin-bottom: -302px; }
-            .demo-wrapper { min-height: 315px; }
-            .phone-frame { transform: scale(0.78); margin-bottom: -143px; }
+        .mobile-body { display: flex; flex-direction: column; }
+        .mobile-queue { border-bottom: 1px solid #2B2D42; }
+        .mobile-truck-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 16px; border-bottom: 1px solid #2B2D42;
+            background: #0A1128; cursor: pointer; transition: background 0.15s;
         }
-        @media (min-width: 640px) and (max-width: 767px) {
-            .tablet-frame { transform: scale(0.62); margin-bottom: -230px; }
-            .demo-wrapper { min-height: 390px; }
+        .mobile-truck-row.active { background: #111827; }
+        .mobile-controls { padding: 16px; }
+        .mobile-cmd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+        .mobile-cmd-btn {
+            border: 2px solid #2B2D42; background: #050814;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 6px; padding: 16px; cursor: pointer; transition: all 0.15s;
+            font-family: 'Inter', sans-serif; font-weight: 900; font-size: 18px;
+            text-transform: uppercase; color: #8D99AE;
         }
-        @media (min-width: 768px) and (max-width: 1023px) {
-            .tablet-frame { transform: scale(0.78); margin-bottom: -134px; }
-            .demo-wrapper { min-height: 490px; }
+        .mobile-cmd-btn.stop-active { background: #B00020; border-color: white; color: white; }
+        .mobile-cmd-btn.go-active { background: #00C853; border-color: white; color: white; }
+        .mobile-status {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 16px; background: rgba(0,0,0,0.4);
+            border: 1px solid #2B2D42; margin: 0 16px 12px; font-size: 11px;
+            font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: white;
+        }
+        .mobile-log { padding: 0 16px 16px; }
+        .mobile-log-title {
+            font-size: 10px; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 0.1em; color: #8D99AE; margin-bottom: 8px;
+            padding-top: 8px; border-top: 1px solid #2B2D42;
+        }
+        .mobile-log-entry {
+            border-left: 2px solid #FF9F1C; padding: 4px 8px;
+            margin-bottom: 6px; background: rgba(255,255,255,0.02);
+        }
+        .mobile-log-time { font-size: 9px; color: #8D99AE; font-weight: 700; }
+        .mobile-log-msg { font-size: 11px; font-weight: 900; color: white; text-transform: uppercase; }
+
+        /* Mobile driver view */
+        .mobile-driver {
+            display: none; width: 100%;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        @media (max-width: 767px) {
+            .desktop-demo { display: none !important; }
+            .mobile-demo { display: block; }
+            .mobile-driver { display: block; }
         }
 
         .indiegogo-btn { border: 1px solid rgba(255, 159, 28, 0.5); transition: all 0.3s ease; }
@@ -487,8 +530,10 @@
                                 <button onClick={() => setRole('driver')} className={`px-4 py-2 text-xs font-bold transition-all border ${role === 'driver' ? 'bg-safety text-navy border-safety' : 'text-gray-400 border-gray-700 hover:border-gray-500'}`}>DRIVER PAGER</button>
                             </div>
                         </div>
-                        <div className="demo-wrapper">
-                        <div className="min-h-[600px] flex items-center justify-center bg-navy/20 border border-white/5 relative group py-8">
+
+                        {/* DESKTOP demo — hidden on mobile */}
+                        <div className="demo-wrapper desktop-demo">
+                        <div className="demo-inner">
                             <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `linear-gradient(#F8F9FA 1px, transparent 1px), linear-gradient(90deg, #F8F9FA 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
                             {role === 'driver' ? (
                                 <div className="phone-frame fade-enter-active">
@@ -522,6 +567,86 @@
                             )}
                         </div>
                         </div>
+
+                        {/* MOBILE admin — shown only on mobile */}
+                        {role === 'admin' && (
+                            <div className="mobile-demo">
+                                <div className="mobile-topbar">
+                                    <div style={{display:'flex',gap:'16px'}}>
+                                        <span>09:41 AM UK</span>
+                                        <span style={{color:'#00C853'}}>● LINK SECURE</span>
+                                    </div>
+                                    <span>84% ▮</span>
+                                </div>
+                                <div className="mobile-body">
+                                    {adminView === 'list' ? (
+                                        <>
+                                            <div className="mobile-queue">
+                                                <div style={{padding:'10px 16px 6px',fontSize:'10px',fontWeight:900,textTransform:'uppercase',letterSpacing:'0.1em',color:'#8D99AE',borderBottom:'1px solid #2B2D42'}}>Expected Queue</div>
+                                                {queue.map((truck) => (
+                                                    <div key={truck.id} className="mobile-truck-row" onClick={() => { setSelectedTruckId(truck.id); setAdminView('detail'); addToLog(`Mapped to Node [${truck.id}]`); }}>
+                                                        <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
+                                                            <div style={{padding:'6px',background: truck.state === 'STOP' ? '#B00020' : '#00C853'}}>
+                                                                <Icon name="Truck" size={14} color="white" />
+                                                            </div>
+                                                            <div>
+                                                                <div style={{fontSize:'13px',fontWeight:900,color:'white',marginBottom:'2px'}}>{truck.id}</div>
+                                                                <div style={{fontSize:'10px',color:'#8D99AE',fontWeight:700,textTransform:'uppercase'}}>SYNC: {truck.accepted ? 'VERIFIED' : 'PENDING'}</div>
+                                                            </div>
+                                                        </div>
+                                                        <span style={{fontSize:'10px',fontWeight:900,padding:'3px 8px',background: truck.state === 'STOP' ? 'rgba(255,159,28,0.1)' : 'rgba(0,200,83,0.1)',color: truck.state === 'STOP' ? '#FF9F1C' : '#00C853',border: `1px solid ${truck.state === 'STOP' ? 'rgba(255,159,28,0.2)' : 'rgba(0,200,83,0.2)'}`}}>{truck.status}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            <div style={{padding:'16px',color:'#2B2D42',fontSize:'12px',fontWeight:900,textTransform:'uppercase',textAlign:'center'}}>← Select a truck to control →</div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <div className="mobile-controls">
+                                                <button onClick={() => setAdminView('list')} style={{display:'flex',alignItems:'center',gap:'6px',fontSize:'11px',fontWeight:900,color:'#8D99AE',background:'none',border:'none',cursor:'pointer',marginBottom:'12px',textTransform:'uppercase',letterSpacing:'0.05em'}}>
+                                                    <Icon name="ArrowLeft" size={12} /> RETURN TO QUEUE
+                                                </button>
+                                                <div style={{marginBottom:'12px'}}>
+                                                    <div style={{fontSize:'10px',color:'#FF9F1C',fontWeight:900,textTransform:'uppercase',letterSpacing:'0.2em',marginBottom:'2px'}}>Control Mode</div>
+                                                    <div style={{fontSize:'22px',fontWeight:900,color:'white',textTransform:'uppercase',letterSpacing:'-0.02em'}}>{activeTruck.id}</div>
+                                                </div>
+                                                <div className="mobile-cmd-grid">
+                                                    <button className={`mobile-cmd-btn ${activeTruck.state === 'STOP' ? 'stop-active' : ''}`} onClick={() => handleAdminAction('STOP')}>
+                                                        <Icon name="Clock" size={28} color="white" />
+                                                        <span>Stop</span>
+                                                    </button>
+                                                    <button className={`mobile-cmd-btn ${activeTruck.state === 'GO' ? 'go-active' : ''}`} onClick={() => handleAdminAction('GO')}>
+                                                        <Icon name="Truck" size={28} color="white" />
+                                                        <span>Go</span>
+                                                    </button>
+                                                </div>
+                                                <div className="mobile-status">
+                                                    <div style={{width:'10px',height:'10px',borderRadius:'50%',flexShrink:0,background: activeTruck.accepted ? '#00C853' : '#FF9F1C'}}></div>
+                                                    <span>{activeTruck.accepted ? 'Confirmed by Remote Node' : 'Waiting for Remote Confirmation...'}</span>
+                                                </div>
+                                            </div>
+                                            <div className="mobile-log">
+                                                <div className="mobile-log-title">⚙ Event Journal</div>
+                                                {log.length === 0 && <div style={{color:'#2B2D42',fontSize:'11px',fontWeight:900,textTransform:'uppercase',textAlign:'center',padding:'8px 0'}}>Monitoring Active...</div>}
+                                                {log.slice(0,4).map((entry, i) => (
+                                                    <div key={i} className="mobile-log-entry">
+                                                        <div className="mobile-log-time">{entry.time}</div>
+                                                        <div className="mobile-log-msg">{entry.msg}</div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* MOBILE driver — shown only on mobile */}
+                        {role === 'driver' && (
+                            <div className="mobile-driver">
+                                <DriverPager truck={activeTruck} coords={gateCoords} onAccept={handleDriverAccept} />
+                            </div>
+                        )}
                     </section>
 
                     {/* CONTACT */}

@@ -270,6 +270,10 @@
             const bgColor = isRed ? 'bg-[#B00020]' : 'bg-[#00C853]';
             const coordParts = coords.split(',').map(part => part.trim().replace(/-/g, ''));
 
+            const handleNav = () => {
+                window.open(`https://www.google.com/maps/search/?api=1&query=${coords}`, '_blank');
+            };
+
             return (
                 <div className={`flex-1 flex flex-col transition-colors duration-700 h-full ${bgColor} relative`}>
                     <div className="mt-8 px-6 flex justify-between items-center text-white shrink-0">
@@ -280,25 +284,28 @@
                     </div>
 
                     <div className="flex-1 flex flex-col items-center justify-center p-4 text-center text-white">
-                        <h1 className="text-6xl font-black tracking-tighter leading-none mb-2 drop-shadow-lg uppercase">
+                        <h1 className="text-[80px] font-black tracking-tighter leading-none mb-2 drop-shadow-lg uppercase">
                             {truck.state}
                         </h1>
                     </div>
 
                     <div className="px-4 pb-8 space-y-4">
-                        <div className="w-full py-5 px-3 bg-black/30 border border-white/20 flex flex-col items-center justify-center">
-                            <div className="flex items-center gap-2 text-[10px] font-black tracking-widest opacity-90 uppercase mb-2 text-center">
+                        <button
+                            onClick={handleNav}
+                            className="w-full py-5 px-3 bg-black/30 border border-white/20 hover:border-white flex flex-col items-center justify-center transition-all group"
+                        >
+                            <div className="flex items-center gap-2 text-[10px] font-black tracking-widest opacity-90 uppercase mb-3 text-center">
                                 <Icon name="Navigation" size={12} fill="currentColor" color="currentColor" />
                                 <span>Gate Coordinates</span>
                             </div>
                             <div className="flex flex-col items-center leading-none space-y-1">
                                 {coordParts.map((part, i) => (
-                                    <span key={i} className="text-3xl font-black tracking-tighter text-white font-mono">
+                                    <span key={i} className="text-4xl font-black tracking-tighter text-white font-mono">
                                         {part}
                                     </span>
                                 ))}
                             </div>
-                        </div>
+                        </button>
 
                         <button 
                             onClick={onAccept} 
@@ -320,11 +327,23 @@
             const [archive, setArchive] = React.useState([]); 
             const [adminView, setAdminView] = React.useState('list'); 
             const [selectedTruckId, setSelectedTruckId] = React.useState('XLN72 ZWL');
+            const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
             const [queue, setQueue] = React.useState([
                 { id: 'XLN72 ZWL', status: 'WAITING', state: 'STOP', accepted: false },
                 { id: 'XBC88 KRO', status: 'WAITING', state: 'STOP', accepted: true },
                 { id: 'XWQ10 VBN', status: 'IN TRANSIT', state: 'GO', accepted: true }
             ]);
+
+            React.useEffect(() => {
+                const handleResize = () => {
+                    const mobile = window.innerWidth < 768;
+                    setIsMobile(mobile);
+                    if (mobile) setRole('driver');
+                };
+                handleResize();
+                window.addEventListener('resize', handleResize);
+                return () => window.removeEventListener('resize', handleResize);
+            }, []);
 
             const addToLog = (message) => {
                 const timestamp = new Date().toLocaleTimeString();
@@ -447,11 +466,16 @@
                         <div className="flex justify-between items-center mb-6">
                             <h3 className="text-xs font-bold uppercase tracking-widest text-[#8D99AE]">Interactive Technology Preview</h3>
                             <div className="flex gap-2">
-                                <button onClick={() => setRole('admin')} className={`px-4 py-2 text-xs font-bold transition-all border ${role === 'admin' ? 'bg-safety text-navy border-safety' : 'text-gray-400 border-gray-700 hover:border-gray-500'}`}>ADMIN TERMINAL</button>
+                                {!isMobile && (
+                                    <button onClick={() => setRole('admin')} className={`px-4 py-2 text-xs font-bold transition-all border ${role === 'admin' ? 'bg-safety text-navy border-safety' : 'text-gray-400 border-gray-700 hover:border-gray-500'}`}>ADMIN TERMINAL</button>
+                                )}
                                 <button onClick={() => setRole('driver')} className={`px-4 py-2 text-xs font-bold transition-all border ${role === 'driver' ? 'bg-safety text-navy border-safety' : 'text-gray-400 border-gray-700 hover:border-gray-500'}`}>DRIVER PAGER</button>
+                                {isMobile && (
+                                    <button onClick={() => setRole('admin')} className={`px-4 py-2 text-xs font-bold transition-all border ${role === 'admin' ? 'bg-safety text-navy border-safety' : 'text-gray-400 border-gray-700 hover:border-gray-500'}`}>ADMIN</button>
+                                )}
                             </div>
                         </div>
-                        <div className="min-h-[600px] flex items-center justify-center bg-navy/20 border border-white/5 relative group py-8">
+                        <div className="min-h-[600px] flex items-center justify-center bg-navy/20 border border-white/5 relative py-8">
                             <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `linear-gradient(#F8F9FA 1px, transparent 1px), linear-gradient(90deg, #F8F9FA 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
                             {role === 'driver' ? (
                                 <div className="phone-frame fade-enter-active">
@@ -496,11 +520,14 @@
                                     Write to us about the Olden Project.
                                 </p>
                             </div>
-                            <div className="flex items-center mt-2">
+                            <div className="flex flex-col items-start md:items-end gap-2 mt-2">
                                 <a href="mailto:olden.office3d@gmail.com"
                                     className="inline-block bg-safety text-navy font-black uppercase tracking-widest text-sm px-8 py-4 hover:opacity-85 transition-opacity">
                                     Write to us
                                 </a>
+                                <span className="text-[11px] text-gray-600 normal-case font-mono select-all cursor-text">
+                                    olden.office3d@gmail.com
+                                </span>
                             </div>
                         </div>
                     </section>

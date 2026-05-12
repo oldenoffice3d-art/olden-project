@@ -20,7 +20,7 @@
     <link rel="canonical" href="https://oldenoffice3d-art.github.io/olden-project/">
     <link rel="sitemap" type="application/xml" href="/olden-project/sitemap.xml">
 
-    <!-- Open Graph — social sharing preview (LinkedIn, Facebook, WhatsApp, Telegram) -->
+    <!-- Open Graph — social sharing preview -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Olden Project">
     <meta property="og:title" content="Olden Project: For the Millions, not only for the Billions">
@@ -647,6 +647,103 @@
                                 <DriverPager truck={activeTruck} coords={gateCoords} onAccept={handleDriverAccept} />
                             </div>
                         )}
+                    </section>
+
+                    {/* GLOBAL EXPANSION MATRIX */}
+                    <section className="w-full max-w-6xl mx-auto px-6 lg:px-0 pb-16">
+                        <div className="border-t border-white/10 pt-16">
+                            <div className="mb-8">
+                                <p className="text-xs font-mono text-safety/60 uppercase tracking-widest mb-2">Global Scale</p>
+                                <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">Market Expansion Matrix</h3>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                
+                                {/* UK & EU */}
+                                <div className="border border-[#2B2D42] bg-[#0A1128] p-6 text-left hover:border-white/40 transition-colors">
+                                    <h4 className="text-safety font-black uppercase tracking-widest text-sm mb-6 border-b border-[#2B2D42] pb-4">🇬🇧 UK & EU Market</h4>
+                                    
+                                    <div className="mb-6">
+                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Market Size</p>
+                                        <ul className="space-y-1 text-xs text-gray-300 font-mono">
+                                            <li><span className="text-white font-bold">TAM:</span> £58B</li>
+                                            <li><span className="text-white font-bold">SAM:</span> £9.2B</li>
+                                            <li><span className="text-white font-bold">SOM:</span> £145M (Yr 3)</li>
+                                        </ul>
+                                    </div>
+
+                                    <div className="mb-6">
+                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">GTM Drivers</p>
+                                        <ul className="space-y-2 text-[11px] text-gray-400 leading-relaxed font-medium">
+                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span> <span>SEIS/EIS Advance Assurance (50-72.5% downside protection)</span></li>
+                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span> <span>CSRD Scope 3 mandatory ESG reporting (Jan 2025)</span></li>
+                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span> <span>SLA mandate for Tier-1 3PLs (DHL, Amazon UK)</span></li>
+                                        </ul>
+                                    </div>
+
+                                    <div>
+                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Deployment Logic</p>
+                                        <p className="text-[11px] text-white font-bold leading-relaxed flex gap-2 items-start"><span className="text-[#00C853] font-mono">■</span> <span>Priority pilot hub integration</span></p>
+                                    </div>
+                                </div>
+
+                                {/* US */}
+                                <div className="border border-[#2B2D42] bg-[#0A1128] p-6 text-left hover:border-white/40 transition-colors">
+                                    <h4 className="text-safety font-black uppercase tracking-widest text-sm mb-6 border-b border-[#2B2D42] pb-4">🇺🇸 US Market</h4>
+                                    
+                                    <div className="mb-6">
+                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Market Size</p>
+                                        <ul className="space-y-1 text-xs text-gray-300 font-mono">
+                                            <li><span className="text-white font-bold">TAM:</span> $243B</li>
+                                            <li><span className="text-white font-bold">SAM:</span> $38B</li>
+                                            <li><span className="text-white font-bold">SOM:</span> $180M (Yr 3)</li>
+                                        </ul>
+                                    </div>
+
+                                    <div className="mb-6">
+                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">GTM Drivers</p>
+                                        <ul className="space-y-2 text-[11px] text-gray-400 leading-relaxed font-medium">
+                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span> <span>IoT Disruption: BYOD eliminates $50K-$500K hardware cycles</span></li>
+                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span> <span>Corporate ESG Pressure (Amazon Climate Pledge)</span></li>
+                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span> <span>&lt;3% software penetration in middle-mile</span></li>
+                                        </ul>
+                                    </div>
+
+                                    <div>
+                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Deployment Logic</p>
+                                        <p className="text-[11px] text-white font-bold leading-relaxed flex gap-2 items-start"><span className="text-[#00C853] font-mono">■</span> <span>Focus on Chicago, LA, Atlanta hubs</span></p>
+                                    </div>
+                                </div>
+
+                                {/* India & APAC */}
+                                <div className="border border-[#2B2D42] bg-[#0A1128] p-6 text-left hover:border-white/40 transition-colors">
+                                    <h4 className="text-safety font-black uppercase tracking-widest text-sm mb-6 border-b border-[#2B2D42] pb-4">🇮🇳 India & APAC</h4>
+                                    
+                                    <div className="mb-6">
+                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Market Size</p>
+                                        <ul className="space-y-1 text-xs text-gray-300 font-mono">
+                                            <li><span className="text-white font-bold">TAM:</span> $320B</li>
+                                            <li><span className="text-white font-bold">SAM:</span> $48B</li>
+                                            <li><span className="text-white font-bold">SOM:</span> $165M (Yr 3)</li>
+                                        </ul>
+                                    </div>
+
+                                    <div className="mb-6">
+                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">GTM Drivers</p>
+                                        <ul className="space-y-2 text-[11px] text-gray-400 leading-relaxed font-medium">
+                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span> <span>Quick Commerce bottleneck resolution (10-min SLAs)</span></li>
+                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span> <span>India Stack Integration (UPI, ONDC readiness)</span></li>
+                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span> <span>"Make in India" PLI schemes driving logistics</span></li>
+                                        </ul>
+                                    </div>
+
+                                    <div>
+                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Deployment Logic</p>
+                                        <p className="text-[11px] text-white font-bold leading-relaxed flex gap-2 items-start"><span className="text-[#00C853] font-mono">■</span> <span>DPIIT recognition & Mumbai/Delhi pilots</span></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </section>
 
                     {/* CONTACT */}

@@ -3,65 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olden Project: For the Millions, not only for the Billions</title>
+    <title>Olden Project — Zero-Hardware Middle-Mile Logistics · SEIS Eligible · Pre-Seed 2026</title>
 
-    <!-- Search engine indexing: full visibility -->
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
     <meta name="bingbot" content="index, follow">
-
-    <!-- SEO -->
-    <meta name="description" content="Olden Project: a zero-hardware logistics coordination platform for the Millions, not only for the Billions. A showcase of a zero-hardware logistics coordination platform.">
-    <meta name="keywords" content="logistics technology, warehouse coordination, middle-mile logistics, SaaS, patent pending, investor waitlist, strategic partners, UK startup">
+    <meta name="description" content="Olden: zero-hardware logistics coordination platform for 3PL middle-mile operations. Patent pending. SEIS eligible. Pre-seed raising £375K. UK-based.">
+    <meta name="keywords" content="logistics technology, warehouse coordination, middle-mile logistics, SaaS, patent pending, SEIS, UK startup, investor">
     <meta name="author" content="Nazar Zablotskyi">
     <meta name="theme-color" content="#0A1128">
-
-    <!-- Canonical -->
+    <meta name="cookie-policy" content="This website does not use tracking, analytics, or advertising cookies.">
     <link rel="canonical" href="https://oldenoffice3d-art.github.io/olden-project/">
     <link rel="sitemap" type="application/xml" href="/olden-project/sitemap.xml">
 
-    <!-- Open Graph — social sharing preview -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Olden Project">
     <meta property="og:title" content="Olden Project: For the Millions, not only for the Billions">
-    <meta property="og:description" content="Zero-hardware logistics coordination platform. A showcase of a zero-hardware logistics coordination platform. Patent Pending. UK-based.">
+    <meta property="og:description" content="Zero-hardware logistics coordination. Patent Pending. SEIS eligible. Pre-seed raising £375K. UK-based.">
     <meta property="og:url" content="https://oldenoffice3d-art.github.io/olden-project/">
     <meta property="og:locale" content="en_GB">
-
-    <!-- Twitter / X card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Olden Project: For the Millions, not only for the Billions">
-    <meta name="twitter:description" content="Zero-hardware logistics coordination. Logistics infrastructure. Patent Pending. UK-based.">
+    <meta name="twitter:description" content="Zero-hardware logistics coordination. Patent Pending. SEIS eligible. UK-based.">
     <meta name="twitter:creator" content="@oldenproject">
 
-    <!-- Cookie declaration: no tracking -->
-    <meta name="cookie-policy" content="This website does not use tracking, analytics, or advertising cookies.">
-
-    <!-- Structured data — JSON-LD for Google rich results -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Olden Project",
-        "description": "Zero-hardware logistics coordination platform for middle-mile operations. For the Millions, not only for the Billions.",
+        "description": "Zero-hardware logistics coordination platform for middle-mile operations.",
         "url": "https://oldenoffice3d-art.github.io/olden-project/",
-        "founder": {
-            "@type": "Person",
-            "name": "Nazar Zablotskyi",
-            "jobTitle": "Founder & Chairman"
-        },
-        "foundingLocation": {
-            "@type": "Place",
-            "addressCountry": "GB"
-        },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "email": "olden.office3d@gmail.com",
-            "contactType": "General Enquiries"
-        }
+        "founder": {"@type": "Person", "name": "Nazar Zablotskyi", "jobTitle": "Founder & Chairman"},
+        "foundingLocation": {"@type": "Place", "addressCountry": "GB"},
+        "contactPoint": {"@type": "ContactPoint", "email": "olden.office3d@gmail.com", "contactType": "General Enquiries"}
     }
     </script>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -75,7 +53,7 @@
                         navy: '#0A1128',
                         safety: '#FF9F1C',
                         grid: '#2B2D42',
-                        emerald: '#10b981', 
+                        emerald: '#10b981',
                         urbanBlue: '#3b82f6',
                         signalRed: '#ef4444'
                     },
@@ -90,136 +68,77 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Inter:wght@400;700;900&display=swap');
         body { background-color: #03050a; font-family: 'Inter', sans-serif; color: white; overflow-x: hidden; }
-        
+
         input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
         input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 18px; width: 18px; background: #FF9F1C; cursor: pointer; margin-top: -6px; border-radius: 99px; transition: all 0.2s; border: 2px solid white; }
         input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: #2B2D42; border-radius: 0px; }
-        
-        .glass-panel { background: rgba(10, 17, 40, 0.8); backdrop-filter: blur(15px); border: 1px solid rgba(255, 159, 28, 0.2); }
-        .genesis-section { background-color: #1A1F36; border-top: 4px solid #FF9F1C; }
-        input:-webkit-autofill,
-        input:-webkit-autofill:hover,
-        input:-webkit-autofill:focus,
-        input:-webkit-autofill:active {
-            -webkit-box-shadow: 0 0 0px 1000px #0A1128 inset !important;
-            -webkit-text-fill-color: white !important;
-            caret-color: white !important;
-            transition: background-color 99999s ease-in-out 0s;
-        }
-        
-        .fade-enter-active { animation: fadeIn 0.4s ease-out; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
 
-        /* Device Frames Styling */
-        .phone-frame {
-            width: 320px; height: 640px;
-            background: #1A1C25; border: 10px solid #2B2D42;
-            border-radius: 40px; position: relative;
-            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8);
-            margin: 0 auto;
-        }
+        .glass-panel { background: rgba(10, 17, 40, 0.8); backdrop-filter: blur(15px); border: 1px solid rgba(255, 159, 28, 0.2); }
+
+        .fade-enter-active { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .phone-frame { width: 320px; height: 640px; background: #1A1C25; border: 10px solid #2B2D42; border-radius: 40px; position: relative; box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8); margin: 0 auto; }
         .phone-screen { width: 100%; height: 100%; background: black; border-radius: 30px; overflow: hidden; position: relative; }
         .phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 20px; background: black; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; z-index: 50; }
-
-        .tablet-frame {
-            width: 100%; max-width: 900px; height: 600px;
-            background: #1F212B; border: 12px solid #2B2D42;
-            border-radius: 30px; position: relative;
-            box-shadow: 0 50px 100px -30px rgba(0,0,0,0.9);
-            margin: 0 auto;
-        }
+        .tablet-frame { width: 100%; max-width: 900px; height: 600px; background: #1F212B; border: 12px solid #2B2D42; border-radius: 30px; position: relative; box-shadow: 0 50px 100px -30px rgba(0,0,0,0.9); margin: 0 auto; }
         .tablet-screen { width: 100%; height: 100%; background: #0A1128; border-radius: 18px; overflow: hidden; position: relative; display: flex; flex-direction: column; }
 
         .demo-wrapper { width: 100%; }
-        .demo-inner {
-            display: flex; align-items: center; justify-content: center;
-            min-height: 660px; padding: 32px 0;
-            background: rgba(10,17,40,0.2);
-            border: 1px solid rgba(255,255,255,0.05);
-            position: relative;
-        }
+        .demo-inner { display: flex; align-items: center; justify-content: center; min-height: 660px; padding: 32px 0; background: rgba(10,17,40,0.2); border: 1px solid rgba(255,255,255,0.05); position: relative; }
 
-        /* Mobile: native fullscreen layout, no frames */
-        .mobile-demo {
-            display: none;
-            width: 100%;
-            background: #0A1128;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        .mobile-topbar {
-            height: 40px; background: rgba(0,0,0,0.4);
-            border-bottom: 1px solid #2B2D42;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0 16px; font-size: 10px; font-weight: 700; color: white; opacity: 0.8;
-        }
+        .mobile-demo { display: none; width: 100%; background: #0A1128; border: 1px solid rgba(255,255,255,0.05); }
+        .mobile-topbar { height: 40px; background: rgba(0,0,0,0.4); border-bottom: 1px solid #2B2D42; display: flex; justify-content: space-between; align-items: center; padding: 0 16px; font-size: 10px; font-weight: 700; color: white; opacity: 0.8; }
         .mobile-body { display: flex; flex-direction: column; }
         .mobile-queue { border-bottom: 1px solid #2B2D42; }
-        .mobile-truck-row {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 16px; border-bottom: 1px solid #2B2D42;
-            background: #0A1128; cursor: pointer; transition: background 0.15s;
-        }
+        .mobile-truck-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; border-bottom: 1px solid #2B2D42; background: #0A1128; cursor: pointer; transition: background 0.15s; }
         .mobile-truck-row.active { background: #111827; }
         .mobile-controls { padding: 16px; }
         .mobile-cmd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
-        .mobile-cmd-btn {
-            border: 2px solid #2B2D42; background: #050814;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            gap: 6px; padding: 16px; cursor: pointer; transition: all 0.15s;
-            font-family: 'Inter', sans-serif; font-weight: 900; font-size: 18px;
-            text-transform: uppercase; color: #8D99AE;
-        }
+        .mobile-cmd-btn { border: 2px solid #2B2D42; background: #050814; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 16px; cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 18px; text-transform: uppercase; color: #8D99AE; }
         .mobile-cmd-btn.stop-active { background: #B00020; border-color: white; color: white; }
         .mobile-cmd-btn.go-active { background: #00C853; border-color: white; color: white; }
-        .mobile-status {
-            display: flex; align-items: center; gap: 10px;
-            padding: 10px 16px; background: rgba(0,0,0,0.4);
-            border: 1px solid #2B2D42; margin: 0 16px 12px; font-size: 11px;
-            font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: white;
-        }
+        .mobile-status { display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: rgba(0,0,0,0.4); border: 1px solid #2B2D42; margin: 0 16px 12px; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: white; }
         .mobile-log { padding: 0 16px 16px; }
-        .mobile-log-title {
-            font-size: 10px; font-weight: 900; text-transform: uppercase;
-            letter-spacing: 0.1em; color: #8D99AE; margin-bottom: 8px;
-            padding-top: 8px; border-top: 1px solid #2B2D42;
-        }
-        .mobile-log-entry {
-            border-left: 2px solid #FF9F1C; padding: 4px 8px;
-            margin-bottom: 6px; background: rgba(255,255,255,0.02);
-        }
+        .mobile-log-title { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; color: #8D99AE; margin-bottom: 8px; padding-top: 8px; border-top: 1px solid #2B2D42; }
+        .mobile-log-entry { border-left: 2px solid #FF9F1C; padding: 4px 8px; margin-bottom: 6px; background: rgba(255,255,255,0.02); }
         .mobile-log-time { font-size: 9px; color: #8D99AE; font-weight: 700; }
         .mobile-log-msg { font-size: 11px; font-weight: 900; color: white; text-transform: uppercase; }
+        .mobile-driver { display: none; width: 100%; border: 1px solid rgba(255,255,255,0.05); }
 
-        /* Mobile driver view */
-        .mobile-driver {
-            display: none; width: 100%;
-            border: 1px solid rgba(255,255,255,0.05);
+        /* PRE-INC BANNER */
+        .pre-inc-banner {
+            background: rgba(255,159,28,0.07);
+            border-bottom: 1px solid rgba(255,159,28,0.25);
+            padding: 10px 24px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px; color: #FF9F1C; line-height: 1.6;
         }
+        .pre-inc-banner strong { color: white; }
 
         @media (max-width: 767px) {
             .desktop-demo { display: none !important; }
             .mobile-demo { display: block; }
             .mobile-driver { display: block; }
+            .pre-inc-banner { font-size: 10px; padding: 10px 16px; }
         }
 
-        .indiegogo-btn { border: 1px solid rgba(255, 159, 28, 0.5); transition: all 0.3s ease; }
-        .indiegogo-btn:hover { background: rgba(255, 159, 28, 0.1); border-color: #FF9F1C; }
-        
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: #0A1128; }
         ::-webkit-scrollbar-thumb { background: #2B2D42; }
     </style>
 </head>
 <body>
+    <!-- PRE-INCORPORATION BANNER -->
+    <div class="pre-inc-banner">
+        ⬡ &nbsp;<strong>Pre-incorporation stage.</strong>&nbsp; Olden Technologies Ltd is forming as a UK private limited company. This site is maintained by Nazar Zablotskyi (Founder) in personal capacity as holder of all IP rights. This does not constitute a financial promotion. Prospective investors should seek independent advice.
+    </div>
+
     <div id="root"></div>
 
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        // UI Icons
         const Icon = ({ name, size = 24, color = "currentColor", strokeWidth = 2, fill = "none" }) => {
             const icons = {
                 Shield: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />,
@@ -232,11 +151,7 @@
                 Navigation: <polygon points="3 11 22 2 13 21 11 13 3 11"/>,
                 CheckCircle: <><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></>,
                 ArrowLeft: <><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></>,
-                MapPin: <><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></>,
-                Battery: <><rect width="18" height="12" x="2" y="6" rx="2"/><line x1="22" y1="10" x2="22" y2="14"/></>,
-                ChevronLeft: <><polyline points="15 18 9 12 15 6"/></>,
-                Mail: <><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></>,
-                AlertCircle: <><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></>
+                Battery: <><rect width="18" height="12" x="2" y="6" rx="2"/><line x1="22" y1="10" x2="22" y2="14"/></>
             };
             return (
                 <svg width={size} height={size} viewBox="0 0 24 24" fill={fill} stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
@@ -245,7 +160,6 @@
             );
         };
 
-        // Components for interactive demo
         const EventLog = ({ log }) => (
             <div className="h-full flex flex-col">
                 <h3 className="text-xs text-[#8D99AE] font-black tracking-widest flex items-center gap-2 mb-4 uppercase shrink-0">
@@ -330,9 +244,7 @@
                 </div>
                 <div className="flex items-center gap-4 p-4 bg-black/40 border border-[#2B2D42] text-white mt-6">
                     <div className={`w-3 h-3 ${truck.accepted ? 'bg-[#00C853] shadow-[0_0_10px_#00C853]' : 'bg-[#FF9F1C] animate-pulse'}`}></div>
-                    <div>
-                        <span className="text-xs font-black tracking-widest uppercase">{truck.accepted ? 'Confirmed by Remote Node' : 'Waiting for Remote Confirmation...'}</span>
-                    </div>
+                    <span className="text-xs font-black tracking-widest uppercase">{truck.accepted ? 'Confirmed by Remote Node' : 'Waiting for Remote Confirmation...'}</span>
                 </div>
             </div>
         );
@@ -341,11 +253,7 @@
             const isRed = truck.state === 'STOP';
             const bgColor = isRed ? 'bg-[#B00020]' : 'bg-[#00C853]';
             const coordParts = coords.split(',').map(part => part.trim().replace(/-/g, ''));
-
-            const handleNav = () => {
-                window.open(`https://www.google.com/maps/search/?api=1&query=${coords}`, '_blank');
-            };
-
+            const handleNav = () => { window.open(`https://www.google.com/maps/search/?api=1&query=${coords}`, '_blank'); };
             return (
                 <div className={`flex-1 flex flex-col transition-colors duration-700 h-full ${bgColor} relative`}>
                     <div className="mt-8 px-6 flex justify-between items-center text-white shrink-0">
@@ -354,36 +262,23 @@
                         </div>
                         <span className="text-[11px] font-black opacity-90 uppercase">{truck.id}</span>
                     </div>
-
                     <div className="flex-1 flex flex-col items-center justify-center p-4 text-center text-white">
-                        <h1 className="text-[80px] font-black tracking-tighter leading-none mb-2 drop-shadow-lg uppercase">
-                            {truck.state}
-                        </h1>
+                        <h1 className="text-[80px] font-black tracking-tighter leading-none mb-2 drop-shadow-lg uppercase">{truck.state}</h1>
                     </div>
-
                     <div className="px-4 pb-8 space-y-4">
-                        <button
-                            onClick={handleNav}
-                            className="w-full py-5 px-3 bg-black/30 border border-white/20 hover:border-white flex flex-col items-center justify-center transition-all group"
-                        >
-                            <div className="flex items-center gap-2 text-[10px] font-black tracking-widest opacity-90 uppercase mb-3 text-center">
+                        <button onClick={handleNav} className="w-full py-5 px-3 bg-black/30 border border-white/20 hover:border-white flex flex-col items-center justify-center transition-all">
+                            <div className="flex items-center gap-2 text-[10px] font-black tracking-widest opacity-90 uppercase mb-3">
                                 <Icon name="Navigation" size={12} fill="currentColor" color="currentColor" />
                                 <span>Gate Coordinates</span>
                             </div>
                             <div className="flex flex-col items-center leading-none space-y-1">
                                 {coordParts.map((part, i) => (
-                                    <span key={i} className="text-4xl font-black tracking-tighter text-white font-mono">
-                                        {part}
-                                    </span>
+                                    <span key={i} className="text-4xl font-black tracking-tighter text-white font-mono">{part}</span>
                                 ))}
                             </div>
                         </button>
-
-                        <button 
-                            onClick={onAccept} 
-                            disabled={truck.accepted} 
-                            className={`w-full py-4 text-xl font-black transition-all flex items-center justify-center gap-3 uppercase ${truck.accepted ? 'bg-black/20 text-white/40 border-2 border-white/20' : 'bg-white text-black border-black shadow-[0_4px_0_rgba(0,0,0,0.3)] active:translate-y-1'}`}
-                        >
+                        <button onClick={onAccept} disabled={truck.accepted}
+                            className={`w-full py-4 text-xl font-black transition-all flex items-center justify-center gap-3 uppercase ${truck.accepted ? 'bg-black/20 text-white/40 border-2 border-white/20' : 'bg-white text-black border-black shadow-[0_4px_0_rgba(0,0,0,0.3)] active:translate-y-1'}`}>
                             {truck.accepted ? <div className="flex items-center gap-2"><Icon name="CheckCircle" size={20} strokeWidth={3} /><span>Accepted</span></div> : 'Accept'}
                         </button>
                     </div>
@@ -392,34 +287,28 @@
         };
 
         function App() {
-            // Demo States
-            const [role, setRole] = React.useState('admin'); 
-            const gateCoords = '51.5033, -0.1195'; 
+            const [role, setRole] = React.useState('admin');
+            const gateCoords = '51.5033, -0.1195';
             const [log, setLog] = React.useState([]);
-            const [archive, setArchive] = React.useState([]); 
-            const [adminView, setAdminView] = React.useState('list'); 
+            const [archive, setArchive] = React.useState([]);
+            const [adminView, setAdminView] = React.useState('list');
             const [selectedTruckId, setSelectedTruckId] = React.useState('XLN72 ZWL');
             const [queue, setQueue] = React.useState([
                 { id: 'XLN72 ZWL', status: 'WAITING', state: 'STOP', accepted: false },
                 { id: 'XBC88 KRO', status: 'WAITING', state: 'STOP', accepted: true },
                 { id: 'XWQ10 VBN', status: 'IN TRANSIT', state: 'GO', accepted: true }
             ]);
-
             const addToLog = (message) => {
                 const timestamp = new Date().toLocaleTimeString();
                 setLog(prev => [{ time: timestamp, msg: message }, ...prev].slice(0, 10));
             };
-
             const handleAdminAction = (newState) => {
                 setQueue(prevQueue => prevQueue.map(truck => {
-                    if (truck.id === selectedTruckId) {
-                        return { ...truck, state: newState, accepted: false, status: newState === 'GO' ? 'IN TRANSIT' : 'WAITING' };
-                    }
+                    if (truck.id === selectedTruckId) return { ...truck, state: newState, accepted: false, status: newState === 'GO' ? 'IN TRANSIT' : 'WAITING' };
                     return truck;
                 }));
-                addToLog(`CMD Issued -> [${selectedTruckId}]: ${newState}`);
+                addToLog(`CMD -> [${selectedTruckId}]: ${newState}`);
             };
-
             const handleDriverAccept = () => {
                 const currentTruck = queue.find(t => t.id === selectedTruckId);
                 if (!currentTruck) return;
@@ -436,26 +325,30 @@
                     addToLog(`Node [${selectedTruckId}] ACK STOP`);
                 }
             };
-
             const activeTruck = queue.find(t => t.id === selectedTruckId) || archive.find(t => t.id === selectedTruckId) || queue[0] || { id: 'IDLE', state: 'STOP', status: 'EMPTY', accepted: false };
 
             return (
                 <div className="min-h-screen flex flex-col uppercase tracking-tighter">
-                    {/* NAV BAR */}
-                    <nav id="top" className="w-full max-w-6xl mx-auto flex justify-between items-center py-6 px-6 lg:px-0 text-left shrink-0 z-50 relative">
+
+                    {/* NAV */}
+                    <nav className="w-full max-w-6xl mx-auto flex justify-between items-center py-5 px-6 lg:px-0 text-left shrink-0 z-50 relative">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-safety text-navy flex items-center justify-center font-black text-xl">O</div>
                             <h1 className="text-2xl font-black uppercase tracking-tighter text-white">Olden <span className="text-safety">Project</span></h1>
                         </div>
-                        <div className="flex gap-4">
-                            <span className="text-xs font-bold bg-grid px-3 py-1.5 uppercase hidden md:inline-block text-[#8D99AE]">Project Showcase</span>
+                        <div className="flex items-center gap-3">
+                            <span className="text-xs font-bold bg-[#2B2D42] px-3 py-1.5 uppercase hidden md:inline-block text-[#8D99AE] tracking-widest">PRE-SEED · 2026</span>
+                            <a href="mailto:olden.office3d@gmail.com?subject=Investment%20Inquiry%20%E2%80%94%20Olden%20Pre-Seed%20Round"
+                               className="bg-safety text-navy font-black text-xs uppercase tracking-widest px-4 py-2 hover:opacity-85 transition-opacity hidden md:inline-block">
+                                Request Materials →
+                            </a>
                         </div>
                     </nav>
 
-                    {/* BUSINESS PROBLEM + MARKET EFFECT */}
+                    {/* MAIN CONTENT */}
                     <main className="w-full max-w-6xl mx-auto px-6 lg:px-0 py-16 text-left">
 
-                        {/* Hero */}
+                        {/* HERO */}
                         <div className="border-b border-white/10 pb-16 mb-16">
                             <p className="text-safety font-bold uppercase tracking-widest text-sm mb-4">The Revenue Engine</p>
                             <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.95] text-white mb-8 max-w-4xl">
@@ -466,7 +359,7 @@
                             </p>
                         </div>
 
-                        {/* Business Problem */}
+                        {/* PROBLEM */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 pb-16 border-b border-white/10 mb-16">
                             <div className="space-y-6">
                                 <p className="text-xs font-mono text-safety/60 uppercase tracking-widest">The Problem</p>
@@ -493,7 +386,7 @@
                             </div>
                         </div>
 
-                        {/* Market Effect */}
+                        {/* MARKET EFFECT */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 pb-16">
                             <div className="space-y-6">
                                 <p className="text-xs font-mono text-safety/60 uppercase tracking-widest">Market Effect</p>
@@ -518,7 +411,6 @@
                                 ))}
                             </div>
                         </div>
-
                     </main>
 
                     {/* INTERACTIVE DEMO */}
@@ -531,51 +423,46 @@
                             </div>
                         </div>
 
-                        {/* DESKTOP demo — hidden on mobile */}
+                        {/* DESKTOP */}
                         <div className="demo-wrapper desktop-demo">
-                        <div className="demo-inner">
-                            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `linear-gradient(#F8F9FA 1px, transparent 1px), linear-gradient(90deg, #F8F9FA 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
-                            {role === 'driver' ? (
-                                <div className="phone-frame fade-enter-active">
-                                    <div className="phone-notch" />
-                                    <div className="phone-screen">
-                                        <DriverPager truck={activeTruck} coords={gateCoords} onAccept={handleDriverAccept} />
+                            <div className="demo-inner">
+                                <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `linear-gradient(#F8F9FA 1px, transparent 1px), linear-gradient(90deg, #F8F9FA 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
+                                {role === 'driver' ? (
+                                    <div className="phone-frame fade-enter-active">
+                                        <div className="phone-notch" />
+                                        <div className="phone-screen"><DriverPager truck={activeTruck} coords={gateCoords} onAccept={handleDriverAccept} /></div>
                                     </div>
-                                </div>
-                            ) : (
-                                <div className="tablet-frame fade-enter-active">
-                                    <div className="tablet-screen text-white">
-                                        <div className="h-10 bg-black/40 border-b border-[#2B2D42] flex justify-between items-center px-5 text-[10px] font-bold opacity-80">
-                                            <div className="flex gap-5"><span>09:41 AM UK</span><span className="text-[#00C853] flex items-center gap-1.5"><Icon name="Signal" size={12} /> LINK SECURE</span></div>
-                                            <div className="flex gap-2 items-center">84% <Icon name="Battery" size={14} /></div>
-                                        </div>
-                                        <div className="flex-1 flex overflow-hidden">
-                                            <div className="flex-1 overflow-y-auto bg-[#050814] border-r border-[#2B2D42]">
-                                                {adminView === 'list' ? (
-                                                    <AdminTruckList queue={queue} onSelect={(id) => { setSelectedTruckId(id); setAdminView('detail'); addToLog(`Mapped to Node [${id}]`); }} />
-                                                ) : (
-                                                    <AdminTruckDetail truck={activeTruck} onAction={handleAdminAction} onBack={() => setAdminView('list')} />
-                                                )}
+                                ) : (
+                                    <div className="tablet-frame fade-enter-active">
+                                        <div className="tablet-screen text-white">
+                                            <div className="h-10 bg-black/40 border-b border-[#2B2D42] flex justify-between items-center px-5 text-[10px] font-bold opacity-80">
+                                                <div className="flex gap-5"><span>09:41 AM UK</span><span className="text-[#00C853] flex items-center gap-1.5"><Icon name="Signal" size={12} /> LINK SECURE</span></div>
+                                                <div className="flex gap-2 items-center">84% <Icon name="Battery" size={14} /></div>
                                             </div>
-                                            <div className="w-72 shrink-0 flex flex-col bg-[#080E21]">
-                                                <div className="flex-1 p-5 border-b border-[#2B2D42] overflow-hidden"><EventLog log={log} /></div>
-                                                <div className="flex-1 p-5 overflow-hidden bg-[#0A1128]"><ArchiveList archive={archive} /></div>
+                                            <div className="flex-1 flex overflow-hidden">
+                                                <div className="flex-1 overflow-y-auto bg-[#050814] border-r border-[#2B2D42]">
+                                                    {adminView === 'list' ? (
+                                                        <AdminTruckList queue={queue} onSelect={(id) => { setSelectedTruckId(id); setAdminView('detail'); addToLog(`Mapped to Node [${id}]`); }} />
+                                                    ) : (
+                                                        <AdminTruckDetail truck={activeTruck} onAction={handleAdminAction} onBack={() => setAdminView('list')} />
+                                                    )}
+                                                </div>
+                                                <div className="w-72 shrink-0 flex flex-col bg-[#080E21]">
+                                                    <div className="flex-1 p-5 border-b border-[#2B2D42] overflow-hidden"><EventLog log={log} /></div>
+                                                    <div className="flex-1 p-5 overflow-hidden bg-[#0A1128]"><ArchiveList archive={archive} /></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            )}
-                        </div>
+                                )}
+                            </div>
                         </div>
 
-                        {/* MOBILE admin — shown only on mobile */}
+                        {/* MOBILE ADMIN */}
                         {role === 'admin' && (
                             <div className="mobile-demo">
                                 <div className="mobile-topbar">
-                                    <div style={{display:'flex',gap:'16px'}}>
-                                        <span>09:41 AM UK</span>
-                                        <span style={{color:'#00C853'}}>● LINK SECURE</span>
-                                    </div>
+                                    <div style={{display:'flex',gap:'16px'}}><span>09:41 AM UK</span><span style={{color:'#00C853'}}>● LINK SECURE</span></div>
                                     <span>84% ▮</span>
                                 </div>
                                 <div className="mobile-body">
@@ -586,9 +473,7 @@
                                                 {queue.map((truck) => (
                                                     <div key={truck.id} className="mobile-truck-row" onClick={() => { setSelectedTruckId(truck.id); setAdminView('detail'); addToLog(`Mapped to Node [${truck.id}]`); }}>
                                                         <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
-                                                            <div style={{padding:'6px',background: truck.state === 'STOP' ? '#B00020' : '#00C853'}}>
-                                                                <Icon name="Truck" size={14} color="white" />
-                                                            </div>
+                                                            <div style={{padding:'6px',background: truck.state === 'STOP' ? '#B00020' : '#00C853'}}><Icon name="Truck" size={14} color="white" /></div>
                                                             <div>
                                                                 <div style={{fontSize:'13px',fontWeight:900,color:'white',marginBottom:'2px'}}>{truck.id}</div>
                                                                 <div style={{fontSize:'10px',color:'#8D99AE',fontWeight:700,textTransform:'uppercase'}}>SYNC: {truck.accepted ? 'VERIFIED' : 'PENDING'}</div>
@@ -608,17 +493,11 @@
                                                 </button>
                                                 <div style={{marginBottom:'12px'}}>
                                                     <div style={{fontSize:'10px',color:'#FF9F1C',fontWeight:900,textTransform:'uppercase',letterSpacing:'0.2em',marginBottom:'2px'}}>Control Mode</div>
-                                                    <div style={{fontSize:'22px',fontWeight:900,color:'white',textTransform:'uppercase',letterSpacing:'-0.02em'}}>{activeTruck.id}</div>
+                                                    <div style={{fontSize:'22px',fontWeight:900,color:'white',textTransform:'uppercase'}}>{activeTruck.id}</div>
                                                 </div>
                                                 <div className="mobile-cmd-grid">
-                                                    <button className={`mobile-cmd-btn ${activeTruck.state === 'STOP' ? 'stop-active' : ''}`} onClick={() => handleAdminAction('STOP')}>
-                                                        <Icon name="Clock" size={28} color="white" />
-                                                        <span>Stop</span>
-                                                    </button>
-                                                    <button className={`mobile-cmd-btn ${activeTruck.state === 'GO' ? 'go-active' : ''}`} onClick={() => handleAdminAction('GO')}>
-                                                        <Icon name="Truck" size={28} color="white" />
-                                                        <span>Go</span>
-                                                    </button>
+                                                    <button className={`mobile-cmd-btn ${activeTruck.state === 'STOP' ? 'stop-active' : ''}`} onClick={() => handleAdminAction('STOP')}><Icon name="Clock" size={28} color="white" /><span>Stop</span></button>
+                                                    <button className={`mobile-cmd-btn ${activeTruck.state === 'GO' ? 'go-active' : ''}`} onClick={() => handleAdminAction('GO')}><Icon name="Truck" size={28} color="white" /><span>Go</span></button>
                                                 </div>
                                                 <div className="mobile-status">
                                                     <div style={{width:'10px',height:'10px',borderRadius:'50%',flexShrink:0,background: activeTruck.accepted ? '#00C853' : '#FF9F1C'}}></div>
@@ -640,12 +519,8 @@
                                 </div>
                             </div>
                         )}
-
-                        {/* MOBILE driver — shown only on mobile */}
                         {role === 'driver' && (
-                            <div className="mobile-driver">
-                                <DriverPager truck={activeTruck} coords={gateCoords} onAccept={handleDriverAccept} />
-                            </div>
+                            <div className="mobile-driver"><DriverPager truck={activeTruck} coords={gateCoords} onAccept={handleDriverAccept} /></div>
                         )}
                     </section>
 
@@ -657,11 +532,8 @@
                                 <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">Market Expansion Matrix</h3>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                
-                                {/* UK & EU */}
                                 <div className="border border-[#2B2D42] bg-[#0A1128] p-6 text-left hover:border-white/40 transition-colors">
                                     <h4 className="text-safety font-black uppercase tracking-widest text-sm mb-6 border-b border-[#2B2D42] pb-4">🇬🇧 UK & EU Market</h4>
-                                    
                                     <div className="mb-6">
                                         <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Market Size</p>
                                         <ul className="space-y-1 text-xs text-gray-300 font-mono">
@@ -670,26 +542,22 @@
                                             <li><span className="text-white font-bold">SOM:</span> £145M (Yr 3)</li>
                                         </ul>
                                     </div>
-
                                     <div className="mb-6">
                                         <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">GTM Drivers</p>
                                         <ul className="space-y-2 text-[11px] text-gray-400 leading-relaxed font-medium">
-                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span> <span>SEIS/EIS Advance Assurance (50-72.5% downside protection)</span></li>
-                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span> <span>CSRD Scope 3 mandatory ESG reporting (Jan 2025)</span></li>
-                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span> <span>SLA mandate for Tier-1 3PLs (DHL, Amazon UK)</span></li>
+                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span><span>SEIS/EIS Advance Assurance (50–72.5% downside protection)</span></li>
+                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span><span>CSRD Scope 3 mandatory ESG reporting (Jan 2025)</span></li>
+                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span><span>SLA mandate for Tier-1 3PLs (DHL, Amazon UK)</span></li>
                                         </ul>
                                     </div>
-
                                     <div>
                                         <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Deployment Logic</p>
-                                        <p className="text-[11px] text-white font-bold leading-relaxed flex gap-2 items-start"><span className="text-[#00C853] font-mono">■</span> <span>Priority pilot hub integration</span></p>
+                                        <p className="text-[11px] text-white font-bold flex gap-2 items-start"><span className="text-[#00C853] font-mono">■</span><span>Priority pilot hub integration</span></p>
                                     </div>
                                 </div>
 
-                                {/* US */}
                                 <div className="border border-[#2B2D42] bg-[#0A1128] p-6 text-left hover:border-white/40 transition-colors">
                                     <h4 className="text-safety font-black uppercase tracking-widest text-sm mb-6 border-b border-[#2B2D42] pb-4">🇺🇸 US Market</h4>
-                                    
                                     <div className="mb-6">
                                         <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Market Size</p>
                                         <ul className="space-y-1 text-xs text-gray-300 font-mono">
@@ -698,26 +566,22 @@
                                             <li><span className="text-white font-bold">SOM:</span> $180M (Yr 3)</li>
                                         </ul>
                                     </div>
-
                                     <div className="mb-6">
                                         <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">GTM Drivers</p>
                                         <ul className="space-y-2 text-[11px] text-gray-400 leading-relaxed font-medium">
-                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span> <span>IoT Disruption: BYOD eliminates $50K-$500K hardware cycles</span></li>
-                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span> <span>Corporate ESG Pressure (Amazon Climate Pledge)</span></li>
-                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span> <span>&lt;3% software penetration in middle-mile</span></li>
+                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span><span>BYOD eliminates $50K–$500K hardware procurement cycles</span></li>
+                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span><span>Corporate ESG pressure (Amazon Climate Pledge)</span></li>
+                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span><span>&lt;3% software penetration in middle-mile</span></li>
                                         </ul>
                                     </div>
-
                                     <div>
                                         <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Deployment Logic</p>
-                                        <p className="text-[11px] text-white font-bold leading-relaxed flex gap-2 items-start"><span className="text-[#00C853] font-mono">■</span> <span>Focus on Chicago, LA, Atlanta hubs</span></p>
+                                        <p className="text-[11px] text-white font-bold flex gap-2 items-start"><span className="text-[#00C853] font-mono">■</span><span>Chicago, LA, Atlanta hub focus</span></p>
                                     </div>
                                 </div>
 
-                                {/* India & APAC */}
                                 <div className="border border-[#2B2D42] bg-[#0A1128] p-6 text-left hover:border-white/40 transition-colors">
                                     <h4 className="text-safety font-black uppercase tracking-widest text-sm mb-6 border-b border-[#2B2D42] pb-4">🇮🇳 India & APAC</h4>
-                                    
                                     <div className="mb-6">
                                         <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Market Size</p>
                                         <ul className="space-y-1 text-xs text-gray-300 font-mono">
@@ -726,22 +590,19 @@
                                             <li><span className="text-white font-bold">SOM:</span> $165M (Yr 3)</li>
                                         </ul>
                                     </div>
-
                                     <div className="mb-6">
                                         <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">GTM Drivers</p>
                                         <ul className="space-y-2 text-[11px] text-gray-400 leading-relaxed font-medium">
-                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span> <span>Quick Commerce bottleneck resolution (10-min SLAs)</span></li>
-                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span> <span>India Stack Integration (UPI, ONDC readiness)</span></li>
-                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span> <span>"Make in India" PLI schemes driving logistics</span></li>
+                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span><span>Quick Commerce bottleneck resolution (10-min SLAs)</span></li>
+                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span><span>India Stack integration (UPI, ONDC readiness)</span></li>
+                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span><span>"Make in India" PLI schemes driving logistics demand</span></li>
                                         </ul>
                                     </div>
-
                                     <div>
                                         <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Deployment Logic</p>
-                                        <p className="text-[11px] text-white font-bold leading-relaxed flex gap-2 items-start"><span className="text-[#00C853] font-mono">■</span> <span>DPIIT recognition & Mumbai/Delhi pilots</span></p>
+                                        <p className="text-[11px] text-white font-bold flex gap-2 items-start"><span className="text-[#00C853] font-mono">■</span><span>DPIIT recognition & Mumbai/Delhi pilots</span></p>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </section>
@@ -749,25 +610,23 @@
                     {/* INVESTMENT OPPORTUNITY */}
                     <section className="w-full max-w-6xl mx-auto px-6 lg:px-0 py-20">
                         <div className="glass-panel p-8 md:p-12">
-                            {/* Header */}
                             <div className="mb-10">
                                 <p className="text-xs font-mono text-safety/60 uppercase tracking-widest mb-2">Investment Opportunity</p>
                                 <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white mb-4">Current Round</h3>
-                                <p className="text-sm text-gray-400 max-w-2xl leading-relaxed">
-                                    We are raising a pre-seed round to complete UK Ltd incorporation, file non-provisional patents, 
-                                    build MVP, and secure our first pilot partner. SEIS-eligible for UK investors.
+                                <p className="text-sm text-gray-400 max-w-2xl leading-relaxed normal-case">
+                                    Pre-seed round to complete UK Ltd incorporation, file non-provisional patents, build MVP, and secure the first pilot partner.
                                 </p>
                             </div>
 
-                            {/* Key Numbers Grid */}
+                            {/* Key Numbers */}
                             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10">
                                 <div className="bg-navy/50 border border-safety/20 p-6 text-center">
                                     <p className="text-4xl md:text-5xl font-black text-safety mb-2">£375K</p>
                                     <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">Pre-Seed Round</p>
                                 </div>
                                 <div className="bg-navy/50 border border-emerald/20 p-6 text-center">
-                                    <p className="text-4xl md:text-5xl font-black text-emerald mb-2">50%</p>
-                                    <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">SEIS Tax Relief</p>
+                                    <p className="text-4xl md:text-5xl font-black text-emerald mb-2">72.5%</p>
+                                    <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">Max Downside Protection</p>
                                 </div>
                                 <div className="bg-navy/50 border border-white/10 p-6 text-center">
                                     <p className="text-4xl md:text-5xl font-black text-white mb-2">£4M</p>
@@ -775,7 +634,7 @@
                                 </div>
                                 <div className="bg-navy/50 border border-white/10 p-6 text-center">
                                     <p className="text-4xl md:text-5xl font-black text-white mb-2">18mo</p>
-                                    <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">Runway</p>
+                                    <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">Runway to Series A</p>
                                 </div>
                             </div>
 
@@ -785,48 +644,42 @@
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     <div className="bg-navy/30 border border-white/5 p-5">
                                         <p className="text-3xl font-black text-safety mb-2">35%</p>
-                                        <p className="text-xs text-gray-400 font-bold uppercase tracking-wider leading-relaxed">
-                                            IP Protection (USPTO + UK) + UK Ltd Incorporation + SEIS Advance Assurance
-                                        </p>
+                                        <p className="text-xs text-gray-400 font-bold uppercase tracking-wider leading-relaxed">IP Protection (USPTO + UK) + UK Ltd Incorporation + SEIS Advance Assurance</p>
                                     </div>
                                     <div className="bg-navy/30 border border-white/5 p-5">
                                         <p className="text-3xl font-black text-safety mb-2">40%</p>
-                                        <p className="text-xs text-gray-400 font-bold uppercase tracking-wider leading-relaxed">
-                                            MVP Development — BYOD Edge Node, DLR Timing Engine, ESG Token Generation
-                                        </p>
+                                        <p className="text-xs text-gray-400 font-bold uppercase tracking-wider leading-relaxed">MVP Development — BYOD Edge Node, DLR Timing Engine, ESG Token Generation</p>
                                     </div>
                                     <div className="bg-navy/30 border border-white/5 p-5">
                                         <p className="text-3xl font-black text-safety mb-2">25%</p>
-                                        <p className="text-xs text-gray-400 font-bold uppercase tracking-wider leading-relaxed">
-                                            Pilot Partner Acquisition + First Yard Deployment (UK)
-                                        </p>
+                                        <p className="text-xs text-gray-400 font-bold uppercase tracking-wider leading-relaxed">Pilot Partner Acquisition + First Yard Deployment (UK)</p>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Investment Instruments */}
+                            {/* Investment Instruments — simplified, investors know what these are */}
                             <div className="mb-10">
                                 <h4 className="text-lg font-black uppercase text-white mb-4 tracking-wide">Investment Instruments by Region</h4>
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     <div className="bg-emerald/5 border border-emerald/20 p-5">
                                         <p className="text-xs font-mono text-emerald mb-2 uppercase tracking-widest">🇬🇧 UK Investors</p>
-                                        <p className="text-base font-black text-white mb-2">ASA / SEIS-Eligible</p>
-                                        <p className="text-xs text-gray-400 leading-relaxed">
-                                            50% income tax relief + 100% CGT exemption + loss relief = 50-72.5% downside protection
+                                        <p className="text-base font-black text-white mb-2">ASA · SEIS-Eligible</p>
+                                        <p className="text-xs text-gray-400 leading-relaxed normal-case">
+                                            50% tax relief · 100% CGT exempt · 72.5% downside protection
                                         </p>
                                     </div>
                                     <div className="bg-urbanBlue/5 border border-urbanBlue/20 p-5">
                                         <p className="text-xs font-mono text-urbanBlue mb-2 uppercase tracking-widest">🇺🇸 US Investors</p>
                                         <p className="text-base font-black text-white mb-2">SAFE</p>
-                                        <p className="text-xs text-gray-400 leading-relaxed">
-                                            Simple Agreement for Future Equity. No interest. No maturity date.
+                                        <p className="text-xs text-gray-400 leading-relaxed normal-case">
+                                            Same £4M cap. No interest. No maturity date.
                                         </p>
                                     </div>
                                     <div className="bg-safety/5 border border-safety/20 p-5">
-                                        <p className="text-xs font-mono text-safety mb-2 uppercase tracking-widest">🇮🇳🇸🇬 India/Singapore</p>
+                                        <p className="text-xs font-mono text-safety mb-2 uppercase tracking-widest">🇮🇳🇸🇬 India / Singapore</p>
                                         <p className="text-base font-black text-white mb-2">CCPS / Conv. Note</p>
-                                        <p className="text-xs text-gray-400 leading-relaxed">
-                                            Compulsorily Convertible Preference Shares or Convertible Note. DPIIT-eligible structure.
+                                        <p className="text-xs text-gray-400 leading-relaxed normal-case">
+                                            DPIIT-eligible structure. Same economic terms.
                                         </p>
                                     </div>
                                 </div>
@@ -839,79 +692,77 @@
                                     <div className="border border-safety/30 bg-safety/10 p-4">
                                         <p className="text-[10px] font-mono text-safety mb-2 uppercase tracking-widest">Now → Q3 2026</p>
                                         <p className="text-xs font-black text-white uppercase mb-2">Foundation</p>
-                                        <ul className="text-[10px] text-gray-400 space-y-1 font-medium leading-relaxed">
-                                            <li>• UK Ltd incorporation</li>
-                                            <li>• SEIS Advance Assurance</li>
-                                            <li>• MVP build</li>
-                                            <li>• Pilot partner signed</li>
+                                        <ul className="text-[10px] text-gray-400 space-y-1 font-medium leading-relaxed normal-case">
+                                            <li>· UK Ltd incorporation</li>
+                                            <li>· SEIS Advance Assurance</li>
+                                            <li>· MVP build</li>
+                                            <li>· Pilot partner signed</li>
                                         </ul>
                                     </div>
                                     <div className="border border-white/10 bg-white/5 p-4">
                                         <p className="text-[10px] font-mono text-gray-500 mb-2 uppercase tracking-widest">Q4 2026</p>
                                         <p className="text-xs font-black text-white uppercase mb-2">Beta Deploy</p>
-                                        <ul className="text-[10px] text-gray-400 space-y-1 font-medium leading-relaxed">
-                                            <li>• 1 live 3PL yard (UK)</li>
-                                            <li>• DLR + PoP validated</li>
-                                            <li>• First ESG tokens issued</li>
-                                            <li>• Demurrage savings measured</li>
+                                        <ul className="text-[10px] text-gray-400 space-y-1 font-medium leading-relaxed normal-case">
+                                            <li>· 1 live 3PL yard (UK)</li>
+                                            <li>· PoP validated</li>
+                                            <li>· First ESG tokens issued</li>
+                                            <li>· Demurrage savings measured</li>
                                         </ul>
                                     </div>
                                     <div className="border border-white/10 bg-white/5 p-4">
-                                        <p className="text-[10px] font-mono text-gray-500 mb-2 uppercase tracking-widest">Q1-Q2 2027</p>
+                                        <p className="text-[10px] font-mono text-gray-500 mb-2 uppercase tracking-widest">Q1–Q2 2027</p>
                                         <p className="text-xs font-black text-white uppercase mb-2">Commercial Scale</p>
-                                        <ul className="text-[10px] text-gray-400 space-y-1 font-medium leading-relaxed">
-                                            <li>• 3 paying 3PL clients</li>
-                                            <li>• £500K ARR milestone</li>
-                                            <li>• DACH market entry</li>
-                                            <li>• Series A preparation</li>
+                                        <ul className="text-[10px] text-gray-400 space-y-1 font-medium leading-relaxed normal-case">
+                                            <li>· 3 paying 3PL clients</li>
+                                            <li>· £500K ARR milestone</li>
+                                            <li>· DACH market entry</li>
+                                            <li>· Series A preparation</li>
                                         </ul>
                                     </div>
                                     <div className="border border-emerald/20 bg-emerald/5 p-4">
-                                        <p className="text-[10px] font-mono text-emerald mb-2 uppercase tracking-widest">Q3-Q4 2027</p>
+                                        <p className="text-[10px] font-mono text-emerald mb-2 uppercase tracking-widest">Q3–Q4 2027</p>
                                         <p className="text-xs font-black text-white uppercase mb-2">Series A</p>
-                                        <ul className="text-[10px] text-gray-400 space-y-1 font-medium leading-relaxed">
-                                            <li>• Series A (£4M-£8M)</li>
-                                            <li>• 10+ operator network</li>
-                                            <li>• N² effect demonstrable</li>
-                                            <li>• US market entry</li>
+                                        <ul className="text-[10px] text-gray-400 space-y-1 font-medium leading-relaxed normal-case">
+                                            <li>· Series A (£4M–£8M)</li>
+                                            <li>· 10+ operator network</li>
+                                            <li>· N² effect demonstrable</li>
+                                            <li>· US market entry</li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* CTA */}
+                            {/* CTA — aligned with agreed phrasing */}
                             <div className="text-center border-t border-white/10 pt-8">
-                                <p className="text-sm text-gray-400 mb-4">
-                                    Interested in learning more about this investment opportunity?
+                                <p className="text-sm text-gray-400 mb-2 normal-case">
+                                    If this opportunity fits your thesis, simply reply:
                                 </p>
-                                <a href="mailto:olden.office3d@gmail.com?subject=Investment Inquiry — Olden Pre-Seed Round" 
+                                <p className="text-sm font-mono text-safety mb-6 tracking-widest">"Interested — let's talk."</p>
+                                <a href="mailto:olden.office3d@gmail.com?subject=Investment%20Inquiry%20%E2%80%94%20Olden%20Pre-Seed%20Round"
                                    className="inline-block bg-safety text-navy font-black uppercase tracking-widest text-sm px-10 py-4 hover:opacity-85 transition-opacity">
                                     Request Investor Materials
                                 </a>
-                                <p className="text-xs text-gray-600 mt-3 font-mono">
+                                <p className="text-xs text-gray-600 mt-3 font-mono normal-case">
                                     Full pitch deck, financial projections, and IP documentation available under NDA
                                 </p>
                             </div>
                         </div>
                     </section>
+
                     {/* CONTACT */}
                     <section className="w-full max-w-6xl mx-auto px-6 lg:px-0 pb-20">
                         <div className="border-t border-white/10 pt-16 flex flex-col md:flex-row justify-between items-start gap-8">
                             <div className="space-y-3">
                                 <p className="text-xs font-mono text-safety/60 uppercase tracking-widest">Contact</p>
                                 <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white leading-tight">Want to know more<br/>or explore collaboration?</h2>
-                                <p className="text-sm text-gray-500 normal-case font-medium max-w-sm leading-relaxed">
-                                    Write to us about the Olden Project.
-                                </p>
+                                <p className="text-sm text-gray-500 normal-case font-medium max-w-sm leading-relaxed">Write to us about the Olden Project.</p>
                             </div>
                             <div className="flex flex-col items-start md:items-end gap-2 mt-2">
                                 <a href="mailto:olden.office3d@gmail.com"
-                                    className="inline-block bg-safety text-navy font-black uppercase tracking-widest text-sm px-8 py-4 hover:opacity-85 transition-opacity">
+                                   className="inline-block bg-safety text-navy font-black uppercase tracking-widest text-sm px-8 py-4 hover:opacity-85 transition-opacity">
                                     Write to us
                                 </a>
-                                <span className="text-[11px] text-gray-600 normal-case font-mono select-all cursor-text">
-                                    olden.office3d@gmail.com
-                                </span>
+                                <span className="text-[11px] text-gray-600 normal-case font-mono select-all cursor-text">olden.office3d@gmail.com</span>
                             </div>
                         </div>
                     </section>
@@ -919,28 +770,31 @@
                     {/* FOOTER */}
                     <footer className="w-full max-w-6xl mx-auto px-6 lg:px-0 pb-12 border-t border-white/10 pt-8">
                         <div className="flex flex-col md:flex-row justify-between items-start gap-6">
-                            <div className="space-y-2">
-                                <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">Olden Project</p>
+                            <div className="space-y-3 max-w-2xl">
                                 <p className="text-[11px] text-safety/70 font-bold uppercase tracking-widest leading-relaxed">
-                                    IP Protected · Triple-Patent Moat · Multiple US Provisional Patent Applications Pending
+                                    Olden Project · IP Protected · Triple-Patent Moat · Multiple US Provisional Patent Applications Pending
                                 </p>
-                                <p className="text-[11px] text-gray-600 uppercase font-medium tracking-wider">
-                                    Founder & Chairman: Nazar Zablotskyi · USPTO Disclosure Protocol
+                                <p className="text-[10px] text-gray-600 normal-case font-medium leading-relaxed">
+                                    PRE-INCORPORATION NOTICE: This website is maintained by Nazar Zablotskyi in personal capacity, prior to the incorporation of Olden Technologies Ltd as a UK private limited company. All intellectual property rights and equity are held solely by Nazar Zablotskyi (Founder).
+                                </p>
+                                <p className="text-[10px] text-gray-600 normal-case font-medium leading-relaxed">
+                                    FINANCIAL PROMOTION DISCLAIMER: Nothing on this website constitutes a financial promotion or securities offering within the meaning of the Financial Services and Markets Act 2000 or the Financial Promotion Order 2005. This website is directed only at persons exempt under Article 48 or Article 50 of the FPO 2005. Prospective investors must seek independent legal and financial advice.
+                                </p>
+                                <p className="text-[10px] text-gray-600 normal-case font-medium leading-relaxed">
+                                    SEIS DISCLAIMER: Tax reliefs subject to HMRC Advance Assurance (application pending post-incorporation) and individual investor circumstances. PRIVACY: No tracking cookies used. Personal data processed under UK GDPR for investor enquiries only. Retention: 36 months. ICO complaint right: <a href="https://ico.org.uk" target="_blank" rel="noopener" style={{color:'#FF9F1C'}}>ico.org.uk</a>.
+                                </p>
+                                <p className="text-[10px] text-gray-700 normal-case font-medium">
+                                    © 2026 Nazar Zablotskyi. All rights reserved. Governed by the laws of England and Wales.
                                 </p>
                             </div>
                             <div className="space-y-1 md:text-right shrink-0">
-                                <p className="text-[10px] text-gray-700 normal-case font-medium">
-                                    © 2026 Nazar Zablotskyi. All rights reserved.
-                                </p>
-                                <p className="text-[10px] text-gray-700 normal-case font-medium">
-                                    Governed by the laws of England and Wales.
-                                </p>
-                                <p className="text-[10px] text-gray-700 normal-case font-medium">
-                                    This website does not collect or process personal data.
-                                </p>
+                                <p className="text-xs font-black text-safety uppercase tracking-widest">OLDEN</p>
+                                <p className="text-[10px] text-gray-600 uppercase tracking-widest">Technologies</p>
+                                <p className="text-[10px] text-gray-700 normal-case">forming · UK Ltd · 2026</p>
                             </div>
                         </div>
                     </footer>
+
                 </div>
             );
         }

@@ -3,140 +3,624 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olden Project — Zero-Hardware Middle-Mile Logistics · SEIS Eligible · Pre-Seed 2026</title>
-
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-    <meta name="googlebot" content="index, follow">
-    <meta name="bingbot" content="index, follow">
-    <meta name="description" content="Olden: zero-hardware logistics coordination platform for 3PL middle-mile operations. Patent pending. SEIS eligible. Pre-seed raising £375K. UK-based.">
-    <meta name="keywords" content="logistics technology, warehouse coordination, middle-mile logistics, SaaS, patent pending, SEIS, UK startup, investor">
-    <meta name="author" content="Nazar Zablotskyi">
-    <meta name="theme-color" content="#0A1128">
-    <meta name="cookie-policy" content="This website does not use tracking, analytics, or advertising cookies.">
-    <link rel="canonical" href="https://oldenoffice3d-art.github.io/olden-project/">
-    <link rel="sitemap" type="application/xml" href="/olden-project/sitemap.xml">
-
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Olden Project">
-    <meta property="og:title" content="Olden Project: For the Millions, not only for the Billions">
-    <meta property="og:description" content="Zero-hardware logistics coordination. Patent Pending. SEIS eligible. Pre-seed raising £375K. UK-based.">
+    <meta name="color-scheme" content="dark">
+    <title>Olden — Zero-Variance Middle-Mile Logistics</title>
+    <meta name="description" content="Olden eliminates demurrage and detention losses in 3PL logistics. Zero hardware. Patent pending. SEIS eligible. Pre-seed raising.">
+    <meta property="og:title" content="Olden — For the Millions, not only for the Billions">
+    <meta property="og:description" content="Zero-hardware logistics coordination. No sensors. No installation. Just one more truck, processed.">
     <meta property="og:url" content="https://oldenoffice3d-art.github.io/olden-project/">
     <meta property="og:locale" content="en_GB">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Olden Project: For the Millions, not only for the Billions">
-    <meta name="twitter:description" content="Zero-hardware logistics coordination. Patent Pending. SEIS eligible. UK-based.">
-    <meta name="twitter:creator" content="@oldenproject">
-
+    <meta name="theme-color" content="#0A1128">
+    <link rel="canonical" href="https://oldenoffice3d-art.github.io/olden-project/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap" rel="stylesheet">
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Olden Project",
-        "description": "Zero-hardware logistics coordination platform for middle-mile operations.",
-        "url": "https://oldenoffice3d-art.github.io/olden-project/",
-        "founder": {"@type": "Person", "name": "Nazar Zablotskyi", "jobTitle": "Founder & Chairman"},
-        "foundingLocation": {"@type": "Place", "addressCountry": "GB"},
-        "contactPoint": {"@type": "ContactPoint", "email": "olden.office3d@gmail.com", "contactType": "General Enquiries"}
-    }
-    </script>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: '#0A1128',
-                        safety: '#FF9F1C',
-                        grid: '#2B2D42',
-                        emerald: '#10b981',
-                        urbanBlue: '#3b82f6',
-                        signalRed: '#ef4444'
-                    },
-                    fontFamily: {
-                        mono: ['JetBrains Mono', 'monospace'],
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
+    {"@context":"https://schema.org","@type":"Organization","name":"Olden Technologies","url":"https://oldenoffice3d-art.github.io/olden-project/","founder":{"@type":"Person","name":"Nazar Zablotskyi"},"foundingLocation":{"@type":"Place","name":"United Kingdom"}}
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Inter:wght@400;700;900&display=swap');
-        body { background-color: #03050a; font-family: 'Inter', sans-serif; color: white; overflow-x: hidden; }
-
-        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
-        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 18px; width: 18px; background: #FF9F1C; cursor: pointer; margin-top: -6px; border-radius: 99px; transition: all 0.2s; border: 2px solid white; }
-        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: #2B2D42; border-radius: 0px; }
-
-        .glass-panel { background: rgba(10, 17, 40, 0.8); backdrop-filter: blur(15px); border: 1px solid rgba(255, 159, 28, 0.2); }
-
-        .fade-enter-active { animation: fadeIn 0.4s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .phone-frame { width: 320px; height: 640px; background: #1A1C25; border: 10px solid #2B2D42; border-radius: 40px; position: relative; box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8); margin: 0 auto; }
-        .phone-screen { width: 100%; height: 100%; background: black; border-radius: 30px; overflow: hidden; position: relative; }
-        .phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 20px; background: black; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; z-index: 50; }
-        .tablet-frame { width: 100%; max-width: 900px; height: 600px; background: #1F212B; border: 12px solid #2B2D42; border-radius: 30px; position: relative; box-shadow: 0 50px 100px -30px rgba(0,0,0,0.9); margin: 0 auto; }
-        .tablet-screen { width: 100%; height: 100%; background: #0A1128; border-radius: 18px; overflow: hidden; position: relative; display: flex; flex-direction: column; }
-
-        .demo-wrapper { width: 100%; }
-        .demo-inner { display: flex; align-items: center; justify-content: center; min-height: 660px; padding: 32px 0; background: rgba(10,17,40,0.2); border: 1px solid rgba(255,255,255,0.05); position: relative; }
-
-        .mobile-demo { display: none; width: 100%; background: #0A1128; border: 1px solid rgba(255,255,255,0.05); }
-        .mobile-topbar { height: 40px; background: rgba(0,0,0,0.4); border-bottom: 1px solid #2B2D42; display: flex; justify-content: space-between; align-items: center; padding: 0 16px; font-size: 10px; font-weight: 700; color: white; opacity: 0.8; }
-        .mobile-body { display: flex; flex-direction: column; }
-        .mobile-queue { border-bottom: 1px solid #2B2D42; }
-        .mobile-truck-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; border-bottom: 1px solid #2B2D42; background: #0A1128; cursor: pointer; transition: background 0.15s; }
-        .mobile-truck-row.active { background: #111827; }
-        .mobile-controls { padding: 16px; }
-        .mobile-cmd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
-        .mobile-cmd-btn { border: 2px solid #2B2D42; background: #050814; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 16px; cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 18px; text-transform: uppercase; color: #8D99AE; }
-        .mobile-cmd-btn.stop-active { background: #B00020; border-color: white; color: white; }
-        .mobile-cmd-btn.go-active { background: #00C853; border-color: white; color: white; }
-        .mobile-status { display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: rgba(0,0,0,0.4); border: 1px solid #2B2D42; margin: 0 16px 12px; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: white; }
-        .mobile-log { padding: 0 16px 16px; }
-        .mobile-log-title { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; color: #8D99AE; margin-bottom: 8px; padding-top: 8px; border-top: 1px solid #2B2D42; }
-        .mobile-log-entry { border-left: 2px solid #FF9F1C; padding: 4px 8px; margin-bottom: 6px; background: rgba(255,255,255,0.02); }
-        .mobile-log-time { font-size: 9px; color: #8D99AE; font-weight: 700; }
-        .mobile-log-msg { font-size: 11px; font-weight: 900; color: white; text-transform: uppercase; }
-        .mobile-driver { display: none; width: 100%; border: 1px solid rgba(255,255,255,0.05); }
-
-        /* PRE-INC BANNER */
-        .pre-inc-banner {
-            background: rgba(255,159,28,0.07);
-            border-bottom: 1px solid rgba(255,159,28,0.25);
-            padding: 10px 24px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px; color: #FF9F1C; line-height: 1.6;
+        :root {
+            --navy: #0A1128;
+            --navy-mid: #0F1A3A;
+            --navy-light: #162048;
+            --orange: #FF9F1C;
+            --grey-mid: #8D99AE;
+            --grey-light: #D0D4E0;
+            --white: #F4F5F8;
+            --white-pure: #FFFFFF;
+            --green: #00C48C;
+            --mono: 'IBM Plex Mono', monospace;
+            --sans: 'IBM Plex Sans', sans-serif;
+            --cond: 'IBM Plex Sans Condensed', sans-serif;
+            --max: 1040px;
+            --pad: clamp(20px, 5vw, 80px);
         }
-        .pre-inc-banner strong { color: white; }
-
-        @media (max-width: 767px) {
-            .desktop-demo { display: none !important; }
-            .mobile-demo { display: block; }
-            .mobile-driver { display: block; }
-            .pre-inc-banner { font-size: 10px; padding: 10px 16px; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--navy);
+            color: var(--white);
+            font-family: var(--sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: #0A1128; }
-        ::-webkit-scrollbar-thumb { background: #2B2D42; }
+        /* GRID */
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image:
+                linear-gradient(rgba(255,159,28,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,159,28,0.025) 1px, transparent 1px);
+            background-size: 56px 56px;
+            pointer-events: none; z-index: 0;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 var(--pad); height: 56px;
+            background: rgba(10,17,40,0.96); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,159,28,0.12);
+        }
+        .nav-logo { font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--orange); letter-spacing: .1em; }
+        .nav-cta {
+            font-family: var(--mono); font-size: 11px; letter-spacing: .08em;
+            text-transform: uppercase; color: var(--navy);
+            background: var(--orange); padding: 8px 18px;
+            text-decoration: none; transition: opacity .2s;
+        }
+        .nav-cta:hover { opacity: .85; }
+        .nav-links { display: flex; gap: 28px; list-style: none; }
+        .nav-links a { font-family: var(--mono); font-size: 11px; color: var(--grey-mid); text-decoration: none; letter-spacing: .06em; text-transform: uppercase; transition: color .2s; }
+        .nav-links a:hover { color: var(--orange); }
+
+        /* CONTAINER */
+        .wrap { position: relative; z-index: 1; max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-rows: 1fr auto;
+            padding-top: 56px;
+        }
+        .hero-body {
+            display: flex; flex-direction: column; justify-content: center;
+            padding: 80px 0 48px;
+        }
+        .hero-kicker {
+            font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+            color: var(--orange); text-transform: uppercase;
+            display: flex; align-items: center; gap: 12px; margin-bottom: 28px;
+        }
+        .hero-kicker::before { content: ''; width: 40px; height: 1px; background: var(--orange); }
+        .hero-h1 {
+            font-family: var(--cond);
+            font-size: clamp(56px, 10vw, 112px);
+            font-weight: 700; line-height: .9;
+            letter-spacing: -.03em;
+            color: var(--white-pure);
+            margin-bottom: 20px;
+        }
+        .hero-h1 em { color: var(--orange); font-style: normal; }
+        .hero-sub {
+            font-family: var(--cond);
+            font-size: clamp(18px, 3vw, 28px);
+            font-weight: 600; color: var(--grey-mid);
+            line-height: 1.2; margin-bottom: 40px;
+            max-width: 600px;
+        }
+        .hero-body-text {
+            font-size: 17px; font-weight: 300;
+            color: var(--grey-light); max-width: 520px;
+            line-height: 1.75; margin-bottom: 48px;
+            border-left: 2px solid var(--orange); padding-left: 20px;
+        }
+        .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-block; font-family: var(--mono); font-size: 12px;
+            letter-spacing: .08em; text-transform: uppercase;
+            background: var(--orange); color: var(--navy); padding: 14px 28px;
+            text-decoration: none; transition: opacity .2s; font-weight: 600;
+        }
+        .btn-primary:hover { opacity: .88; }
+        .btn-ghost {
+            display: inline-block; font-family: var(--mono); font-size: 12px;
+            letter-spacing: .08em; text-transform: uppercase;
+            color: var(--grey-light); padding: 14px 28px;
+            border: 1px solid rgba(255,255,255,0.15); text-decoration: none; transition: border-color .2s;
+        }
+        .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+
+        /* HERO TICKER */
+        .hero-ticker {
+            display: grid; grid-template-columns: repeat(4,1fr); gap: 1px;
+            background: rgba(255,159,28,0.12); border-top: 1px solid rgba(255,159,28,0.12);
+        }
+        .ticker-item { background: var(--navy); padding: 22px 20px; text-align: center; }
+        .ticker-val { font-family: var(--mono); font-size: 24px; font-weight: 600; color: var(--orange); display: block; margin-bottom: 4px; }
+        .ticker-lbl { font-size: 10px; color: var(--grey-mid); letter-spacing: .08em; text-transform: uppercase; }
+
+        /* ─── SECTION COMMON ─── */
+        section { padding: 96px 0; }
+        .label {
+            font-family: var(--mono); font-size: 10px; letter-spacing: .18em;
+            color: var(--orange); text-transform: uppercase;
+            display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+        }
+        .label::after { content: ''; flex: 1; height: 1px; background: rgba(255,159,28,0.18); }
+        h2 {
+            font-family: var(--cond); font-size: clamp(32px, 5vw, 56px);
+            font-weight: 700; line-height: 1.0; letter-spacing: -.02em;
+            color: var(--white-pure); margin-bottom: 48px;
+        }
+        h2 span { color: var(--orange); }
+
+        /* ─── PROBLEM ─── */
+        .problem-lede {
+            font-size: clamp(22px, 3.5vw, 38px);
+            font-family: var(--cond); font-weight: 600;
+            color: var(--white-pure); line-height: 1.2;
+            max-width: 720px; margin-bottom: 56px;
+        }
+        .problem-lede em { color: var(--orange); font-style: normal; }
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.05); margin-bottom: 40px; }
+        .stat-card { background: var(--navy-mid); padding: 32px 24px; }
+        .stat-num { font-family: var(--mono); font-size: 44px; font-weight: 600; color: var(--orange); line-height: 1; margin-bottom: 10px; }
+        .stat-desc { font-size: 14px; color: var(--grey-light); line-height: 1.55; }
+        .stat-desc strong { color: var(--white-pure); font-weight: 500; }
+        .callout {
+            background: rgba(255,159,28,0.05); border-left: 3px solid var(--orange);
+            padding: 22px 28px; font-size: 16px; font-weight: 300;
+            color: var(--grey-light); line-height: 1.75;
+        }
+
+        /* ─── HOW IT WORKS ─── */
+        .how-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(255,255,255,0.05); margin-bottom: 40px; }
+        .how-step { background: var(--navy-mid); padding: 32px 26px; }
+        .how-n { font-family: var(--mono); font-size: 36px; font-weight: 600; color: rgba(255,159,28,.25); line-height: 1; margin-bottom: 16px; }
+        .how-title { font-size: 16px; font-weight: 600; color: var(--white-pure); margin-bottom: 8px; }
+        .how-tag { display: inline-block; font-family: var(--mono); font-size: 10px; color: var(--orange); border: 1px solid rgba(255,159,28,.25); padding: 3px 8px; margin-bottom: 12px; }
+        .how-desc { font-size: 13px; color: var(--grey-mid); line-height: 1.55; }
+
+        /* ─── DEMO ─── */
+        .demo-wrap {
+            width: 100%; height: 820px;
+            border: 1px solid rgba(255,159,28,.15);
+            overflow: hidden; background: #03050a;
+        }
+        .demo-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+        .demo-caption { font-family: var(--mono); font-size: 10px; color: var(--grey-mid); letter-spacing: .05em; margin-top: 10px; }
+
+        /* ─── NETWORK EFFECT ─── */
+        .network-hero {
+            text-align: center; padding: 64px 0;
+            border: 1px solid rgba(255,255,255,0.05); background: var(--navy-mid); margin-bottom: 40px;
+        }
+        .n2-badge { font-family: var(--cond); font-size: 96px; font-weight: 700; color: var(--orange); line-height: 1; margin-bottom: 12px; }
+        .network-desc { font-size: 16px; color: var(--grey-light); max-width: 560px; margin: 0 auto; line-height: 1.7; }
+        .network-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.05); }
+        .net-item { background: var(--navy-mid); padding: 24px 22px; }
+        .net-val { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--green); margin-bottom: 6px; }
+        .net-desc { font-size: 13px; color: var(--grey-mid); line-height: 1.5; }
+
+        /* ─── ESG ─── */
+        .esg-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(0,196,140,.12); border: 1px solid rgba(0,196,140,.15); margin-bottom: 32px; }
+        .esg-cell { background: rgba(0,196,140,.04); padding: 28px 20px; text-align: center; }
+        .esg-val { font-family: var(--mono); font-size: 28px; font-weight: 600; color: var(--green); margin-bottom: 4px; }
+        .esg-lbl { font-size: 12px; color: var(--grey-mid); line-height: 1.4; }
+
+        /* ─── SEIS INVEST ─── */
+        .invest-hero {
+            background: rgba(255,159,28,.06); border: 1px solid rgba(255,159,28,.22);
+            padding: 48px 40px; margin-bottom: 24px;
+        }
+        .raise-amount { font-family: var(--cond); font-size: clamp(56px,8vw,88px); font-weight: 700; color: var(--orange); line-height: 1; margin-bottom: 6px; }
+        .raise-sub { font-family: var(--mono); font-size: 13px; color: var(--grey-mid); letter-spacing: .04em; margin-bottom: 36px; }
+        .use-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(255,255,255,.06); }
+        .use-cell { background: var(--navy-mid); padding: 18px 16px; }
+        .use-pct { font-family: var(--mono); font-size: 26px; font-weight: 600; color: var(--orange); margin-bottom: 4px; }
+        .use-lbl { font-size: 13px; color: var(--grey-mid); line-height: 1.4; }
+
+        .seis-banner {
+            background: rgba(0,196,140,.07); border: 1px solid rgba(0,196,140,.28);
+            padding: 20px 24px; display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px;
+        }
+        .seis-pill { font-family: var(--mono); font-size: 10px; font-weight: 600; color: var(--green); border: 1px solid rgba(0,196,140,.4); padding: 4px 10px; white-space: nowrap; letter-spacing: .08em; margin-top: 2px; }
+        .seis-banner p { font-size: 13px; color: var(--grey-light); line-height: 1.6; }
+        .seis-banner strong { color: var(--white-pure); }
+
+        .seis-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: rgba(255,255,255,.05); margin-bottom: 16px; }
+        .seis-cell { background: var(--navy-mid); padding: 22px 16px; text-align: center; }
+        .seis-val { font-family: var(--mono); font-size: 26px; font-weight: 600; color: var(--green); margin-bottom: 6px; }
+        .seis-lbl { font-size: 11px; color: var(--grey-mid); line-height: 1.4; }
+
+        .terms-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 24px; }
+        .term-card { font-family: var(--mono); font-size: 12px; color: var(--grey-mid); padding: 14px 16px; border: 1px solid rgba(255,255,255,.08); line-height: 1.65; }
+        .term-card strong { color: var(--white-pure); display: block; font-size: 13px; margin-bottom: 4px; }
+        .seis-note { font-family: var(--mono); font-size: 10px; color: var(--grey-mid); line-height: 1.7; letter-spacing: .02em; }
+
+        /* ─── CTA ─── */
+        .cta-section {
+            background: var(--navy-mid); border: 1px solid rgba(255,159,28,.15);
+            padding: 64px 56px; text-align: center;
+        }
+        .cta-h { font-family: var(--cond); font-size: clamp(28px,4vw,48px); font-weight: 700; color: var(--white-pure); margin-bottom: 16px; }
+        .cta-sub { font-size: 16px; color: var(--grey-mid); max-width: 480px; margin: 0 auto 36px; line-height: 1.6; }
+        .cta-phrase { font-family: var(--mono); font-size: 14px; color: var(--orange); margin-bottom: 28px; letter-spacing: .04em; }
+
+        /* ─── FOOTER ─── */
+        footer { border-top: 1px solid rgba(255,159,28,.12); padding: 48px 0; }
+        .footer-grid { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: start; }
+        .footer-legal { font-family: var(--mono); font-size: 10px; color: var(--grey-mid); line-height: 1.9; letter-spacing: .03em; }
+        .footer-legal a { color: var(--orange); text-decoration: none; }
+        .footer-brand { font-family: var(--mono); font-size: 18px; font-weight: 600; color: var(--orange); text-align: right; }
+        .footer-brand span { display: block; font-size: 10px; color: var(--grey-mid); letter-spacing: .08em; margin-top: 2px; }
+
+        /* ─── PRE-INC BANNER ─── */
+        .pre-inc {
+            background: rgba(255,159,28,0.07); border: 1px solid rgba(255,159,28,0.28);
+            padding: 11px 18px; font-family: var(--mono); font-size: 11px;
+            color: var(--orange); line-height: 1.6; margin-bottom: 0;
+        }
+        .pre-inc strong { color: var(--white-pure); }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+        .hero-kicker  { animation: fadeUp .55s ease both; }
+        .hero-h1      { animation: fadeUp .55s ease .08s both; }
+        .hero-sub     { animation: fadeUp .55s ease .16s both; }
+        .hero-body-text { animation: fadeUp .55s ease .24s both; }
+        .hero-actions { animation: fadeUp .55s ease .32s both; }
+        .hero-ticker  { animation: fadeUp .55s ease .40s both; }
+        .pre-inc      { animation: fadeUp .55s ease .48s both; }
+
+        /* Strict No-Radius Constraint Override */
+        * {
+            border-radius: 0px !important;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media(max-width:720px) {
+            .hero-ticker,.stats-row,.how-grid,.seis-row,.use-row,.network-row,.esg-strip,.terms-row { grid-template-columns:1fr; }
+            .footer-grid { grid-template-columns:1fr; }
+            .invest-hero { padding:32px 24px; }
+            .cta-section { padding:48px 28px; }
+            nav .nav-links { display:none; }
+        }
     </style>
 </head>
 <body>
-    <!-- PRE-INCORPORATION BANNER -->
-    <div class="pre-inc-banner">
-        ⬡ &nbsp;<strong>Pre-incorporation stage.</strong>&nbsp; Olden Technologies Ltd is forming as a UK private limited company. This site is maintained by Nazar Zablotskyi (Founder) in personal capacity as holder of all IP rights. This does not constitute a financial promotion. Prospective investors should seek independent advice.
+
+<nav>
+    <div class="nav-logo">OLDEN</div>
+    <ul class="nav-links">
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#invest">Invest</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="mailto:olden.office3d@gmail.com?subject=Investment%20Inquiry%20%E2%80%94%20Olden%20Pre-Seed%20Round">Request Investor Materials →</a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<div class="wrap">
+<section class="hero">
+    <div class="hero-body">
+        <div class="hero-kicker">Zero-Hardware · IP-Protected · SEIS Eligible</div>
+        <h1 class="hero-h1">For the <em>Millions</em>,<br>not only for<br>the Billions.</h1>
+        <p class="hero-sub">Middle-mile logistics coordination.<br>No sensors. No installation. Just one more truck, processed.</p>
+        <p class="hero-body-text">
+            Whether it is a high-volume hub in Central London, a congested grid in New York, or a neighbourhood depot in Tokyo — the operational desire is always the same: to process just one more truck.
+        </p>
+        <div class="hero-actions">
+            <a class="btn-primary" href="mailto:olden.office3d@gmail.com?subject=Investment%20Inquiry%20%E2%80%94%20Olden%20Pre-Seed%20Round">Request Investor Materials →</a>
+            <a class="btn-ghost" href="#demo">See Live Demo ↓</a>
+        </div>
+    </div>
+    <div>
+        <div class="pre-inc">
+            ⬡ &nbsp;<strong>Pre-incorporation stage.</strong>&nbsp; Olden Technologies Ltd is forming as a UK private limited company. This website is maintained by Nazar Zablotskyi (Founder) in personal capacity. This does not constitute a financial promotion. Prospective investors should seek independent advice.
+        </div>
+        <div class="hero-ticker">
+            <div class="ticker-item"><span class="ticker-val">£58B</span><span class="ticker-lbl">UK+EU Market</span></div>
+            <div class="ticker-item"><span class="ticker-val">3</span><span class="ticker-lbl">IP Filings</span></div>
+            <div class="ticker-item"><span class="ticker-val">£0</span><span class="ticker-lbl">Client CAPEX</span></div>
+            <div class="ticker-item"><span class="ticker-val">N²</span><span class="ticker-lbl">Network Effect</span></div>
+        </div>
+    </div>
+</section>
+</div>
+
+<!-- ═══ PROBLEM ═══ -->
+<section id="problem">
+<div class="wrap">
+    <div class="label">The Problem</div>
+    <p class="problem-lede">$82 billion disappears every year.<br><em>Nobody is solving it.</em></p>
+    <div class="stats-row">
+        <div class="stat-card">
+            <div class="stat-num">$82B</div>
+            <div class="stat-desc"><strong>Annual global demurrage and detention costs.</strong> Logistics yards are coordination dead zones. GPS fails inside warehouse structures. Internet is absent. Drivers wait illegally. Revenue is lost.</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">43%</div>
+            <div class="stat-desc"><strong>Of all logistics delays</strong> originate in the middle-mile — the handoff zone between fulfilment warehouses and last-mile carriers. The largest undigitised gap in modern supply chains.</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">Zero</div>
+            <div class="stat-desc"><strong>Existing solutions that function without GPS or internet.</strong> WMS, TMS, GPS tracking — all stop at the warehouse gate. The yard itself remains an operational black box.</div>
+        </div>
+    </div>
+    <div class="callout">
+        Existing solutions — WMS, TMS, GPS tracking — stop at the warehouse gate or begin at the road. The yard itself: the handoff zone, the dwell point, the demurrage origin — remains an operational black box.
+    </div>
+</div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section>
+<div class="wrap">
+    <div class="label">How It Works</div>
+    <h2>Three Layers.<br><span>One Zero-CAPEX Platform.</span></h2>
+    <div class="how-grid">
+        <div class="how-step">
+            <div class="how-n">01</div>
+            <span class="how-tag">Edge Layer</span>
+            <div class="how-title">BYOD Hardware Trust Node</div>
+            <div class="how-desc">The driver's existing smartphone becomes a calibrated edge sensor — IMU vibration array, GPS to 4 decimal places, cryptographic Proof-of-Presence generated on-device. No hardware to procure. No app to install for the facility.</div>
+        </div>
+        <div class="how-step">
+            <div class="how-n">02</div>
+            <span class="how-tag">Fog Layer</span>
+            <div class="how-title">Section Control Engine</div>
+            <div class="how-desc">Local processing performs deterministic timing arbitration and vehicle state management per yard zone. Functions fully offline — syncs via immutable Shadow Ledger on reconnect. Zero data loss, zero payment disputes.</div>
+        </div>
+        <div class="how-step">
+            <div class="how-n">03</div>
+            <span class="how-tag">Cloud Layer</span>
+            <div class="how-title">Global Orchestration</div>
+            <div class="how-desc">Proprietary integration layer unifies data across operators into a single operational state model. Payment clearing triggered automatically upon verified event completion. ESG proof generated automatically.</div>
+        </div>
+    </div>
+    <div class="callout">
+        Every truck movement is cryptographically timestamped, deterministically scheduled, and financially cleared the moment it completes — with ESG proof generated automatically.
+    </div>
+</div>
+</section>
+
+<!-- ═══ LIVE DEMO ═══ -->
+<section id="demo">
+<div class="wrap">
+    <div class="label">Interactive Technology Preview</div>
+    <h2>See It<br><span>In Action.</span></h2>
+    <p style="font-size:15px;color:var(--grey-mid);max-width:600px;line-height:1.7;margin-bottom:28px;">
+        A live simulation of the Olden coordination layer. Switch between the <strong style="color:var(--white-pure)">Admin Terminal</strong> (facility operator on tablet) and the <strong style="color:var(--white-pure)">Driver Pager</strong> (driver on smartphone). Select a vehicle, issue a GO or STOP — the pager responds in real time.
+    </p>
+    <div class="demo-wrap">
+        <iframe id="demo-iframe" title="Olden Interactive Demo" sandbox="allow-scripts allow-same-origin"></iframe>
+    </div>
+    <p class="demo-caption">INTERACTIVE DEMO · LIVE SIMULATION · ADMIN TERMINAL + DRIVER PAGER · NO DATA IS TRANSMITTED</p>
+</div>
+</section>
+
+<!-- ═══ NETWORK EFFECT ═══ -->
+<section>
+<div class="wrap">
+    <div class="label">Platform Logic</div>
+    <h2>The More Participants,<br><span>The More Valuable It Becomes.</span></h2>
+    <div class="network-hero">
+        <div class="n2-badge">N²</div>
+        <p class="network-desc">Platform value grows with every participant added. Each new operator generates cross-operator coordination data, scheduling signals, and ESG baselines that benefit all existing participants. Switching cost grows quadratically.</p>
+    </div>
+    <div class="network-row">
+        <div class="net-item">
+            <div class="net-val">£0 hardware</div>
+            <div class="net-desc">Driver's existing smartphone is the edge node. No procurement. No installation. No hardware risk. Olden deploys in days — competitors face 6–18 month hardware cycles.</div>
+        </div>
+        <div class="net-item">
+            <div class="net-val">&gt;80% gross margin</div>
+            <div class="net-desc">No hardware COGS. Cloud infrastructure only. Cost to serve one operator: BYOD deployment (£0) + 2 days onboarding. Target ARR per operator: £60K–£236K.</div>
+        </div>
+        <div class="net-item">
+            <div class="net-val">Dark site monopoly</div>
+            <div class="net-desc">Proprietary sensor-fusion navigation operates inside warehouses and GPS-denied environments. AWS and commercial navigation platforms cannot operate here. Olden can.</div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- ═══ ESG ═══ -->
+<section>
+<div class="wrap">
+    <div class="label">ESG & Climate</div>
+    <h2>Hardware-Verified<br><span>Carbon Intelligence.</span></h2>
+    <div class="esg-strip">
+        <div class="esg-cell"><div class="esg-val">$32.8</div><div class="esg-lbl">Per tonne CO₂ — ESG Token value</div></div>
+        <div class="esg-cell"><div class="esg-val">Net Zero</div><div class="esg-lbl">Amazon Climate Pledge + EU CSRD alignment</div></div>
+        <div class="esg-cell"><div class="esg-val">2040</div><div class="esg-lbl">Maersk Net Zero target — Olden is the evidence layer</div></div>
+    </div>
+    <div class="callout">
+        From January 2025, large EU companies must report Scope 3 emissions under CSRD. 3PL operators urgently need hardware-verified zero-idling proof. Olden is the only turnkey solution generating this data automatically — at the source, on the edge device, without any manual entry.
+    </div>
+</div>
+</section>
+
+<!-- ═══ INVEST ═══ -->
+<section id="invest">
+<div class="wrap">
+    <div class="label">Investment Round</div>
+    <h2>Pre-Seed Round.<br><span>SEIS Eligible.</span></h2>
+
+    <div class="invest-hero">
+        <div class="raise-amount">£375,000</div>
+        <div class="raise-sub">Pre-Seed · ASA (UK / SEIS) · SAFE (US) · 18-month runway · £4M valuation cap</div>
+        <div class="use-row">
+            <div class="use-cell"><div class="use-pct">35%</div><div class="use-lbl">IP legal protection + UK Ltd incorporation + SEIS Advance Assurance</div></div>
+            <div class="use-cell"><div class="use-pct">40%</div><div class="use-lbl">MVP development — BYOD edge node, DLR engine, LogiPay, ESG module</div></div>
+            <div class="use-cell"><div class="use-pct">25%</div><div class="use-lbl">Pilot partner acquisition + first UK yard deployment</div></div>
+        </div>
     </div>
 
+    <div class="seis-banner">
+        <div class="seis-pill">SEIS ELIGIBLE</div>
+        <p>UK investors qualify for the <strong>Seed Enterprise Investment Scheme (SEIS)</strong> post-incorporation — delivering up to <strong>72.5% downside protection</strong> through income tax relief, CGT exemption, and loss relief.</p>
+    </div>
+
+    <div class="seis-row">
+        <div class="seis-cell"><div class="seis-val">50%</div><div class="seis-lbl">Income tax relief on investment amount</div></div>
+        <div class="seis-cell"><div class="seis-val">100%</div><div class="seis-lbl">CGT exemption on disposal gains</div></div>
+        <div class="seis-cell"><div class="seis-val">45%</div><div class="seis-lbl">Loss relief if company fails</div></div>
+        <div class="seis-cell"><div class="seis-val">72.5%</div><div class="seis-lbl">Maximum downside protection</div></div>
+    </div>
+
+    <div class="terms-row">
+        <div class="term-card">
+            <strong>🇬🇧 UK Investors</strong>
+            <p style="margin-top: 4px; color: var(--grey-light);">ASA · SEIS-Eligible. 50% tax relief · 100% CGT exempt · 72.5% downside protection</p>
+        </div>
+        <div class="term-card">
+            <strong>🇺🇸 US Investors</strong>
+            <p style="margin-top: 4px; color: var(--grey-light);">SAFE. Same £4M cap. No interest. No maturity date.</p>
+        </div>
+        <div class="term-card">
+            <strong>🇮🇳🇸🇬 India / Singapore</strong>
+            <p style="margin-top: 4px; color: var(--grey-light);">CCPS / Conv. Note. DPIIT-eligible structure. Same economic terms.</p>
+        </div>
+    </div>
+    <p class="seis-note" style="margin-top:14px">
+        SEIS reliefs subject to HMRC Advance Assurance (application pending post-incorporation) and individual investor circumstances. This does not constitute tax or investment advice.
+    </p>
+</div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section id="contact">
+<div class="wrap">
+    <div class="cta-section">
+        <h2 class="cta-h" style="margin-bottom:14px">Interested?<br>Let's talk.</h2>
+        <p class="cta-sub">If this opportunity fits your thesis, we respond within 24 hours with available times for a 20-minute founder call. Full documentation available at the appropriate stage of diligence.</p>
+        <p class="cta-phrase">"Interested — let's talk."</p>
+        <a class="btn-primary" href="mailto:olden.office3d@gmail.com?subject=Investment%20Inquiry%20%E2%80%94%20Olden%20Pre-Seed%20Round" style="font-size:13px;padding:16px 36px;">Request Investor Materials →</a>
+        <div style="margin-top:28px;font-family:var(--mono);font-size:12px;color:var(--grey-mid)">
+            Nazar Zablotskyi &nbsp;·&nbsp; Founder & Chairman &nbsp;·&nbsp;
+            <a href="mailto:olden.office3d@gmail.com" style="color:var(--orange);text-decoration:none">olden.office3d@gmail.com</a>
+            &nbsp;·&nbsp; United Kingdom
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+<div class="wrap">
+    <div class="footer-grid">
+        <div class="footer-legal">
+            <strong style="color:var(--white-pure);display:block;margin-bottom:10px">OLDEN TECHNOLOGIES</strong>
+            PRE-INCORPORATION NOTICE: This website is maintained by Nazar Zablotskyi in personal capacity, prior to the incorporation of Olden Technologies Ltd as a UK private limited company. All intellectual property rights and equity are held solely by Nazar Zablotskyi (Founder).<br><br>
+            IP PROTECTED: Triple-Patent Moat — multiple US provisional patent applications pending. Full documentation available under NDA to qualified investors.<br><br>
+            FINANCIAL PROMOTION DISCLAIMER: Nothing on this website constitutes a financial promotion or securities offering within the meaning of the Financial Services and Markets Act 2000 or the Financial Promotion Order 2005. This website is directed only at persons exempt under Article 48 or Article 50 of the FPO 2005. Prospective investors should seek independent legal and financial advice.<br><br>
+            SEIS DISCLAIMER: SEIS tax reliefs are subject to individual investor circumstances and HMRC Advance Assurance (application pending post-incorporation).<br><br>
+            PRIVACY &amp; DATA: This website does not use tracking, analytics, or advertising cookies. Personal data submitted via the contact email is processed solely for responding to investor enquiries under UK GDPR. Data subjects have the right to access, rectify, erase, restrict, and port their data, and to lodge a complaint with the ICO (<a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a>). Retention: 36 months from last contact. Cookie declaration: this website uses no cookies.<br><br>
+            <span style="color:rgba(141,153,174,.5)">© 2026 Nazar Zablotskyi. All rights reserved. Governed by the laws of England and Wales.</span>
+        </div>
+        <div>
+            <div class="footer-brand">
+                OLDEN
+                <span>TECHNOLOGIES</span>
+                <span style="margin-top:4px;color:rgba(255,159,28,.45)">forming · UK Ltd · 2026</span>
+            </div>
+        </div>
+    </div>
+</div>
+</footer>
+
+<script>
+(function() {
+    const iframe = document.getElementById('demo-iframe');
+    if (!iframe) return;
+    const src = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogiPark Sync v1.43</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"><\/script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"><\/script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script>
+    <script src="https://cdn.tailwindcss.com"><\/script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@700&display=swap');
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background-color: #03050a;
+            margin: 0;
+            overflow: hidden;
+        }
+        .mono { font-family: 'IBM Plex Mono', monospace; }
+        * { border-radius: 0px !important; }
+        .fade-enter-active { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0A1128; }
+        ::-webkit-scrollbar-thumb { background: #2B2D42; }
+
+        .phone-frame {
+            width: 320px;
+            height: 640px;
+            background: #1A1C25;
+            border: 10px solid #2B2D42;
+            position: relative;
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8);
+            margin: 0 auto;
+        }
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: black;
+            overflow: hidden;
+            position: relative;
+        }
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 20px;
+            background: black;
+            z-index: 50;
+        }
+        .tablet-frame {
+            width: 100%;
+            max-width: 1000px;
+            height: 700px;
+            background: #1F212B;
+            border: 12px solid #2B2D42;
+            position: relative;
+            box-shadow: 0 50px 100px -30px rgba(0,0,0,0.9);
+            margin: 0 auto;
+        }
+        .tablet-screen {
+            width: 100%;
+            height: 100%;
+            background: #0A1128;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
     <div id="root"></div>
 
-    <script type="text/babel">
+    <script id="react-code" type="text/plain">
         const { useState, useEffect } = React;
 
         const Icon = ({ name, size = 24, color = "currentColor", strokeWidth = 2, fill = "none" }) => {
@@ -151,6 +635,8 @@
                 Navigation: <polygon points="3 11 22 2 13 21 11 13 3 11"/>,
                 CheckCircle: <><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></>,
                 ArrowLeft: <><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></>,
+                MapPin: <><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></>,
+                List: <><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></>,
                 Battery: <><rect width="18" height="12" x="2" y="6" rx="2"/><line x1="22" y1="10" x2="22" y2="14"/></>
             };
             return (
@@ -160,647 +646,324 @@
             );
         };
 
-        const EventLog = ({ log }) => (
-            <div className="h-full flex flex-col">
-                <h3 className="text-xs text-[#8D99AE] font-black tracking-widest flex items-center gap-2 mb-4 uppercase shrink-0">
-                    <Icon name="Settings" size={14} color="#FF9F1C" /> Event Journal
-                </h3>
-                <div className="space-y-3 flex-1 overflow-y-auto pr-1">
-                    {log.length === 0 && <p className="text-[#2B2D42] italic text-xs font-black uppercase mt-4 text-center">Monitoring Active...</p>}
-                    {log.map((entry, i) => (
-                        <div key={i} className="border-l-2 border-[#FF9F1C] pl-3 py-1 bg-white/[0.02] fade-enter-active">
-                            <p className="text-[10px] text-[#8D99AE] mb-0.5 font-bold uppercase">{entry.time}</p>
-                            <p className="text-xs font-black leading-tight tracking-normal uppercase text-white">{entry.msg}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        );
+        const App = () => {
+            const [role, setRole] = useState('admin'); 
+            const gateCoords = '51.5033, -0.1195'; 
+            const [log, setLog] = useState([]);
+            const [archive, setArchive] = useState([]); 
+            const [adminView, setAdminView] = useState('list'); 
+            const [selectedTruckId, setSelectedTruckId] = useState('XLN72 ZWL');
 
-        const ArchiveList = ({ archive }) => (
-            <div className="h-full flex flex-col">
-                <h3 className="text-xs text-[#8D99AE] font-black tracking-widest flex items-center gap-2 mb-4 uppercase shrink-0">
-                    <Icon name="CheckCircle" size={14} color="#00C853" /> Archived Nodes
-                </h3>
-                <div className="space-y-3 flex-1 overflow-y-auto pr-1 text-left">
-                    {archive.length === 0 && <p className="text-[#2B2D42] italic text-xs font-black uppercase mt-4 text-center">Archive Empty</p>}
-                    {archive.map((truck, i) => (
-                        <div key={i} className="p-3 border-l-2 border-[#00C853] bg-white/[0.02] fade-enter-active opacity-70 hover:opacity-100 transition-opacity">
-                            <span className="text-sm font-black block leading-none text-white mb-1">{truck.id}</span>
-                            <span className="text-[10px] text-[#8D99AE] font-bold tracking-wider uppercase italic">COMPLETED: {truck.archiveTime}</span>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        );
+            // BYOD node simulation telemetry states
+            const [imuFreq, setImuFreq] = useState(24.8);
+            const [imuRms, setImuRms] = useState(0.195);
+            const [gpsLat, setGpsLat] = useState(51.5033);
+            const [gpsLng, setGpsLng] = useState(-0.1195);
+            const [nonce, setNonce] = useState('9D4E');
 
-        const AdminTruckList = ({ queue, onSelect }) => (
-            <div className="p-6 flex flex-col h-full fade-enter-active">
-                <div className="mb-6 text-left">
-                    <h2 className="text-2xl font-black tracking-tighter leading-none uppercase mb-2">Facility Dashboard</h2>
-                    <p className="text-xs text-[#8D99AE] font-bold tracking-widest uppercase opacity-80">Incoming Vehicle Orchestration</p>
-                </div>
-                <h3 className="text-xs font-black tracking-widest text-[#8D99AE] mb-4 border-b border-[#2B2D42] pb-2 uppercase opacity-60">Expected Queue</h3>
-                <div className="space-y-3 pr-2 overflow-y-auto">
-                    {queue.length === 0 && <div className="p-8 text-center border border-dashed border-[#2B2D42] opacity-50 font-black uppercase text-xs">Queue Cleared</div>}
-                    {queue.map((truck) => (
-                        <div key={truck.id} onClick={() => onSelect(truck.id)} className="flex justify-between items-center p-3 border border-[#2B2D42] bg-[#0A1128] hover:border-white cursor-pointer transition-all group">
-                            <div className="flex items-center gap-3">
-                                <div className={`p-2 transition-colors ${truck.state === 'STOP' ? 'bg-[#B00020]' : 'bg-[#00C853]'}`}>
-                                    <Icon name="Truck" size={16} color="white" />
-                                </div>
-                                <div className="text-left">
-                                    <span className="text-sm font-black block leading-none mb-1 text-white">{truck.id}</span>
-                                    <span className="text-[10px] text-[#8D99AE] font-bold tracking-widest uppercase opacity-70">SYNC: {truck.accepted ? 'VERIFIED' : 'PENDING'}</span>
-                                </div>
-                            </div>
-                            <span className={`text-[10px] font-black tracking-widest px-2 py-1 ${truck.state === 'STOP' ? 'bg-[#FF9F1C]/10 text-[#FF9F1C] border border-[#FF9F1C]/20' : 'bg-[#00C853]/10 text-[#00C853] border border-[#00C853]/20'}`}>
-                                {truck.status}
-                            </span>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        );
-
-        const AdminTruckDetail = ({ truck, onAction, onBack }) => (
-            <div className="p-6 flex flex-col h-full fade-enter-active text-left">
-                <button onClick={onBack} className="flex items-center gap-2 text-xs font-black tracking-widest text-[#8D99AE] hover:text-white transition-colors mb-6">
-                    <Icon name="ArrowLeft" size={14} /> RETURN TO QUEUE
-                </button>
-                <div className="space-y-2 mb-8">
-                    <h2 className="text-[#FF9F1C] text-xs font-black tracking-[0.3em] uppercase">Control Mode</h2>
-                    <p className="text-3xl font-black tracking-tighter leading-none uppercase text-white">{truck.id}</p>
-                </div>
-                <div className="grid grid-cols-2 gap-4 mb-auto">
-                    <button onClick={() => onAction('STOP')} className={`h-40 border-2 flex flex-col items-center justify-center gap-2 transition-all ${truck.state === 'STOP' ? 'bg-[#B00020] border-white' : 'border-[#2B2D42] bg-[#0A1128] text-[#8D99AE] hover:border-[#B00020]'}`}>
-                        <Icon name="Clock" size={32} color="white" />
-                        <span className="text-xl font-black uppercase text-white">Stop</span>
-                    </button>
-                    <button onClick={() => onAction('GO')} className={`h-40 border-2 flex flex-col items-center justify-center gap-2 transition-all ${truck.state === 'GO' ? 'bg-[#00C853] border-white' : 'border-[#2B2D42] bg-[#0A1128] text-[#8D99AE] hover:border-[#00C853]'}`}>
-                        <Icon name="Truck" size={32} color="white" />
-                        <span className="text-xl font-black uppercase text-white">Go</span>
-                    </button>
-                </div>
-                <div className="flex items-center gap-4 p-4 bg-black/40 border border-[#2B2D42] text-white mt-6">
-                    <div className={`w-3 h-3 ${truck.accepted ? 'bg-[#00C853] shadow-[0_0_10px_#00C853]' : 'bg-[#FF9F1C] animate-pulse'}`}></div>
-                    <span className="text-xs font-black tracking-widest uppercase">{truck.accepted ? 'Confirmed by Remote Node' : 'Waiting for Remote Confirmation...'}</span>
-                </div>
-            </div>
-        );
-
-        const DriverPager = ({ truck, coords, onAccept }) => {
-            const isRed = truck.state === 'STOP';
-            const bgColor = isRed ? 'bg-[#B00020]' : 'bg-[#00C853]';
-            const coordParts = coords.split(',').map(part => part.trim().replace(/-/g, ''));
-            const handleNav = () => { window.open(`https://www.google.com/maps/search/?api=1&query=${coords}`, '_blank'); };
-            return (
-                <div className={`flex-1 flex flex-col transition-colors duration-700 h-full ${bgColor} relative`}>
-                    <div className="mt-8 px-6 flex justify-between items-center text-white shrink-0">
-                        <div className="bg-black text-white px-2 py-1 text-[10px] font-black tracking-widest uppercase">
-                            {truck.accepted ? "NODE SYNCED" : "LINK PENDING"}
-                        </div>
-                        <span className="text-[11px] font-black opacity-90 uppercase">{truck.id}</span>
-                    </div>
-                    <div className="flex-1 flex flex-col items-center justify-center p-4 text-center text-white">
-                        <h1 className="text-[80px] font-black tracking-tighter leading-none mb-2 drop-shadow-lg uppercase">{truck.state}</h1>
-                    </div>
-                    <div className="px-4 pb-8 space-y-4">
-                        <button onClick={handleNav} className="w-full py-5 px-3 bg-black/30 border border-white/20 hover:border-white flex flex-col items-center justify-center transition-all">
-                            <div className="flex items-center gap-2 text-[10px] font-black tracking-widest opacity-90 uppercase mb-3">
-                                <Icon name="Navigation" size={12} fill="currentColor" color="currentColor" />
-                                <span>Gate Coordinates</span>
-                            </div>
-                            <div className="flex flex-col items-center leading-none space-y-1">
-                                {coordParts.map((part, i) => (
-                                    <span key={i} className="text-4xl font-black tracking-tighter text-white font-mono">{part}</span>
-                                ))}
-                            </div>
-                        </button>
-                        <button onClick={onAccept} disabled={truck.accepted}
-                            className={`w-full py-4 text-xl font-black transition-all flex items-center justify-center gap-3 uppercase ${truck.accepted ? 'bg-black/20 text-white/40 border-2 border-white/20' : 'bg-white text-black border-black shadow-[0_4px_0_rgba(0,0,0,0.3)] active:translate-y-1'}`}>
-                            {truck.accepted ? <div className="flex items-center gap-2"><Icon name="CheckCircle" size={20} strokeWidth={3} /><span>Accepted</span></div> : 'Accept'}
-                        </button>
-                    </div>
-                </div>
-            );
-        };
-
-        function App() {
-            const [role, setRole] = React.useState('admin');
-            const gateCoords = '51.5033, -0.1195';
-            const [log, setLog] = React.useState([]);
-            const [archive, setArchive] = React.useState([]);
-            const [adminView, setAdminView] = React.useState('list');
-            const [selectedTruckId, setSelectedTruckId] = React.useState('XLN72 ZWL');
-            const [queue, setQueue] = React.useState([
+            const [queue, setQueue] = useState([
                 { id: 'XLN72 ZWL', status: 'WAITING', state: 'STOP', accepted: false },
                 { id: 'XBC88 KRO', status: 'WAITING', state: 'STOP', accepted: true },
-                { id: 'XWQ10 VBN', status: 'IN TRANSIT', state: 'GO', accepted: true }
+                { id: 'XWQ10 VBN', status: 'IN TRANSIT', state: 'GO', accepted: true },
+                { id: 'XTR44 PLO', status: 'WAITING', state: 'STOP', accepted: false }
             ]);
+
+            const activeTruck = queue.find(t => t.id === selectedTruckId) || 
+                                archive.find(t => t.id === selectedTruckId) || 
+                                queue[0] || 
+                                { id: 'SYSTEM IDLE', state: 'STANDBY', status: 'EMPTY', accepted: false };
+
             const addToLog = (message) => {
                 const timestamp = new Date().toLocaleTimeString();
-                setLog(prev => [{ time: timestamp, msg: message }, ...prev].slice(0, 10));
+                setLog(prev => [{ time: timestamp, msg: message }, ...prev].slice(0, 15));
             };
+
             const handleAdminAction = (newState) => {
                 setQueue(prevQueue => prevQueue.map(truck => {
-                    if (truck.id === selectedTruckId) return { ...truck, state: newState, accepted: false, status: newState === 'GO' ? 'IN TRANSIT' : 'WAITING' };
+                    if (truck.id === selectedTruckId) {
+                        return { ...truck, state: newState, accepted: false, status: newState === 'GO' ? 'IN TRANSIT' : 'WAITING' };
+                    }
                     return truck;
                 }));
-                addToLog(`CMD -> [${selectedTruckId}]: ${newState}`);
+                addToLog("CMD Issued -> [" + selectedTruckId + "]: " + newState);
             };
+
             const handleDriverAccept = () => {
                 const currentTruck = queue.find(t => t.id === selectedTruckId);
                 if (!currentTruck) return;
+
                 if (currentTruck.state === 'GO') {
                     setArchive(prev => [{ ...currentTruck, accepted: true, archiveTime: new Date().toLocaleTimeString() }, ...prev]);
                     setQueue(prevQueue => prevQueue.filter(truck => truck.id !== selectedTruckId));
-                    addToLog(`Node [${selectedTruckId}] CLEARED`);
+                    addToLog("Node [" + selectedTruckId + "] CLEARED & ARCHIVED");
                     setAdminView('list');
                 } else {
                     setQueue(prevQueue => prevQueue.map(truck => {
                         if (truck.id === selectedTruckId) return { ...truck, accepted: true, status: 'WAITING' };
                         return truck;
                     }));
-                    addToLog(`Node [${selectedTruckId}] ACK STOP`);
+                    addToLog("Node [" + selectedTruckId + "] ACKNOWLEDGED STOP");
                 }
             };
-            const activeTruck = queue.find(t => t.id === selectedTruckId) || archive.find(t => t.id === selectedTruckId) || queue[0] || { id: 'IDLE', state: 'STOP', status: 'EMPTY', accepted: false };
+
+            const computedPoPHash = "SHA3-" + nonce + "-" + gpsLat.toFixed(4) + "-" + imuRms.toFixed(3);
 
             return (
-                <div className="min-h-screen flex flex-col uppercase tracking-tighter">
-
-                    {/* NAV */}
-                    <nav className="w-full max-w-6xl mx-auto flex justify-between items-center py-5 px-6 lg:px-0 text-left shrink-0 z-50 relative">
+                <div className="min-h-screen flex flex-col uppercase tracking-tighter text-left overflow-hidden">
+                    <header className="h-16 bg-[#0A1128] border-b border-[#2B2D42] flex justify-between items-center px-6 shrink-0 z-50">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-safety text-navy flex items-center justify-center font-black text-xl">O</div>
-                            <h1 className="text-2xl font-black uppercase tracking-tighter text-white">Olden <span className="text-safety">Project</span></h1>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <span className="text-xs font-bold bg-[#2B2D42] px-3 py-1.5 uppercase hidden md:inline-block text-[#8D99AE] tracking-widest">PRE-SEED · 2026</span>
-                            <a href="mailto:olden.office3d@gmail.com?subject=Investment%20Inquiry%20%E2%80%94%20Olden%20Pre-Seed%20Round"
-                               className="bg-safety text-navy font-black text-xs uppercase tracking-widest px-4 py-2 hover:opacity-85 transition-opacity hidden md:inline-block">
-                                Request Materials →
-                            </a>
-                        </div>
-                    </nav>
-
-                    {/* MAIN CONTENT */}
-                    <main className="w-full max-w-6xl mx-auto px-6 lg:px-0 py-16 text-left">
-
-                        {/* HERO */}
-                        <div className="border-b border-white/10 pb-16 mb-16">
-                            <p className="text-safety font-bold uppercase tracking-widest text-sm mb-4">The Revenue Engine</p>
-                            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.95] text-white mb-8 max-w-4xl">
-                                For the <span className="text-safety">Millions</span>,<br/>not only for the Billions.
-                            </h2>
-                            <p className="text-lg text-gray-400 font-medium normal-case max-w-2xl leading-relaxed">
-                                Whether it is a high-volume hub in Central London, a congested grid in New York, or a neighbourhood depot in Tokyo — the operational desire is always the same: to process just one more truck.
-                            </p>
-                        </div>
-
-                        {/* PROBLEM */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 pb-16 border-b border-white/10 mb-16">
-                            <div className="space-y-6">
-                                <p className="text-xs font-mono text-safety/60 uppercase tracking-widest">The Problem</p>
-                                <h3 className="text-3xl font-black uppercase tracking-tighter text-white leading-tight">$82 billion disappears every year. Nobody is solving it.</h3>
-                                <p className="text-base text-gray-400 normal-case font-medium leading-relaxed">
-                                    Logistics yards are coordination dead zones. GPS signal fails inside warehouse structures. Internet connectivity is absent or unreliable. Drivers wait illegally, accumulating fines. Cargo turns back. Revenue is lost.
-                                </p>
-                                <p className="text-base text-gray-400 normal-case font-medium leading-relaxed">
-                                    The industry calls these costs demurrage and detention. Globally, they exceed $82 billion per year — a direct consequence of zero real-time coordination between facilities and vehicles at the point of entry.
-                                </p>
+                            <div className="w-10 h-10 bg-[#FF9F1C] flex items-center justify-center no-round">
+                                <Icon name="Shield" size={24} color="#0A1128" strokeWidth={3} />
                             </div>
-                            <div className="space-y-4 pt-10">
-                                {[
-                                    ['$82B', 'Annual global demurrage and detention costs'],
-                                    ['1M+', '3PL operators affected worldwide'],
-                                    ['40%', 'Of 3PL operating costs attributed to yard inefficiency'],
-                                    ['Zero', 'Existing solutions that function without GPS or internet'],
-                                ].map(([num, label]) => (
-                                    <div key={num} className="flex items-start gap-6 border-b border-white/5 pb-4">
-                                        <span className="text-3xl font-black text-safety shrink-0 font-mono w-20">{num}</span>
-                                        <span className="text-sm text-gray-400 normal-case font-medium leading-relaxed pt-2">{label}</span>
-                                    </div>
-                                ))}
+                            <div>
+                                <span className="font-black text-xl tracking-widest block leading-none text-white">OLDEN · SYNC SYSTEM</span>
+                                <span className="text-[9px] text-[#8D99AE] font-black opacity-60 uppercase tracking-widest">Global Logistics Management</span>
                             </div>
                         </div>
-
-                        {/* MARKET EFFECT */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 pb-16">
-                            <div className="space-y-6">
-                                <p className="text-xs font-mono text-safety/60 uppercase tracking-widest">Market Effect</p>
-                                <h3 className="text-3xl font-black uppercase tracking-tighter text-white leading-tight">The more participants. The more valuable it becomes.</h3>
-                                <p className="text-base text-gray-400 normal-case font-medium leading-relaxed">
-                                    The platform operates on existing devices already in the hands of every driver and facility worker. No procurement. No installation. No hardware risk.
-                                </p>
-                                <p className="text-base text-gray-400 normal-case font-medium leading-relaxed">
-                                    Each new participant compounds the value for all existing ones. This is not a software product. It is logistics infrastructure — and infrastructure scales differently.
-                                </p>
-                            </div>
-                            <div className="space-y-4 pt-10">
-                                {[
-                                    ['N²', 'Platform value grows with every participant added'],
-                                    ['£0', 'Hardware investment required from any operator'],
-                                    ['Global', 'Applicable from London to Tokyo, Lagos to São Paulo, even from Dhaka to Calcutta.'],
-                                ].map(([num, label]) => (
-                                    <div key={num} className="flex items-start gap-6 border-b border-white/5 pb-4">
-                                        <span className="text-3xl font-black text-safety shrink-0 font-mono w-20">{num}</span>
-                                        <span className="text-sm text-gray-400 normal-case font-medium leading-relaxed pt-2">{label}</span>
-                                    </div>
-                                ))}
-                            </div>
+                        <div className="flex gap-2">
+                            <button onClick={() => setRole('admin')} className={"px-5 py-2 text-xs font-black transition-all border-2 no-round flex items-center gap-2 " + (role === 'admin' ? 'bg-[#FF9F1C] text-[#0A1128] border-[#FF9F1C]' : 'text-[#8D99AE] border-[#2B2D42]')}>
+                                <Icon name="Monitor" size={14} strokeWidth={3} /> TERMINAL (Tablet)
+                            </button>
+                            <button onClick={() => setRole('driver')} className={"px-5 py-2 text-xs font-black transition-all border-2 no-round flex items-center gap-2 " + (role === 'driver' ? 'bg-[#FF9F1C] text-[#0A1128] border-[#FF9F1C]' : 'text-[#8D99AE] border-[#2B2D42]')}>
+                                <Icon name="Smartphone" size={14} strokeWidth={3} /> PAGER (Phone)
+                            </button>
                         </div>
-                    </main>
+                    </header>
 
-                    {/* INTERACTIVE DEMO */}
-                    <section className="w-full max-w-6xl mx-auto px-6 lg:px-0 pb-16">
-                        <div className="flex justify-between items-center mb-6">
-                            <h3 className="text-xs font-bold uppercase tracking-widest text-[#8D99AE]">Interactive Technology Preview</h3>
-                            <div className="flex gap-2">
-                                <button onClick={() => setRole('admin')} className={`px-4 py-2 text-xs font-bold transition-all border ${role === 'admin' ? 'bg-safety text-navy border-safety' : 'text-gray-400 border-gray-700 hover:border-gray-500'}`}>ADMIN TERMINAL</button>
-                                <button onClick={() => setRole('driver')} className={`px-4 py-2 text-xs font-bold transition-all border ${role === 'driver' ? 'bg-safety text-navy border-safety' : 'text-gray-400 border-gray-700 hover:border-gray-500'}`}>DRIVER PAGER</button>
-                            </div>
-                        </div>
+                    <main className="flex-1 flex items-center justify-center p-6 bg-[#03050a] relative overflow-hidden">
+                        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "linear-gradient(#F8F9FA 1px, transparent 1px), linear-gradient(90deg, #F8F9FA 1px, transparent 1px)", backgroundSize: '60px 60px' }} />
 
-                        {/* DESKTOP */}
-                        <div className="demo-wrapper desktop-demo">
-                            <div className="demo-inner">
-                                <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `linear-gradient(#F8F9FA 1px, transparent 1px), linear-gradient(90deg, #F8F9FA 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
-                                {role === 'driver' ? (
-                                    <div className="phone-frame fade-enter-active">
-                                        <div className="phone-notch" />
-                                        <div className="phone-screen"><DriverPager truck={activeTruck} coords={gateCoords} onAccept={handleDriverAccept} /></div>
-                                    </div>
-                                ) : (
-                                    <div className="tablet-frame fade-enter-active">
-                                        <div className="tablet-screen text-white">
-                                            <div className="h-10 bg-black/40 border-b border-[#2B2D42] flex justify-between items-center px-5 text-[10px] font-bold opacity-80">
-                                                <div className="flex gap-5"><span>09:41 AM UK</span><span className="text-[#00C853] flex items-center gap-1.5"><Icon name="Signal" size={12} /> LINK SECURE</span></div>
-                                                <div className="flex gap-2 items-center">84% <Icon name="Battery" size={14} /></div>
+                        {role === 'driver' ? (
+                            <div className="phone-frame fade-enter-active">
+                                <div className="phone-notch" />
+                                <div className="phone-screen flex flex-col">
+                                    <div className={"flex-1 flex flex-col transition-colors duration-700 h-full relative " + (activeTruck.state === 'STOP' ? 'bg-[#B00020]' : 'bg-[#00C853]')}>
+                                        <div className="mt-12 px-8 flex justify-between items-center text-white shrink-0">
+                                            <div className="bg-black text-white px-3 py-1 text-[9px] font-black tracking-[0.2em] uppercase no-round">
+                                                {activeTruck.accepted ? "NODE SYNCED" : "LINK PENDING"}
                                             </div>
-                                            <div className="flex-1 flex overflow-hidden">
-                                                <div className="flex-1 overflow-y-auto bg-[#050814] border-r border-[#2B2D42]">
-                                                    {adminView === 'list' ? (
-                                                        <AdminTruckList queue={queue} onSelect={(id) => { setSelectedTruckId(id); setAdminView('detail'); addToLog(`Mapped to Node [${id}]`); }} />
-                                                    ) : (
-                                                        <AdminTruckDetail truck={activeTruck} onAction={handleAdminAction} onBack={() => setAdminView('list')} />
-                                                    )}
+                                            <span className="text-[10px] font-black opacity-80 uppercase">{activeTruck.id}</span>
+                                        </div>
+
+                                        <div className="flex-1 flex flex-col items-center justify-center p-6 text-center text-white">
+                                            <h1 className="text-[90px] font-black tracking-tighter leading-none mb-2 drop-shadow-2xl uppercase">
+                                                {activeTruck.state}
+                                            </h1>
+                                        </div>
+
+                                        <div className="px-6 pb-6 space-y-4">
+                                            {/* Interactive Driver Telemetry Dashboard */}
+                                            <div className="bg-black/40 border border-white/10 p-3 font-mono text-[9px] text-white/90 space-y-2 no-round">
+                                                <div className="grid grid-cols-2 gap-2">
+                                                    <div>
+                                                        <span className="text-[#8D99AE] block uppercase text-[8px]">IMU dominant freq</span>
+                                                        <div className="flex items-center gap-1">
+                                                            <span className="font-bold text-[11px]">{imuFreq.toFixed(1)}</span>
+                                                            <span className="text-white/40">Hz</span>
+                                                        </div>
+                                                        <input type="range" min="5" max="40" step="0.1" value={imuFreq} onChange={e => {
+                                                            const val = parseFloat(e.target.value);
+                                                            setImuFreq(val);
+                                                            if (val >= 10 && val <= 30) {
+                                                                setImuRms(0.18 + (val - 20) * 0.005);
+                                                            } else {
+                                                                setImuRms(0.02);
+                                                            }
+                                                        }} className="w-full mt-1" />
+                                                    </div>
+                                                    <div>
+                                                        <span className="text-[#8D99AE] block uppercase text-[8px]">IMU RMS VIB</span>
+                                                        <div className="flex items-center gap-1">
+                                                            <span className="font-bold text-[11px]">{imuRms.toFixed(3)}</span>
+                                                            <span className="text-white/40">m/s²</span>
+                                                        </div>
+                                                        <span className={"text-[7px] font-bold block mt-1 " + (imuFreq >= 10 && imuFreq <= 30 ? "text-[#00C853]" : "text-[#FF9F1C]")}>
+                                                            {imuFreq >= 10 && imuFreq <= 30 ? "VIBRATION ACTIVE" : "ENGINE STATIONARY"}
+                                                        </span>
+                                                    </div>
                                                 </div>
-                                                <div className="w-72 shrink-0 flex flex-col bg-[#080E21]">
-                                                    <div className="flex-1 p-5 border-b border-[#2B2D42] overflow-hidden"><EventLog log={log} /></div>
-                                                    <div className="flex-1 p-5 overflow-hidden bg-[#0A1128]"><ArchiveList archive={archive} /></div>
+
+                                                <div className="border-t border-white/5 pt-2 flex justify-between items-center">
+                                                    <div>
+                                                        <span className="text-[#8D99AE] block uppercase text-[7px]">GPS POSITION</span>
+                                                        <span className="text-white font-bold">{gpsLat.toFixed(4)}, {gpsLng.toFixed(4)}</span>
+                                                    </div>
+                                                    <div className="text-right">
+                                                        <span className="text-[#8D99AE] block uppercase text-[7px]">POP HARNESS</span>
+                                                        <span className="font-bold text-[8px] break-all">{computedPoPHash}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <button onClick={() => window.open("https://www.google.com/maps/search/?api=1&query=" + coords, '_blank')} className="w-full py-4 px-3 bg-black/40 text-white flex flex-col items-center justify-center border-2 border-white/20 hover:border-white transition-all no-round group">
+                                                <div className="flex items-center gap-2 text-[9px] font-black tracking-[0.3em] opacity-80 uppercase mb-2">
+                                                    <Icon name="Navigation" size={12} fill="currentColor" color="currentColor" />
+                                                    <span>Gate Coordinates</span>
+                                                </div>
+                                                <div className="flex flex-col items-center leading-[0.9]">
+                                                    <span className="text-3xl font-black tracking-tighter mono text-white">
+                                                        {gateCoords}
+                                                    </span>
+                                                </div>
+                                            </button>
+
+                                            <button onClick={handleDriverAccept} disabled={activeTruck.accepted} className={"w-full py-5 text-xl font-black transition-all flex items-center justify-center gap-3 uppercase no-round " + (activeTruck.accepted ? 'bg-black/20 text-white/30 border-2 border-white/10' : 'bg-white text-black border-black shadow-[0_5px_0_rgba(0,0,0,0.3)] active:translate-y-1')}>
+                                                {activeTruck.accepted ? <div className="flex items-center gap-2"><Icon name="CheckCircle" size={24} strokeWidth={4} /><span>Accepted</span></div> : 'Accept'}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="tablet-frame fade-enter-active">
+                                <div className="tablet-screen text-white">
+                                    <div className="h-10 bg-black/40 border-b border-[#2B2D42] flex justify-between items-center px-6 text-[10px] font-black opacity-80 shrink-0">
+                                        <div className="flex gap-6 items-center">
+                                            <span>09:41 AM UK</span>
+                                            <span className="text-[#00C853] flex items-center gap-1"><Icon name="Signal" size={14} /> LINK SECURE</span>
+                                        </div>
+                                        <div className="flex gap-4 items-center">
+                                            <span className="flex items-center gap-2">84% <Icon name="Battery" size={12} /></span>
+                                            <span className="bg-white text-black px-2 py-0.5">ADMIN MODE</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
+                                        <div className="flex-1 overflow-y-auto bg-[#050814] border-r border-[#2B2D42]">
+                                            {adminView === 'list' ? (
+                                                <div className="p-10 flex flex-col h-full fade-enter-active">
+                                                    <div className="mb-10">
+                                                        <h2 className="text-4xl font-black tracking-tighter leading-none uppercase mb-2">Facility Dashboard</h2>
+                                                        <p className="text-[11px] text-[#8D99AE] font-black tracking-widest uppercase">Incoming Vehicle Orchestration</p>
+                                                    </div>
+                                                    <h3 className="text-[10px] font-black tracking-widest text-[#8D99AE] mb-4 border-b border-[#2B2D42] pb-2 uppercase">Expected Nodes Queue</h3>
+                                                    <div className="space-y-4 pr-2">
+                                                        {queue.length === 0 && <div className="p-12 text-center border-2 border-dashed border-[#2B2D42] opacity-30 font-black uppercase tracking-widest">Queue Cleared</div>}
+                                                        {queue.map((truck) => (
+                                                            <div key={truck.id} onClick={() => { setSelectedTruckId(truck.id); setAdminView('detail'); addToLog("Mapped to Node [" + truck.id + "]"); }} className="flex justify-between items-center p-5 border-2 border-[#2B2D42] bg-[#0A1128] hover:border-white cursor-pointer transition-all no-round group">
+                                                                <div className="flex items-center gap-5">
+                                                                    <div className={"p-4 transition-colors " + (truck.state === 'STOP' ? 'bg-[#B00020]' : 'bg-[#00C853]')}>
+                                                                        <Icon name="Truck" size={24} color="white" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <span className="text-2xl font-black block leading-none mb-1 text-white">{truck.id}</span>
+                                                                        <span className="text-[10px] text-[#8D99AE] font-black tracking-widest">SYNC: {truck.accepted ? 'VERIFIED' : 'PENDING'}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <span className={"text-[10px] font-black tracking-widest px-4 py-2 " + (truck.state === 'STOP' ? 'bg-[#FF9F1C]/10 text-[#FF9F1C] border border-[#FF9F1C]/20' : 'bg-[#00C853]/10 text-[#00C853] border border-[#00C853]/20')}>
+                                                                    {truck.status}
+                                                                </span>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className="p-10 flex flex-col h-full fade-enter-active">
+                                                    <button onClick={() => setAdminView('list')} className="flex items-center gap-2 text-[11px] font-black tracking-widest text-[#8D99AE] hover:text-white transition-colors w-fit mb-10">
+                                                        <Icon name="ArrowLeft" size={14} /> RETURN TO QUEUE
+                                                    </button>
+                                                    <div className="space-y-1 mb-12">
+                                                        <h2 className="text-[#FF9F1C] text-[11px] font-black tracking-[0.5em] uppercase">Control Mode</h2>
+                                                        <p className="text-6xl font-black tracking-tighter leading-none uppercase text-white">{activeTruck.id}</p>
+                                                    </div>
+                                                    <div className="grid grid-cols-2 gap-8 mb-auto">
+                                                        <button onClick={() => handleAdminAction('STOP')} className={"h-56 border-4 flex flex-col items-center justify-center gap-4 transition-all no-round " + (activeTruck.state === 'STOP' ? 'bg-[#B00020] border-white shadow-[0_0_50px_rgba(176,0,32,0.4)]' : 'border-[#2B2D42] bg-[#0A1128] text-[#8D99AE] hover:border-[#B00020]')}>
+                                                            <div className="bg-white/10 p-4"><Icon name="Clock" size={48} color="white" /></div>
+                                                            <span className="text-4xl font-black uppercase text-white">Stop</span>
+                                                        </button>
+                                                        <button onClick={() => handleAdminAction('GO')} className={"h-56 border-4 flex flex-col items-center justify-center gap-4 transition-all no-round " + (activeTruck.state === 'GO' ? 'bg-[#00C853] border-white shadow-[0_0_50px_rgba(0,200,83,0.4)]' : 'border-[#2B2D42] bg-[#0A1128] text-[#8D99AE] hover:border-[#00C853]')}>
+                                                            <div className="bg-white/10 p-4"><Icon name="Truck" size={48} color="white" /></div>
+                                                            <span className="text-4xl font-black uppercase text-white">Go</span>
+                                                        </button>
+                                                    </div>
+                                                    <div className="flex items-center gap-5 p-6 bg-black/40 border-2 border-[#2B2D42] text-white mt-12 no-round">
+                                                        <div className={"w-5 h-5 no-round " + (activeTruck.accepted ? 'bg-[#00C853] shadow-[0_0_20px_#00C853]' : 'bg-[#FF9F1C] animate-pulse shadow-[0_0_20px_#FF9F1C]')}></div>
+                                                        <div>
+                                                            <span className="text-base font-black tracking-widest uppercase">{activeTruck.accepted ? 'Confirmed by Driver Device' : 'Waiting for Remote Confirmation...'}</span>
+                                                            <p className="text-[10px] text-[#8D99AE] font-black tracking-widest mt-1">REAL-TIME DATA STREAM ACTIVE</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        <div className="w-80 shrink-0 flex flex-col bg-[#080E21]">
+                                            <div className="flex-1 p-6 border-b border-[#2B2D42] overflow-hidden flex flex-col text-left">
+                                                <h3 className="text-[#8D99AE] text-[10px] font-black tracking-[0.3em] flex items-center gap-2 mb-4 uppercase shrink-0">
+                                                    <Icon name="Settings" size={12} color="#FF9F1C" /> Event Journal
+                                                </h3>
+                                                <div className="space-y-3 flex-1 overflow-y-auto pr-1">
+                                                    {log.length === 0 && <p className="text-[#2B2D42] italic text-[10px] font-black uppercase mt-4 text-center">Monitoring Active...</p>}
+                                                    {log.map((entry, i) => (
+                                                        <div key={i} className="border-l-2 border-[#FF9F1C] pl-3 py-1 bg-white/[0.02] fade-enter-active">
+                                                            <p className="text-[9px] text-[#8D99AE] mb-0.5 font-black uppercase">{entry.time}</p>
+                                                            <p className="text-[10px] font-black leading-tight tracking-normal uppercase text-white">{entry.msg}</p>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            <div className="flex-1 p-6 overflow-hidden flex flex-col bg-[#0A1128] text-left">
+                                                <h3 className="text-[#8D99AE] text-[10px] font-black tracking-[0.3em] flex items-center gap-2 mb-4 uppercase shrink-0">
+                                                    <Icon name="CheckCircle" size={12} color="#00C853" /> Archived Nodes
+                                                </h3>
+                                                <div className="space-y-3 flex-1 overflow-y-auto pr-1">
+                                                    {archive.length === 0 && <p className="text-[#2B2D42] italic text-[10px] font-black uppercase mt-4 text-center">Archive Empty</p>}
+                                                    {archive.map((truck, i) => (
+                                                        <div key={i} className="p-3 border-l-2 border-[#00C853] bg-white/[0.02] fade-enter-active opacity-70 hover:opacity-100 transition-opacity">
+                                                            <span className="text-sm font-black block leading-none text-white mb-1">{truck.id}</span>
+                                                            <span className="text-[8px] text-[#8D99AE] font-black tracking-widest uppercase italic">COMPLETED: {truck.archiveTime}</span>
+                                                        </div>
+                                                    ))}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                )}
-                            </div>
-                        </div>
-
-                        {/* MOBILE ADMIN */}
-                        {role === 'admin' && (
-                            <div className="mobile-demo">
-                                <div className="mobile-topbar">
-                                    <div style={{display:'flex',gap:'16px'}}><span>09:41 AM UK</span><span style={{color:'#00C853'}}>● LINK SECURE</span></div>
-                                    <span>84% ▮</span>
-                                </div>
-                                <div className="mobile-body">
-                                    {adminView === 'list' ? (
-                                        <>
-                                            <div className="mobile-queue">
-                                                <div style={{padding:'10px 16px 6px',fontSize:'10px',fontWeight:900,textTransform:'uppercase',letterSpacing:'0.1em',color:'#8D99AE',borderBottom:'1px solid #2B2D42'}}>Expected Queue</div>
-                                                {queue.map((truck) => (
-                                                    <div key={truck.id} className="mobile-truck-row" onClick={() => { setSelectedTruckId(truck.id); setAdminView('detail'); addToLog(`Mapped to Node [${truck.id}]`); }}>
-                                                        <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
-                                                            <div style={{padding:'6px',background: truck.state === 'STOP' ? '#B00020' : '#00C853'}}><Icon name="Truck" size={14} color="white" /></div>
-                                                            <div>
-                                                                <div style={{fontSize:'13px',fontWeight:900,color:'white',marginBottom:'2px'}}>{truck.id}</div>
-                                                                <div style={{fontSize:'10px',color:'#8D99AE',fontWeight:700,textTransform:'uppercase'}}>SYNC: {truck.accepted ? 'VERIFIED' : 'PENDING'}</div>
-                                                            </div>
-                                                        </div>
-                                                        <span style={{fontSize:'10px',fontWeight:900,padding:'3px 8px',background: truck.state === 'STOP' ? 'rgba(255,159,28,0.1)' : 'rgba(0,200,83,0.1)',color: truck.state === 'STOP' ? '#FF9F1C' : '#00C853',border: `1px solid ${truck.state === 'STOP' ? 'rgba(255,159,28,0.2)' : 'rgba(0,200,83,0.2)'}`}}>{truck.status}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                            <div style={{padding:'16px',color:'#2B2D42',fontSize:'12px',fontWeight:900,textTransform:'uppercase',textAlign:'center'}}>← Select a truck to control →</div>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <div className="mobile-controls">
-                                                <button onClick={() => setAdminView('list')} style={{display:'flex',alignItems:'center',gap:'6px',fontSize:'11px',fontWeight:900,color:'#8D99AE',background:'none',border:'none',cursor:'pointer',marginBottom:'12px',textTransform:'uppercase',letterSpacing:'0.05em'}}>
-                                                    <Icon name="ArrowLeft" size={12} /> RETURN TO QUEUE
-                                                </button>
-                                                <div style={{marginBottom:'12px'}}>
-                                                    <div style={{fontSize:'10px',color:'#FF9F1C',fontWeight:900,textTransform:'uppercase',letterSpacing:'0.2em',marginBottom:'2px'}}>Control Mode</div>
-                                                    <div style={{fontSize:'22px',fontWeight:900,color:'white',textTransform:'uppercase'}}>{activeTruck.id}</div>
-                                                </div>
-                                                <div className="mobile-cmd-grid">
-                                                    <button className={`mobile-cmd-btn ${activeTruck.state === 'STOP' ? 'stop-active' : ''}`} onClick={() => handleAdminAction('STOP')}><Icon name="Clock" size={28} color="white" /><span>Stop</span></button>
-                                                    <button className={`mobile-cmd-btn ${activeTruck.state === 'GO' ? 'go-active' : ''}`} onClick={() => handleAdminAction('GO')}><Icon name="Truck" size={28} color="white" /><span>Go</span></button>
-                                                </div>
-                                                <div className="mobile-status">
-                                                    <div style={{width:'10px',height:'10px',borderRadius:'50%',flexShrink:0,background: activeTruck.accepted ? '#00C853' : '#FF9F1C'}}></div>
-                                                    <span>{activeTruck.accepted ? 'Confirmed by Remote Node' : 'Waiting for Remote Confirmation...'}</span>
-                                                </div>
-                                            </div>
-                                            <div className="mobile-log">
-                                                <div className="mobile-log-title">⚙ Event Journal</div>
-                                                {log.length === 0 && <div style={{color:'#2B2D42',fontSize:'11px',fontWeight:900,textTransform:'uppercase',textAlign:'center',padding:'8px 0'}}>Monitoring Active...</div>}
-                                                {log.slice(0,4).map((entry, i) => (
-                                                    <div key={i} className="mobile-log-entry">
-                                                        <div className="mobile-log-time">{entry.time}</div>
-                                                        <div className="mobile-log-msg">{entry.msg}</div>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </>
-                                    )}
                                 </div>
                             </div>
                         )}
-                        {role === 'driver' && (
-                            <div className="mobile-driver"><DriverPager truck={activeTruck} coords={gateCoords} onAccept={handleDriverAccept} /></div>
-                        )}
-                    </section>
+                    </main>
 
-                    {/* GLOBAL EXPANSION MATRIX */}
-                    <section className="w-full max-w-6xl mx-auto px-6 lg:px-0 pb-16">
-                        <div className="border-t border-white/10 pt-16">
-                            <div className="mb-8">
-                                <p className="text-xs font-mono text-safety/60 uppercase tracking-widest mb-2">Global Scale</p>
-                                <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">Market Expansion Matrix</h3>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <div className="border border-[#2B2D42] bg-[#0A1128] p-6 text-left hover:border-white/40 transition-colors">
-                                    <h4 className="text-safety font-black uppercase tracking-widest text-sm mb-6 border-b border-[#2B2D42] pb-4">🇬🇧 UK & EU Market</h4>
-                                    <div className="mb-6">
-                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Market Size</p>
-                                        <ul className="space-y-1 text-xs text-gray-300 font-mono">
-                                            <li><span className="text-white font-bold">TAM:</span> £58B</li>
-                                            <li><span className="text-white font-bold">SAM:</span> £9.2B</li>
-                                            <li><span className="text-white font-bold">SOM:</span> £145M (Yr 3)</li>
-                                        </ul>
-                                    </div>
-                                    <div className="mb-6">
-                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">GTM Drivers</p>
-                                        <ul className="space-y-2 text-[11px] text-gray-400 leading-relaxed font-medium">
-                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span><span>SEIS/EIS Advance Assurance (50–72.5% downside protection)</span></li>
-                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span><span>CSRD Scope 3 mandatory ESG reporting (Jan 2025)</span></li>
-                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span><span>SLA mandate for Tier-1 3PLs (DHL, Amazon UK)</span></li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Deployment Logic</p>
-                                        <p className="text-[11px] text-white font-bold flex gap-2 items-start"><span className="text-[#00C853] font-mono">■</span><span>Priority pilot hub integration</span></p>
-                                    </div>
-                                </div>
-
-                                <div className="border border-[#2B2D42] bg-[#0A1128] p-6 text-left hover:border-white/40 transition-colors">
-                                    <h4 className="text-safety font-black uppercase tracking-widest text-sm mb-6 border-b border-[#2B2D42] pb-4">🇺🇸 US Market</h4>
-                                    <div className="mb-6">
-                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Market Size</p>
-                                        <ul className="space-y-1 text-xs text-gray-300 font-mono">
-                                            <li><span className="text-white font-bold">TAM:</span> $243B</li>
-                                            <li><span className="text-white font-bold">SAM:</span> $38B</li>
-                                            <li><span className="text-white font-bold">SOM:</span> $180M (Yr 3)</li>
-                                        </ul>
-                                    </div>
-                                    <div className="mb-6">
-                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">GTM Drivers</p>
-                                        <ul className="space-y-2 text-[11px] text-gray-400 leading-relaxed font-medium">
-                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span><span>BYOD eliminates $50K–$500K hardware procurement cycles</span></li>
-                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span><span>Corporate ESG pressure (Amazon Climate Pledge)</span></li>
-                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span><span>&lt;3% software penetration in middle-mile</span></li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Deployment Logic</p>
-                                        <p className="text-[11px] text-white font-bold flex gap-2 items-start"><span className="text-[#00C853] font-mono">■</span><span>Chicago, LA, Atlanta hub focus</span></p>
-                                    </div>
-                                </div>
-
-                                <div className="border border-[#2B2D42] bg-[#0A1128] p-6 text-left hover:border-white/40 transition-colors">
-                                    <h4 className="text-safety font-black uppercase tracking-widest text-sm mb-6 border-b border-[#2B2D42] pb-4">🇮🇳 India & APAC</h4>
-                                    <div className="mb-6">
-                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Market Size</p>
-                                        <ul className="space-y-1 text-xs text-gray-300 font-mono">
-                                            <li><span className="text-white font-bold">TAM:</span> $320B</li>
-                                            <li><span className="text-white font-bold">SAM:</span> $48B</li>
-                                            <li><span className="text-white font-bold">SOM:</span> $165M (Yr 3)</li>
-                                        </ul>
-                                    </div>
-                                    <div className="mb-6">
-                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">GTM Drivers</p>
-                                        <ul className="space-y-2 text-[11px] text-gray-400 leading-relaxed font-medium">
-                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span><span>Quick Commerce bottleneck resolution (10-min SLAs)</span></li>
-                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span><span>India Stack integration (UPI, ONDC readiness)</span></li>
-                                            <li className="flex gap-2 items-start"><span className="text-safety font-mono shrink-0">■</span><span>"Make in India" PLI schemes driving logistics demand</span></li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-2">Deployment Logic</p>
-                                        <p className="text-[11px] text-white font-bold flex gap-2 items-start"><span className="text-[#00C853] font-mono">■</span><span>DPIIT recognition & Mumbai/Delhi pilots</span></p>
-                                    </div>
-                                </div>
-                            </div>
+                    <footer className="h-10 bg-[#0A1128] border-t border-[#2B2D42] flex justify-between items-center px-6 text-[9px] text-[#8D99AE] font-bold shrink-0 z-50">
+                        <div className="flex gap-4">
+                            <span className="text-[#FF9F1C]">STATE: ENCRYPTED</span>
+                            <span className="opacity-40 uppercase">Deterministic Protocol v1.43 OMEGA</span>
                         </div>
-                    </section>
-
-                    {/* INVESTMENT OPPORTUNITY */}
-                    <section className="w-full max-w-6xl mx-auto px-6 lg:px-0 py-20">
-                        <div className="glass-panel p-8 md:p-12">
-                            <div className="mb-10">
-                                <p className="text-xs font-mono text-safety/60 uppercase tracking-widest mb-2">Investment Opportunity</p>
-                                <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white mb-4">Current Round</h3>
-                                <p className="text-sm text-gray-400 max-w-2xl leading-relaxed normal-case">
-                                    Pre-seed round to complete UK Ltd incorporation, file non-provisional patents, build MVP, and secure the first pilot partner.
-                                </p>
-                            </div>
-
-                            {/* Key Numbers */}
-                            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10">
-                                <div className="bg-navy/50 border border-safety/20 p-6 text-center">
-                                    <p className="text-4xl md:text-5xl font-black text-safety mb-2">£375K</p>
-                                    <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">Pre-Seed Round</p>
-                                </div>
-                                <div className="bg-navy/50 border border-emerald/20 p-6 text-center">
-                                    <p className="text-4xl md:text-5xl font-black text-emerald mb-2">72.5%</p>
-                                    <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">Max Downside Protection</p>
-                                </div>
-                                <div className="bg-navy/50 border border-white/10 p-6 text-center">
-                                    <p className="text-4xl md:text-5xl font-black text-white mb-2">£4M</p>
-                                    <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">Valuation Cap</p>
-                                </div>
-                                <div className="bg-navy/50 border border-white/10 p-6 text-center">
-                                    <p className="text-4xl md:text-5xl font-black text-white mb-2">18mo</p>
-                                    <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">Runway to Series A</p>
-                                </div>
-                            </div>
-
-                            {/* Use of Funds */}
-                            <div className="mb-10">
-                                <h4 className="text-lg font-black uppercase text-white mb-4 tracking-wide">Use of Funds</h4>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <div className="bg-navy/30 border border-white/5 p-5">
-                                        <p className="text-3xl font-black text-safety mb-2">35%</p>
-                                        <p className="text-xs text-gray-400 font-bold uppercase tracking-wider leading-relaxed">IP Protection (USPTO + UK) + UK Ltd Incorporation + SEIS Advance Assurance</p>
-                                    </div>
-                                    <div className="bg-navy/30 border border-white/5 p-5">
-                                        <p className="text-3xl font-black text-safety mb-2">40%</p>
-                                        <p className="text-xs text-gray-400 font-bold uppercase tracking-wider leading-relaxed">MVP Development — deterministic coordination engine, ESG telemetry module</p>
-                                    </div>
-                                    <div className="bg-navy/30 border border-white/5 p-5">
-                                        <p className="text-3xl font-black text-safety mb-2">25%</p>
-                                        <p className="text-xs text-gray-400 font-bold uppercase tracking-wider leading-relaxed">Pilot Partner Acquisition + First Yard Deployment (UK)</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Investment Instruments — simplified, investors know what these are */}
-                            <div className="mb-10">
-                                <h4 className="text-lg font-black uppercase text-white mb-4 tracking-wide">Investment Instruments by Region</h4>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <div className="bg-emerald/5 border border-emerald/20 p-5">
-                                        <p className="text-xs font-mono text-emerald mb-2 uppercase tracking-widest">🇬🇧 UK Investors</p>
-                                        <p className="text-base font-black text-white mb-2">ASA · SEIS-Eligible</p>
-                                        <p className="text-xs text-gray-400 leading-relaxed normal-case">
-                                            50% tax relief · 100% CGT exempt · 72.5% downside protection
-                                        </p>
-                                    </div>
-                                    <div className="bg-urbanBlue/5 border border-urbanBlue/20 p-5">
-                                        <p className="text-xs font-mono text-urbanBlue mb-2 uppercase tracking-widest">🇺🇸 US Investors</p>
-                                        <p className="text-base font-black text-white mb-2">SAFE</p>
-                                        <p className="text-xs text-gray-400 leading-relaxed normal-case">
-                                            Same £4M cap. No interest. No maturity date.
-                                        </p>
-                                    </div>
-                                    <div className="bg-safety/5 border border-safety/20 p-5">
-                                        <p className="text-xs font-mono text-safety mb-2 uppercase tracking-widest">🇮🇳🇸🇬 India / Singapore</p>
-                                        <p className="text-base font-black text-white mb-2">CCPS / Conv. Note</p>
-                                        <p className="text-xs text-gray-400 leading-relaxed normal-case">
-                                            DPIIT-eligible structure. Same economic terms.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Milestones */}
-                            <div className="mb-8">
-                                <h4 className="text-lg font-black uppercase text-white mb-4 tracking-wide">18-Month Milestones to Series A</h4>
-                                <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-                                    <div className="border border-safety/30 bg-safety/10 p-4">
-                                        <p className="text-[10px] font-mono text-safety mb-2 uppercase tracking-widest">Now → Q3 2026</p>
-                                        <p className="text-xs font-black text-white uppercase mb-2">Foundation</p>
-                                        <ul className="text-[10px] text-gray-400 space-y-1 font-medium leading-relaxed normal-case">
-                                            <li>· UK Ltd incorporation</li>
-                                            <li>· SEIS Advance Assurance</li>
-                                            <li>· MVP build</li>
-                                            <li>· Pilot partner signed</li>
-                                        </ul>
-                                    </div>
-                                    <div className="border border-white/10 bg-white/5 p-4">
-                                        <p className="text-[10px] font-mono text-gray-500 mb-2 uppercase tracking-widest">Q4 2026</p>
-                                        <p className="text-xs font-black text-white uppercase mb-2">Beta Deploy</p>
-                                        <ul className="text-[10px] text-gray-400 space-y-1 font-medium leading-relaxed normal-case">
-                                            <li>· 1 live 3PL yard (UK)</li>
-                                            <li>· PoP validated</li>
-                                            <li>· First ESG tokens issued</li>
-                                            <li>· Demurrage savings measured</li>
-                                        </ul>
-                                    </div>
-                                    <div className="border border-white/10 bg-white/5 p-4">
-                                        <p className="text-[10px] font-mono text-gray-500 mb-2 uppercase tracking-widest">Q1–Q2 2027</p>
-                                        <p className="text-xs font-black text-white uppercase mb-2">Commercial Scale</p>
-                                        <ul className="text-[10px] text-gray-400 space-y-1 font-medium leading-relaxed normal-case">
-                                            <li>· 3 paying 3PL clients</li>
-                                            <li>· £500K ARR milestone</li>
-                                            <li>· DACH market entry</li>
-                                            <li>· Series A preparation</li>
-                                        </ul>
-                                    </div>
-                                    <div className="border border-emerald/20 bg-emerald/5 p-4">
-                                        <p className="text-[10px] font-mono text-emerald mb-2 uppercase tracking-widest">Q3–Q4 2027</p>
-                                        <p className="text-xs font-black text-white uppercase mb-2">Series A</p>
-                                        <ul className="text-[10px] text-gray-400 space-y-1 font-medium leading-relaxed normal-case">
-                                            <li>· Series A (£4M–£8M)</li>
-                                            <li>· 10+ operator network</li>
-                                            <li>· N² effect demonstrable</li>
-                                            <li>· US market entry</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* CTA — aligned with agreed phrasing */}
-                            <div className="text-center border-t border-white/10 pt-8">
-                                <p className="text-sm text-gray-400 mb-2 normal-case">
-                                    If this opportunity fits your thesis, simply reply:
-                                </p>
-                                <p className="text-sm font-mono text-safety mb-6 tracking-widest">"Interested — let's talk."</p>
-                                <a href="mailto:olden.office3d@gmail.com?subject=Investment%20Inquiry%20%E2%80%94%20Olden%20Pre-Seed%20Round"
-                                   className="inline-block bg-safety text-navy font-black uppercase tracking-widest text-sm px-10 py-4 hover:opacity-85 transition-opacity">
-                                    Request Investor Materials
-                                </a>
-                                <p className="text-xs text-gray-600 mt-3 font-mono normal-case">
-                                    Full pitch deck, financial projections, and IP documentation available under NDA
-                                </p>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* CONTACT */}
-                    <section className="w-full max-w-6xl mx-auto px-6 lg:px-0 pb-20">
-                        <div className="border-t border-white/10 pt-16 flex flex-col md:flex-row justify-between items-start gap-8">
-                            <div className="space-y-3">
-                                <p className="text-xs font-mono text-safety/60 uppercase tracking-widest">Contact</p>
-                                <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white leading-tight">Want to know more<br/>or explore collaboration?</h2>
-                                <p className="text-sm text-gray-500 normal-case font-medium max-w-sm leading-relaxed">Write to us about the Olden Project.</p>
-                            </div>
-                            <div className="flex flex-col items-start md:items-end gap-2 mt-2">
-                                <a href="mailto:olden.office3d@gmail.com"
-                                   className="inline-block bg-safety text-navy font-black uppercase tracking-widest text-sm px-8 py-4 hover:opacity-85 transition-opacity">
-                                    Write to us
-                                </a>
-                                <span className="text-[11px] text-gray-600 normal-case font-mono select-all cursor-text">olden.office3d@gmail.com</span>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* FOOTER */}
-                    <footer className="w-full max-w-6xl mx-auto px-6 lg:px-0 pb-12 border-t border-white/10 pt-8">
-                        <div className="flex flex-col md:flex-row justify-between items-start gap-6">
-                            <div className="space-y-3 max-w-2xl">
-                                <p className="text-[11px] text-safety/70 font-bold uppercase tracking-widest leading-relaxed">
-                                    Olden Project · IP Protected · Multiple US Provisional Patent Applications Pending
-                                </p>
-                                <p className="text-[10px] text-gray-600 normal-case font-medium leading-relaxed">
-                                    PRE-INCORPORATION NOTICE: This website is maintained by Nazar Zablotskyi in personal capacity, prior to the incorporation of Olden Technologies Ltd as a UK private limited company. All intellectual property rights and equity are held solely by Nazar Zablotskyi (Founder).
-                                </p>
-                                <p className="text-[10px] text-gray-600 normal-case font-medium leading-relaxed">
-                                    FINANCIAL PROMOTION DISCLAIMER: Nothing on this website constitutes a financial promotion or securities offering within the meaning of the Financial Services and Markets Act 2000 or the Financial Promotion Order 2005. This website is directed only at persons exempt under Article 48 or Article 50 of the FPO 2005. Prospective investors must seek independent legal and financial advice.
-                                </p>
-                                <p className="text-[10px] text-gray-600 normal-case font-medium leading-relaxed">
-                                    SEIS DISCLAIMER: Tax reliefs subject to HMRC Advance Assurance (application pending post-incorporation) and individual investor circumstances. PRIVACY: No tracking cookies used. Personal data processed under UK GDPR for investor enquiries only. Retention: 36 months. ICO complaint right: <a href="https://ico.org.uk" target="_blank" rel="noopener" style={{color:'#FF9F1C'}}>ico.org.uk</a>.
-                                </p>
-                                <p className="text-[10px] text-gray-700 normal-case font-medium">
-                                    © 2026 Nazar Zablotskyi. All rights reserved. Governed by the laws of England and Wales.
-                                </p>
-                            </div>
-                            <div className="space-y-1 md:text-right shrink-0">
-                                <p className="text-xs font-black text-safety uppercase tracking-widest">OLDEN</p>
-                                <p className="text-[10px] text-gray-600 uppercase tracking-widest">Technologies</p>
-                                <p className="text-[10px] text-gray-700 normal-case">forming · UK Ltd · 2026</p>
-                            </div>
-                        </div>
+                        <span className="uppercase">Patent Pending • Olden Technologies</span>
                     </footer>
-
                 </div>
             );
-        }
+        };
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
-    </script>
+    <\/script>
+
+    <script>
+        (function() {
+            try {
+                const code = document.getElementById('react-code').textContent;
+                const compiled = Babel.transform(code, {
+                    presets: [
+                        ['react', { runtime: 'classic' }]
+                    ]
+                }).code;
+                const script = document.createElement('script');
+                script.text = compiled;
+                document.body.appendChild(script);
+            } catch (err) {
+                console.error("Compilation error in React harness inside iframe:", err);
+                const root = document.getElementById('root');
+                if (root) {
+                    root.innerHTML = '<div style="color: #ef4444; padding: 40px; font-family: monospace; background: #000; border: 1px solid #ef4444;">COMPILATION ERROR: ' + err.message + '<\/div>';
+                }
+            }
+        })();
+    <\/script>
+</body>
+</html>`;
+    iframe.srcdoc = src;
+})();
+</script>
+
 </body>
 </html>
